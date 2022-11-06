@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/Admin.tsx
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-06 12:20:42
+ */
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-components';
 import { Alert, Card, Typography } from 'antd';
@@ -28,7 +37,7 @@ const Admin: React.FC = () => {
           }}
         />
         <Typography.Title level={2} style={{ textAlign: 'center' }}>
-          <SmileTwoTone /> Ant Design Pro <HeartTwoTone twoToneColor="#eb2f96" /> You
+          <SmileTwoTone /> 晓智云 <HeartTwoTone twoToneColor="#eb2f96" /> You
         </Typography.Title>
       </Card>
       <p style={{ textAlign: 'center', marginTop: 24 }}>
