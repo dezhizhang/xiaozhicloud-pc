@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 12:49:01
+ * :date last edited: 2022-11-06 21:53:26
  */
 import { login } from '@/services/ant-design-pro/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -74,24 +74,16 @@ const Login: React.FC = () => {
           }}
         >
           <ProFormText
-            name="username"
+            name="email"
             fieldProps={{
               size: 'large',
               prefix: <UserOutlined className={styles.prefixIcon} />,
             }}
-            placeholder={intl.formatMessage({
-              id: 'pages.login.username.placeholder',
-              defaultMessage: '用户名: admin or user',
-            })}
+            placeholder="请输入邮箱"
             rules={[
               {
                 required: true,
-                message: (
-                  <FormattedMessage
-                    id="pages.login.username.required"
-                    defaultMessage="请输入用户名!"
-                  />
-                ),
+                message: '邮箱不能为空',
               },
             ]}
           />
@@ -101,19 +93,11 @@ const Login: React.FC = () => {
               size: 'large',
               prefix: <LockOutlined className={styles.prefixIcon} />,
             }}
-            placeholder={intl.formatMessage({
-              id: 'pages.login.password.placeholder',
-              defaultMessage: '密码: ant.design',
-            })}
+            placeholder="请输入密码"
             rules={[
               {
                 required: true,
-                message: (
-                  <FormattedMessage
-                    id="pages.login.password.required"
-                    defaultMessage="请输入密码！"
-                  />
-                ),
+                message: '密码不能为空',
               },
             ]}
           />
