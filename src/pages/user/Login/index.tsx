@@ -5,14 +5,14 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 12:30:13
+ * :date last edited: 2022-11-06 12:49:01
  */
 import { login } from '@/services/ant-design-pro/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { message } from 'antd';
 import React from 'react';
-import { FormattedMessage, history, SelectLang, useIntl, useModel } from 'umi';
+import { FormattedMessage, history, useIntl, useModel } from 'umi';
 import styles from './index.less';
 
 const Login: React.FC = () => {
@@ -62,9 +62,10 @@ const Login: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
+        <div className={styles.title}>
+          <h2>晓智云</h2>
+        </div>
         <LoginForm
-          // logo={<img alt="logo" src="https://www.xiaozhi.shop/public/default/image/logo.png" />}
-          // title="晓智云"
           initialValues={{
             autoLogin: true,
           }}
