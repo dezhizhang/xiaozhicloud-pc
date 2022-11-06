@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/services/ant-design-pro/typings.d.ts
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-06 23:31:41
+ */
 // @ts-ignore
 /* eslint-disable */
 
@@ -59,13 +68,6 @@ declare namespace API {
   type FakeCaptcha = {
     code?: number;
     status?: string;
-  };
-
-  type LoginParams = {
-    username?: string;
-    password?: string;
-    autoLogin?: boolean;
-    type?: string;
   };
 
   type ErrorResponse = {

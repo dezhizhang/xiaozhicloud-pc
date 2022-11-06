@@ -5,13 +5,15 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 21:53:26
+ * :date last edited: 2022-11-06 23:52:55
  */
-import { login } from '@/services/ant-design-pro/api';
+
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
 import { LoginForm, ProFormCheckbox, ProFormText } from '@ant-design/pro-components';
 import { message } from 'antd';
 import React from 'react';
+import SparkMD5 from 'spark-md5';
+import { login } from './service';
 import { FormattedMessage, history, useIntl, useModel } from 'umi';
 import styles from './index.less';
 
@@ -30,11 +32,12 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleSubmit = async (values: API.LoginParams) => {
+  const handleSubmit = async (values: User.LoginParams) => {
     try {
       // 登录
-      const msg = await login({ ...values });
-      if (msg.status === 'ok') {
+      values.password = SparkMD5.hash(values.password as string);
+      const result = await login({ ...values });
+      if (result.status === 200) {
         const defaultLoginSuccessMessage = intl.formatMessage({
           id: 'pages.login.success',
           defaultMessage: '登录成功！',
@@ -48,7 +51,7 @@ const Login: React.FC = () => {
         history.push(redirect || '/');
         return;
       }
-      console.log(msg);
+      console.log(result);
       // 如果失败去设置用户错误信息
     } catch (error) {
       const defaultLoginFailureMessage = intl.formatMessage({
@@ -70,7 +73,7 @@ const Login: React.FC = () => {
             autoLogin: true,
           }}
           onFinish={async (values) => {
-            await handleSubmit(values as API.LoginParams);
+            await handleSubmit(values as User.LoginParams);
           }}
         >
           <ProFormText
