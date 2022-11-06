@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 12:23:30
+ * :date last edited: 2022-11-06 12:30:13
  */
 import { login } from '@/services/ant-design-pro/api';
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -61,13 +61,10 @@ const Login: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.lang} data-lang>
-        {SelectLang && <SelectLang />}
-      </div>
       <div className={styles.content}>
         <LoginForm
-          logo={<img alt="logo" src="/logo.svg" />}
-          title="晓智云"
+          // logo={<img alt="logo" src="https://www.xiaozhi.shop/public/default/image/logo.png" />}
+          // title="晓智云"
           initialValues={{
             autoLogin: true,
           }}
