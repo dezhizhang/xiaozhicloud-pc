@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/mock/user.ts
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-15 12:56:06
+ */
 import { Request, Response } from 'express';
 
 const waitTime = (time: number = 100) => {
@@ -118,42 +127,16 @@ export default {
     },
   ],
   'POST /api/login/account': async (req: Request, res: Response) => {
-    const { password, username, type } = req.body;
+    const { password, phone, type } = req.body;
+    console.log(req.body);
     await waitTime(2000);
-    if (password === 'ant.design' && username === 'admin') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      access = 'admin';
-      return;
-    }
-    if (password === 'ant.design' && username === 'user') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'user',
-      });
-      access = 'user';
-      return;
-    }
-    if (type === 'mobile') {
-      res.send({
-        status: 'ok',
-        type,
-        currentAuthority: 'admin',
-      });
-      access = 'admin';
-      return;
-    }
 
     res.send({
-      status: 'error',
+      status: 200,
       type,
-      currentAuthority: 'guest',
+      currentAuthority: 'admin',
     });
-    access = 'guest';
+    access = 'admin';
   },
   'POST /api/login/outLogin': (req: Request, res: Response) => {
     access = '';

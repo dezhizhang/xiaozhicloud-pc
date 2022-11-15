@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-15 12:28:39
+ * :date last edited: 2022-11-15 12:59:22
  */
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -33,22 +33,26 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = async (values: User.LoginParams) => {
-    values.password = SparkMD5.hash(values.password as string);
-    const result = await login({ ...values });
-    if (result.status === 200) {
-      const defaultLoginSuccessMessage = intl.formatMessage({
-        id: 'pages.login.success',
-        defaultMessage: '登录成功！',
-      });
-      message.success(defaultLoginSuccessMessage);
-      // await fetchUserInfo();
-      /** 此方法会跳转到 redirect 参数所在的位置 */
-      // if (!history) return;
-      // const { query } = history.location;
-      // const { redirect } = query as { redirect: string };
-      history.push('/');
-      // history.push(redirect || '/');
-      return;
+    try {
+      // 登录
+      values.password = SparkMD5.hash(values.password as string);
+      const msg = await login({ ...values });
+      if (msg.status) {
+        const defaultLoginSuccessMessage = intl.formatMessage({
+          id: 'pages.login.success',
+          defaultMessage: '登录成功！',
+        });
+        message.success(defaultLoginSuccessMessage);
+        await fetchUserInfo();
+        /** 此方法会跳转到 redirect 参数所在的位置 */
+        if (!history) return;
+        const { query } = history.location;
+        const { redirect } = query as { redirect: string };
+        history.push(redirect || '/');
+        return;
+      }
+    } catch (error) {
+      console.log(error);
     }
   };
 
