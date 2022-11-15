@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 23:52:55
+ * :date last edited: 2022-11-15 12:28:39
  */
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -33,32 +33,22 @@ const Login: React.FC = () => {
   };
 
   const handleSubmit = async (values: User.LoginParams) => {
-    try {
-      // 登录
-      values.password = SparkMD5.hash(values.password as string);
-      const result = await login({ ...values });
-      if (result.status === 200) {
-        const defaultLoginSuccessMessage = intl.formatMessage({
-          id: 'pages.login.success',
-          defaultMessage: '登录成功！',
-        });
-        message.success(defaultLoginSuccessMessage);
-        await fetchUserInfo();
-        /** 此方法会跳转到 redirect 参数所在的位置 */
-        if (!history) return;
-        const { query } = history.location;
-        const { redirect } = query as { redirect: string };
-        history.push(redirect || '/');
-        return;
-      }
-      console.log(result);
-      // 如果失败去设置用户错误信息
-    } catch (error) {
-      const defaultLoginFailureMessage = intl.formatMessage({
-        id: 'pages.login.failure',
-        defaultMessage: '登录失败，请重试！',
+    values.password = SparkMD5.hash(values.password as string);
+    const result = await login({ ...values });
+    if (result.status === 200) {
+      const defaultLoginSuccessMessage = intl.formatMessage({
+        id: 'pages.login.success',
+        defaultMessage: '登录成功！',
       });
-      message.error(defaultLoginFailureMessage);
+      message.success(defaultLoginSuccessMessage);
+      // await fetchUserInfo();
+      /** 此方法会跳转到 redirect 参数所在的位置 */
+      // if (!history) return;
+      // const { query } = history.location;
+      // const { redirect } = query as { redirect: string };
+      history.push('/');
+      // history.push(redirect || '/');
+      return;
     }
   };
 
@@ -77,16 +67,21 @@ const Login: React.FC = () => {
           }}
         >
           <ProFormText
-            name="email"
+            name="phone"
             fieldProps={{
               size: 'large',
               prefix: <UserOutlined className={styles.prefixIcon} />,
             }}
-            placeholder="请输入邮箱"
+            placeholder="请办入手机号"
             rules={[
               {
                 required: true,
-                message: '邮箱不能为空',
+                message: '手机号不能为空',
+              },
+              {
+                pattern:
+                  /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/,
+                message: '手机号不会法',
               },
             ]}
           />
@@ -101,6 +96,14 @@ const Login: React.FC = () => {
               {
                 required: true,
                 message: '密码不能为空',
+              },
+              {
+                min: 6,
+                message: '密码不能小于6位',
+              },
+              {
+                max: 20,
+                message: '密码不能超过20位',
               },
             ]}
           />
