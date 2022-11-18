@@ -5,15 +5,15 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-18 21:04:28
+ * :date last edited: 2022-11-18 23:08:06
  */
 import styles from './index.less';
-import dayjs from 'dayjs';
-import { Button, Row, Table } from 'antd';
+import { Button, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { getManagerList } from './service';
 import { empty } from '@/utils/index';
-// import UserDrawer from './components/UserDrawer';
+import { SEX_MAP } from './constants';
+import UserDrawer from './components/UserDrawer';
 import FilterTable from './components/FilterTable';
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -47,7 +47,10 @@ const Manager: React.FC = () => {
       title: '姓别',
       dataIndex: 'sex',
       key: 'sex',
-      render,
+      render: (text: number) => {
+        const lanel = SEX_MAP.find((item) => item.value == text)?.label;
+        return <span>{lanel || empty()}</span>;
+      },
     },
     {
       title: '邮箱地址',
@@ -66,6 +69,23 @@ const Manager: React.FC = () => {
       key: 'add_time',
       render: (text: string) => {
         // return <span>{dayjs(text).format('YYYY-MM-DD HH:mm:ss')}</span>;
+      },
+    },
+    {
+      title: '操作',
+      dataIndex: 'operation',
+      key: 'operation',
+      render: () => {
+        return (
+          <div>
+            <Button type="primary" size="small">
+              修改
+            </Button>
+            <Button danger type="primary" size="small" style={{ marginLeft: 8 }}>
+              删除
+            </Button>
+          </div>
+        );
       },
     },
   ];
@@ -125,11 +145,11 @@ const Manager: React.FC = () => {
 
         <Table loading={loading} dataSource={dataSource} columns={columns} />
       </div>
-      {/* <UserDrawer
+      <UserDrawer
         //@ts-ignore
         ref={userRef}
         onSuccess={handleSuccess}
-      /> */}
+      />
     </div>
   );
 };
