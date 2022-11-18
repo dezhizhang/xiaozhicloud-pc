@@ -1,0 +1,48 @@
+@import './vars.less';
+
+.filterContainer {
+  width: 100%;
+  border: 1px solid var(--color-grey-4);
+  border-collapse: collapse;
+
+  tr {
+    border-bottom: 1px solid var(--color-grey-4);
+  }
+
+  tr:last-child {
+    border-bottom: none;
+  }
+
+  th {
+    width: 17%;
+    min-width: 150px;
+    padding-right: 30px;
+    color: var(--color-grey-7);
+    font-weight: normal;
+    line-height: 50px;
+    text-align: right;
+    vertical-align: middle;
+    background-color: var(--color-grey-2);
+
+    a,
+    a:active,
+    a:focus,
+    a:hover {
+      color: var(--color-grey-7);
+      text-decoration: none;
+    }
+
+    a:hover {
+      color: var(--color-grey-8);
+    }
+  }
+
+  td {
+    padding: 0 50px;
+    vertical-align: middle;
+
+    & > * {
+      margin-right: 10px;
+    }
+  }
+}

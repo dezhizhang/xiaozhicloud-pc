@@ -1,5 +1,13 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/global.tsx
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-18 13:20:23
+ */
 import { Button, message, notification } from 'antd';
-import { useIntl } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 
 const { pwa } = defaultSettings;
@@ -23,7 +31,7 @@ const clearCache = () => {
 if (pwa) {
   // Notify user if offline now
   window.addEventListener('sw.offline', () => {
-    message.warning(useIntl().formatMessage({ id: 'app.pwa.offline' }));
+    message.warning('app.pwa.offline');
   });
 
   // Pop up a prompt on the page asking the user if they want to use the latest version

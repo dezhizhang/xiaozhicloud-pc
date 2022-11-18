@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-15 12:56:06
+ * :date last edited: 2022-11-18 12:28:42
  */
 import { Request, Response } from 'express';
 
@@ -38,7 +38,7 @@ const getAccess = () => {
 // 代码中会兼容本地 service mock 以及部署站点的静态数据
 export default {
   // 支持值为 Object 和 Array
-  'GET /api/currentUser': (req: Request, res: Response) => {
+  'GET /api/v1/currentUser': (req: Request, res: Response) => {
     if (!getAccess()) {
       res.status(401).send({
         data: {
@@ -126,7 +126,7 @@ export default {
       address: 'Sidney No. 1 Lake Park',
     },
   ],
-  'POST /api/login/account': async (req: Request, res: Response) => {
+  'POST /api/v1/login/account': async (req: Request, res: Response) => {
     const { password, phone, type } = req.body;
     console.log(req.body);
     await waitTime(2000);

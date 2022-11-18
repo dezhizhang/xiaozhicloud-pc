@@ -1,7 +1,15 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/Welcome.tsx
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-18 13:19:58
+ */
 import { PageContainer } from '@ant-design/pro-components';
 import { Alert, Card, Typography } from 'antd';
 import React from 'react';
-import { FormattedMessage, useIntl } from 'umi';
 import styles from './Welcome.less';
 
 const CodePreview: React.FC = ({ children }) => (
@@ -13,16 +21,12 @@ const CodePreview: React.FC = ({ children }) => (
 );
 
 const Welcome: React.FC = () => {
-  const intl = useIntl();
+  // const intl = useIntl();
 
   return (
     <PageContainer>
       <Card>
         <Alert
-          message={intl.formatMessage({
-            id: 'pages.welcome.alertMessage',
-            defaultMessage: 'Faster and stronger heavy-duty components have been released.',
-          })}
           type="success"
           showIcon
           banner
@@ -37,7 +41,7 @@ const Welcome: React.FC = () => {
             rel="noopener noreferrer"
             target="__blank"
           >
-            <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" />
+            {/* <FormattedMessage id="pages.welcome.link" defaultMessage="Welcome" /> */}
           </a>
         </Typography.Text>
         <CodePreview>yarn add @ant-design/pro-components</CodePreview>

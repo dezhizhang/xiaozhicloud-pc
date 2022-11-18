@@ -1,12 +1,21 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/services/ant-design-pro/api.ts
+ * :author: 张德志
+ * :copyright: (c) 2022, Tungee
+ * :date created: 2022-11-03 09:05:54
+ * :last editor: 张德志
+ * :date last edited: 2022-11-18 12:28:58
+ */
 // @ts-ignore
 /* eslint-disable */
 import { request } from 'umi';
 
-/** 获取当前的用户 GET /api/currentUser */
+/** 获取当前的用户 GET /api/v1/currentUser */
 export async function currentUser(options?: { [key: string]: any }) {
   return request<{
     data: API.CurrentUser;
-  }>('/api/currentUser', {
+  }>('/api/v1/currentUser', {
     method: 'GET',
     ...(options || {}),
   });
