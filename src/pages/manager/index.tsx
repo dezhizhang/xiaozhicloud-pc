@@ -5,12 +5,14 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:54:24
+ * :date last edited: 2022-11-18 21:04:28
  */
 import styles from './index.less';
+import dayjs from 'dayjs';
 import { Button, Row, Table } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import { getManagerList } from './service';
+import { empty } from '@/utils/index';
 // import UserDrawer from './components/UserDrawer';
 import FilterTable from './components/FilterTable';
 import React, { useState, useEffect, useRef } from 'react';
@@ -22,23 +24,36 @@ const Manager: React.FC = () => {
     phone: undefined,
     email: undefined,
   });
-  const [loading, setLoading] = useState<boolean>(false);
+  const [loading, setLoading] = useState<boolean>(true);
   const [dataSource, setDataSource] = useState<Managers.DataType[]>();
+
+  const render = (text: string) => {
+    return <span>{text ?? empty()}</span>;
+  };
   const columns: ColumnsType<Managers.DataType> = [
     {
       title: '用户名',
       dataIndex: 'username',
       key: 'username',
+      render,
     },
     {
       title: '手机号',
-      dataIndex: 'phone',
-      key: 'phone',
+      dataIndex: 'mobile',
+      key: 'mobile',
+      render,
+    },
+    {
+      title: '姓别',
+      dataIndex: 'sex',
+      key: 'sex',
+      render,
     },
     {
       title: '邮箱地址',
       dataIndex: 'email',
       key: 'email',
+      render,
     },
     {
       title: '状态',
@@ -49,6 +64,9 @@ const Manager: React.FC = () => {
       title: '创建时间',
       dataIndex: 'add_time',
       key: 'add_time',
+      render: (text: string) => {
+        // return <span>{dayjs(text).format('YYYY-MM-DD HH:mm:ss')}</span>;
+      },
     },
   ];
 
@@ -57,7 +75,7 @@ const Manager: React.FC = () => {
   };
 
   const fetchManagerList = async (params: Managers.DataType) => {
-    setLoading(false);
+    setLoading(true);
     const res = await getManagerList(params);
     console.log('res', res);
     if (res?.code === 200) {
@@ -98,7 +116,7 @@ const Manager: React.FC = () => {
       <div className={styles.content}>
         <div className={styles.title}>
           <div>
-            共查询到&nbsp;<span>100</span>&nbsp;个用户
+            共查询到&nbsp;<span style={{ color: 'red' }}>100</span>&nbsp;个用户
           </div>
           <Button type="primary" onClick={handleAddUser}>
             添加用户
