@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-18 12:39:44
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:41:31
+ * :date last edited: 2022-11-19 08:05:55
  */
 declare namespace Managers {
   type RequestType = {
@@ -17,6 +17,7 @@ declare namespace Managers {
   };
 
   type DataType = {
+    _id?: string;
     username?: string;
     phone?: string;
     email?: string;
@@ -24,9 +25,10 @@ declare namespace Managers {
     add_time?: string;
   };
   type ResponseList = {
-    success?: boolean;
+    success: boolean;
     data: DataType[];
-    msg?: string;
+    msg: string;
     code: number;
+    total: number;
   };
 }

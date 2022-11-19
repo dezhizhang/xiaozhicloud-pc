@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-12 21:38:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:40:24
+ * :date last edited: 2022-11-18 23:23:30
  */
 import { request } from 'umi';
 
@@ -20,6 +20,13 @@ export async function getManagerList(params: Managers.DataType) {
 export async function postUserAdd(params: Managers.RequestType) {
   return request<Managers.ResponseList>('/api/v1/manager/add', {
     method: 'POST',
+    data: params,
+  });
+}
+
+export async function deleteManager(params: { id: string }) {
+  return request<Managers.ResponseList>('/api/v1/manager/delete', {
+    method: 'DELETE',
     data: params,
   });
 }

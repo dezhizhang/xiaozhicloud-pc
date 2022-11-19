@@ -5,12 +5,14 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-18 23:08:06
+ * :date last edited: 2022-11-19 08:06:27
  */
 import styles from './index.less';
-import { Button, Table } from 'antd';
+import dayjs from 'dayjs';
+import { FORMAT } from '@/utils/constants';
 import type { ColumnsType } from 'antd/es/table';
-import { getManagerList } from './service';
+import { Button, Table, Popconfirm, message } from 'antd';
+import { getManagerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
 import { SEX_MAP } from './constants';
 import UserDrawer from './components/UserDrawer';
@@ -24,12 +26,33 @@ const Manager: React.FC = () => {
     phone: undefined,
     email: undefined,
   });
+  const [total, setTotal] = useState<number>(0);
   const [loading, setLoading] = useState<boolean>(true);
   const [dataSource, setDataSource] = useState<Managers.DataType[]>();
 
   const render = (text: string) => {
     return <span>{text ?? empty()}</span>;
   };
+
+  const fetchManagerList = async (params: Managers.DataType) => {
+    setLoading(true);
+    const res = await getManagerList(params);
+    console.log('res', res);
+    if (res?.success) {
+      setLoading(false);
+      setTotal(res?.total);
+      setDataSource(res?.data);
+    }
+  };
+
+  const handleConfirm = async (id: string) => {
+    const res = await deleteManager({ id });
+    if (res.success) {
+      message.success('删除成功');
+      fetchManagerList(filter);
+    }
+  };
+
   const columns: ColumnsType<Managers.DataType> = [
     {
       title: '用户名',
@@ -68,22 +91,38 @@ const Manager: React.FC = () => {
       dataIndex: 'add_time',
       key: 'add_time',
       render: (text: string) => {
-        // return <span>{dayjs(text).format('YYYY-MM-DD HH:mm:ss')}</span>;
+        return <span>{dayjs(text).format(FORMAT)}</span>;
+      },
+    },
+    {
+      title: '更新时间',
+      dataIndex: 'update_time',
+      key: 'update_time',
+      render: (text: string) => {
+        return <span>{text ? dayjs(text).format(FORMAT) : empty()}</span>;
       },
     },
     {
       title: '操作',
       dataIndex: 'operation',
       key: 'operation',
-      render: () => {
+      render: (_: string, record: Managers.DataType) => {
         return (
           <div>
             <Button type="primary" size="small">
               修改
             </Button>
-            <Button danger type="primary" size="small" style={{ marginLeft: 8 }}>
-              删除
-            </Button>
+            <Popconfirm
+              placement="topLeft"
+              title="您确定要删除吗"
+              onConfirm={() => handleConfirm(record?._id as string)}
+              okText="确认"
+              cancelText="取消"
+            >
+              <Button danger type="primary" size="small" style={{ marginLeft: 8 }}>
+                删除
+              </Button>
+            </Popconfirm>
           </div>
         );
       },
@@ -94,15 +133,15 @@ const Manager: React.FC = () => {
     (userRef.current as any).show();
   };
 
-  const fetchManagerList = async (params: Managers.DataType) => {
-    setLoading(true);
-    const res = await getManagerList(params);
-    console.log('res', res);
-    if (res?.code === 200) {
-      setLoading(false);
-      setDataSource(res?.data);
-    }
-  };
+  // const fetchManagerList = async (params: Managers.DataType) => {
+  //   setLoading(true);
+  //   const res = await getManagerList(params);
+  //   console.log('res', res);
+  //   if (res?.code === 200) {
+  //     setLoading(false);
+  //     setDataSource(res?.data);
+  //   }
+  // };
 
   const handleSuccess = () => {
     fetchManagerList(filter);
@@ -136,7 +175,7 @@ const Manager: React.FC = () => {
       <div className={styles.content}>
         <div className={styles.title}>
           <div>
-            共查询到&nbsp;<span style={{ color: 'red' }}>100</span>&nbsp;个用户
+            共查询到&nbsp;<span style={{ color: 'red' }}>{total}</span>&nbsp;个用户
           </div>
           <Button type="primary" onClick={handleAddUser}>
             添加用户
