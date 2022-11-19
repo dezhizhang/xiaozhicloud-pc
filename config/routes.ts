@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:31:30
+ * :date last edited: 2022-11-19 08:53:27
  */
 export default [
   {
@@ -34,6 +34,12 @@ export default [
     icon: 'table',
     path: '/manager',
     component: '@/pages/manager',
+  },
+  {
+    name: '轮播图管理',
+    icon: 'table',
+    path: '/banner',
+    component: '@/pages/banner',
   },
   {
     path: '/',
