@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 13:03:34
+ * :date last edited: 2022-11-20 09:17:06
  */
 import { Settings as LayoutSettings } from '@ant-design/pro-components';
 
@@ -23,7 +23,7 @@ const Settings: LayoutSettings & {
 
   colorWeak: false,
 
-  title: '探迹',
+  title: '晓智云',
   pwa: false,
   logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
   iconfontUrl: '',

@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-19 08:56:00
+ * :date last edited: 2022-11-20 09:16:08
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -55,19 +55,19 @@ const Manager: React.FC = () => {
 
   const columns: ColumnsType<Managers.DataType> = [
     {
-      title: '用户名',
-      dataIndex: 'username',
-      key: 'username',
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name',
       render,
     },
     {
-      title: '手机号',
-      dataIndex: 'mobile',
-      key: 'mobile',
+      title: '链接',
+      dataIndex: 'url',
+      key: 'url',
       render,
     },
     {
-      title: '姓别',
+      title: '位置',
       dataIndex: 'sex',
       key: 'sex',
       render: (text: number) => {
@@ -76,15 +76,10 @@ const Manager: React.FC = () => {
       },
     },
     {
-      title: '邮箱地址',
-      dataIndex: 'email',
-      key: 'email',
+      title: '排序',
+      dataIndex: 'sort',
+      key: 'sort',
       render,
-    },
-    {
-      title: '状态',
-      dataIndex: 'status',
-      key: 'status',
     },
     {
       title: '创建时间',
@@ -178,7 +173,7 @@ const Manager: React.FC = () => {
             共查询到&nbsp;<span style={{ color: 'red' }}>{total}</span>&nbsp;个用户
           </div>
           <Button type="primary" onClick={handleAddUser}>
-            添加用户
+            添加轮播图
           </Button>
         </div>
 
