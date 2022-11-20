@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-20 09:16:08
+ * :date last edited: 2022-11-20 09:18:58
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -15,7 +15,7 @@ import { Button, Table, Popconfirm, message } from 'antd';
 import { getBannerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
 import { SEX_MAP } from './constants';
-import UserDrawer from './components/UserDrawer';
+import BannerDrawer from './components/BannerDrawer';
 import FilterTable from './components/FilterTable';
 import React, { useState, useEffect, useRef } from 'react';
 
@@ -179,7 +179,7 @@ const Manager: React.FC = () => {
 
         <Table loading={loading} dataSource={dataSource} columns={columns} />
       </div>
-      <UserDrawer
+      <BannerDrawer
         //@ts-ignore
         ref={userRef}
         onSuccess={handleSuccess}

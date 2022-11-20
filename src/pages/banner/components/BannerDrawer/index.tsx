@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/manager/components/UserDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/banner/components/BannerDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-12 22:03:26
  * :last editor: 张德志
- * :date last edited: 2022-11-18 23:01:12
+ * :date last edited: 2022-11-20 09:19:21
  */
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
 import { postUserAdd } from '../../service';
@@ -66,15 +66,15 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       >
         <Form.Item
           label="用户名"
-          name="username"
+          name="name"
           rules={[{ required: true, message: '用户名不能为空!' }]}
         >
           <Input placeholder="请输入用户名" />
         </Form.Item>
 
         <Form.Item
-          label="密码"
-          name="password"
+          label="位置"
+          name="position"
           rules={[{ required: true, message: '密码不能为空' }]}
         >
           <Input.Password placeholder="请输入密码" />
