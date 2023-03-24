@@ -3,7 +3,8 @@ import styles from './index.less';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty } from '@/utils/index';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE } from './constants';
+import { PAGE_INDEX, PAGE_SIZE } from '@/constants/index';
+import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import WebsiteDrawer from './components/WebsiteDrawer';
@@ -28,13 +29,40 @@ const Website: React.FC = () => {
     }
   };
 
-  const handleOk = () => {};
+  const transformToParamsDefault = (params: Website.RequestType) => {
+    const obj = {};
+    for (let key in params) {
+      obj[key] = undefined;
+    }
+    obj['pageIndex'] = PAGE_INDEX;
+    obj['pageSize'] = PAGE_SIZE;
+    return obj;
+  };
 
-  const handleReset = () => {};
+  const handleSubmit = () => {
+    fetchWebsiteList({ ...filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+  };
+
+  const handleReset = () => {
+    const newFilter = transformToParamsDefault(filter);
+    setFilter(newFilter);
+    fetchWebsiteList({ ...newFilter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+  };
 
   const handleChange = (key: string, value: string) => {
     filter[key] = value;
     setFilter(filter);
+    fetchWebsiteList(transformToParamsDefault(filter));
+  };
+
+  const handleSuccess = () => {
+    setFilter(transformToParamsDefault(filter));
+    setPagination({
+      ...pagination,
+      current: 1,
+      pageSize: 10,
+    });
+    fetchWebsiteList(transformToParamsDefault(filter));
   };
 
   useEffect(() => {
@@ -52,6 +80,13 @@ const Website: React.FC = () => {
       title: '链接',
       dataIndex: 'link',
       key: 'link',
+      render: (text) => {
+        return (
+          <a href={`//${text}`} target="_blank">
+            {text}
+          </a>
+        );
+      },
     },
     {
       title: '类型',
@@ -71,6 +106,10 @@ const Website: React.FC = () => {
       title: '状态',
       key: 'status',
       dataIndex: 'status',
+      render: (text) => {
+        const statusItem = STATUS_TYPE.find((item) => item.value === text);
+        return <span>{statusItem?.label || empty()}</span>;
+      },
     },
     {
       title: '操作',
@@ -90,7 +129,7 @@ const Website: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.filter}>
-        <Filter filter={filter} onReset={handleReset} onOk={handleOk} onChange={handleChange} />
+        <Filter filter={filter} onReset={handleReset} onOk={handleSubmit} onChange={handleChange} />
       </div>
       <div className={styles.content}>
         <div className={styles.operation}>
@@ -114,6 +153,7 @@ const Website: React.FC = () => {
         />
       </div>
       <WebsiteDrawer
+        onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}
       />

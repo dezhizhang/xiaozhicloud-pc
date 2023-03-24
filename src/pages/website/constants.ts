@@ -30,12 +30,12 @@ export const WEBSITE_TYPE = [
 
 export const STATUS_TYPE = [
   {
-    label: '禁用',
-    value: 'disable',
-  },
-  {
     label: '启用',
     value: 'enable',
+  },
+  {
+    label: '禁用',
+    value: 'disable',
   },
 ];
 
