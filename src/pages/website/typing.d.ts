@@ -4,4 +4,12 @@ declare namespace Website {
     type?: string;
     status?: string;
   };
+
+  interface DataType {
+    key: string;
+    name: string;
+    age: number;
+    address: string;
+    tags: string[];
+  }
 }

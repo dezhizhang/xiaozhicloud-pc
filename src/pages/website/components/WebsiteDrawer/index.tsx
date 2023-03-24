@@ -54,8 +54,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     >
       <Form
         form={form}
-        labelCol={{ span: 5 }}
-        wrapperCol={{ span: 16 }}
+        labelCol={{ span: 4 }}
+        wrapperCol={{ span: 20 }}
         onFinish={handleFinish}
         autoComplete="off"
       >
