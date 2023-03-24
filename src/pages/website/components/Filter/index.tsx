@@ -10,7 +10,7 @@
 import React, { ChangeEvent } from 'react';
 import { Input, Select } from 'antd';
 import fcStyles from '@/styles/filter.less';
-import { WEBSITE_TYPE } from '../../constants';
+import { WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
 
 export interface FilterTableProps {
@@ -59,7 +59,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <th className={styles.labelArea}>状态：</th>
             <td>
               <Select style={{ width: '100%' }} placeholder="请选择网站状态" value={filter.status}>
-                {WEBSITE_TYPE.map((item) => (
+                {STATUS_TYPE.map((item) => (
                   <Select.Option value={item.value} key={item.value}>
                     {item.label}
                   </Select.Option>
