@@ -42,6 +42,12 @@ export default [
     component: '@/pages/banner',
   },
   {
+    name: '网站管理',
+    icon: 'table',
+    path: '/website',
+    component: '@/pages/website',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },
