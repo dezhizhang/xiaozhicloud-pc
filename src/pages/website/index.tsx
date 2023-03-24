@@ -8,7 +8,7 @@ import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from '.
 import { getWebsiteList } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import WebsiteDrawer from './components/WebsiteDrawer';
-import { Button, Table } from 'antd';
+import { Button, Table, Divider } from 'antd';
 
 const Website: React.FC = () => {
   const ref = useRef();
@@ -116,11 +116,15 @@ const Website: React.FC = () => {
       key: 'operation',
       render: () => {
         return (
-          <span>
-            <Button type="primary" size="small">
+          <div>
+            <a type="primary" role="button">
               编辑
-            </Button>
-          </span>
+            </a>
+            <Divider type="vertical" />
+            <a type="primary" role="button">
+              删除
+            </a>
+          </div>
         );
       },
     },
