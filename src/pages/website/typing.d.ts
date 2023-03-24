@@ -3,6 +3,8 @@ declare namespace Website {
     title?: string;
     type?: string;
     status?: string;
+    pageIndex?: number;
+    pageSize?: number;
   };
 
   interface DataType {
@@ -11,5 +13,11 @@ declare namespace Website {
     age: number;
     address: string;
     tags: string[];
+  }
+  interface ResponseData {
+    stat: number;
+    msg: string;
+    total: number;
+    data: DataType[];
   }
 }

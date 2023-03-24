@@ -48,11 +48,8 @@ type DataType = {
  * 异常处理程序
  */
 const errorHandler = (error: ResponseError): DataType => {
-  debugger;
-  console.log('err', error);
   // 502 data是文本
   const { response, data } = error;
-  console.log('response', response);
   if (response && response.status) {
     const { status } = response;
 

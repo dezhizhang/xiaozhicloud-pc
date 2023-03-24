@@ -38,3 +38,11 @@ export const STATUS_TYPE = [
     value: 'enable',
   },
 ];
+
+export const DEFAULT_PAGINATION = {
+  current: 1,
+  pageSize: 10,
+  total: 0,
+  showSizeChanger: true,
+  pageSizeOptions: ['10', '50', '100', '150', '200'],
+};

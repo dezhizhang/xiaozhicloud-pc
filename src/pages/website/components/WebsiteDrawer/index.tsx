@@ -1,6 +1,5 @@
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
-import { postUserAdd } from '../../service';
-import SparkMD5 from 'spark-md5';
+import { getWebsiteAdd } from '../../service';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
 const { Option } = Select;
@@ -23,15 +22,21 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     },
   }));
 
+  const fetchWebsiteAdd = async (values: Website.RequestType) => {
+    const res = await getWebsiteAdd(values);
+    if (res.stat) {
+      setVisible(false);
+      message.success('新增网站成功');
+      onSuccess && onSuccess();
+    }
+  };
+
   const handleFinish = async () => {
     await form.validateFields();
     const values = await form.getFieldsValue();
-    values.password = SparkMD5.hash(values.password as string);
-    const res = await postUserAdd(values);
-    if (res.code === 200) {
-      setVisible(false);
-      message.success('增加用户成功');
-      onSuccess?.();
+
+    if (operation === OPERATION_TYPE.ADD) {
+      fetchWebsiteAdd(values);
     }
   };
 
