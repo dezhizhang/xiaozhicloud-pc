@@ -9,7 +9,7 @@ import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
-import OfficeDrawer from './components/OfficeDrawer';
+import DesignDrawer from './components/DesignDrawer';
 import styles from './index.less';
 
 const Website: React.FC = () => {
@@ -234,7 +234,7 @@ const Website: React.FC = () => {
           dataSource={responseData?.data || []}
         />
       </div>
-      <OfficeDrawer
+      <DesignDrawer
         onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}
