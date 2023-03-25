@@ -116,7 +116,7 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
 
         <Form.Item
           label="手机号"
-          name="mobile"
+          name="phone"
           rules={[
             { required: true, message: '手机号不能为空' },
             {

@@ -34,17 +34,18 @@ const Login: React.FC = () => {
     try {
       // 登录
       values.password = SparkMD5.hash(values.password as string);
-      const msg = await login({ ...values });
-      if (msg.status) {
-        message.success('登录成功！');
-        await fetchUserInfo();
-        /** 此方法会跳转到 redirect 参数所在的位置 */
-        if (!history) return;
-        const { query } = history.location;
-        const { redirect } = query as { redirect: string };
-        history.push(redirect || '/');
+      const res = await login({ ...values });
+      if (!res.stat) {
+        message.warn(res.msg);
         return;
       }
+      message.success('登录成功！');
+      await fetchUserInfo();
+      /** 此方法会跳转到 redirect 参数所在的位置 */
+      if (!history) return;
+      const { query } = history.location;
+      const { redirect } = query as { redirect: string };
+      history.push(redirect || '/');
     } catch (error) {
       console.log(error);
     }
