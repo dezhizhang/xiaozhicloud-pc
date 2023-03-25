@@ -18,7 +18,7 @@ export async function getWebsiteAdd(params: Website.RequestType): Promise<any> {
 }
 
 //删除网站
-export async function getWebsiteDelete(params: { id: string }): Promise<any> {
+export async function getWebsiteDelete(params: { _id: string }): Promise<any> {
   return request(SERVICE_MAP.WEBSITE_DELETE, {
     method: 'DELETE',
     data: params,

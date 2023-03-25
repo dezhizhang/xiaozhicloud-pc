@@ -46,7 +46,7 @@ const Website: React.FC = () => {
   };
 
   const handleConfirm = async (id: string) => {
-    const res = await getWebsiteDelete({ id });
+    const res = await getWebsiteDelete({ _id: id });
     if (res.stat) {
       message.success(res.msg);
       fetchWebsiteList(transformToParamsDefault(filter));
