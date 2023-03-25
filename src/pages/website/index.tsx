@@ -68,6 +68,15 @@ const Website: React.FC = () => {
     setFilter(filter);
   };
 
+  const handlePageChange = (pageIndex: number, pageSize: number) => {
+    setPagination({
+      ...pagination,
+      current: pageIndex,
+      pageSize,
+    });
+    fetchWebsiteList({ filter, pageIndex, pageSize });
+  };
+
   const handleSuccess = () => {
     setFilter(transformToParamsDefault(filter));
     setPagination({
@@ -79,7 +88,6 @@ const Website: React.FC = () => {
   };
 
   useEffect(() => {
-    console.log('111', transformToParamsDefault(filter));
     fetchWebsiteList(transformToParamsDefault(filter));
   }, []);
 
@@ -161,7 +169,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个资产
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             新增网站
@@ -171,6 +179,7 @@ const Website: React.FC = () => {
           bordered
           pagination={{
             ...pagination,
+            onChange: handlePageChange,
             total: responseData?.total,
           }}
           loading={loading}
