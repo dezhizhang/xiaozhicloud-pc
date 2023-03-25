@@ -12,6 +12,12 @@ const SERVICE_MAP = {
   OFFICE_ADD: `/office/add`,
   OFFICE_DELETE: `/office/delete`,
   OFFICE_UPDATE: `/office/edit`,
+
+  // 办公文档
+  DESIGIN_LIST: `/design/list`,
+  DESIGIN_ADD: `/design/add`,
+  DESIGIN_DELETE: `/design/delete`,
+  DESIGIN_UPDATE: `/design/edit`,
 };
 
 Object.keys(SERVICE_MAP).map((item: string) => {

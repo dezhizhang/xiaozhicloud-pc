@@ -216,10 +216,10 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>办公文档
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>设计资源
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            新增网站
+            新增设计资源
           </Button>
         </div>
         <Table

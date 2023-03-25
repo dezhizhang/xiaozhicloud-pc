@@ -54,6 +54,12 @@ export default [
     component: '@/pages/office',
   },
   {
+    name: '设计资源',
+    icon: 'table',
+    path: '/design',
+    component: '@/pages/design',
+  },
+  {
     path: '/',
     redirect: '/welcome',
   },

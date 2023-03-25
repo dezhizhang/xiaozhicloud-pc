@@ -11,20 +11,20 @@ export const OPERATION_TEXT = {
 
 export const WEBSITE_TYPE = [
   {
-    label: 'world模板',
-    value: 'world',
+    label: 'ui设计',
+    value: 'ui',
   },
   {
-    label: 'ptt模板',
-    value: 'ptt',
+    label: '广告设计',
+    value: 'advert',
   },
   {
-    label: 'exce模板',
-    value: 'excel',
+    label: '电商设计',
+    value: 'ecommerce',
   },
   {
-    label: '简历模板',
-    value: 'resume',
+    label: '平面设计',
+    value: 'plane',
   },
 ];
 
