@@ -11,3 +11,7 @@
 export const empty = (str?: string) => {
   return str ?? '--';
 };
+
+export const format = (str?: string) => {
+  return str ?? 'YYYY-MM-DD HH:mm:ss';
+};

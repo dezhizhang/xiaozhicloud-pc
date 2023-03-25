@@ -1,8 +1,9 @@
+import moment from 'moment';
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Table, Divider, Popconfirm, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
-import { empty } from '@/utils/index';
+import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE } from '@/constants/index';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
@@ -96,12 +97,14 @@ const Website: React.FC = () => {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
+      width: '10%',
       render: (text) => <a>{text || '--'}</a>,
     },
     {
       title: '链接',
       dataIndex: 'link',
       key: 'link',
+      width: '16%',
       render: (text) => {
         return (
           <a href={`//${text}`} target="_blank">
@@ -113,20 +116,18 @@ const Website: React.FC = () => {
     {
       title: '类型',
       dataIndex: 'type',
+      width: '8%',
       key: 'type',
       render: (text) => {
         const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
         return <span>{typeItem?.label || empty()} </span>;
       },
     },
-    {
-      title: '描述',
-      key: 'description',
-      dataIndex: 'description',
-    },
+
     {
       title: '状态',
       key: 'status',
+      width: '10%',
       dataIndex: 'status',
       render: (text) => {
         const statusItem = STATUS_TYPE.find((item) => item.value === text);
@@ -134,8 +135,27 @@ const Website: React.FC = () => {
       },
     },
     {
+      title: '描述',
+      key: 'description',
+      width: '20%',
+      dataIndex: 'description',
+      render: (text) => {
+        return <span>{text || empty()}</span>;
+      },
+    },
+    {
+      title: '创建时间',
+      key: 'add_time',
+      width: '14%',
+      dataIndex: 'add_time',
+      render: (text) => {
+        return <span>{moment(text).format(format()) || empty()}</span>;
+      },
+    },
+    {
       title: '操作',
       key: 'operation',
+      width: '10%',
       render: (_, record: Website.DataType) => {
         return (
           <div>
