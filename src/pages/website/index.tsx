@@ -139,7 +139,11 @@ const Website: React.FC = () => {
       render: (_, record: Website.DataType) => {
         return (
           <div>
-            <a type="primary" role="button">
+            <a
+              type="primary"
+              role="button"
+              onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT, record)}
+            >
               编辑
             </a>
             <Divider type="vertical" />

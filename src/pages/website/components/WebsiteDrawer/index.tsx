@@ -1,5 +1,5 @@
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
-import { getWebsiteAdd } from '../../service';
+import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
 const { Option } = Select;
@@ -13,11 +13,23 @@ interface UserDrawerProps {
 const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
+  const [record, setRecord] = useState<Website.DataType>();
   const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
-    show: (active: string, id: string) => {
+    show: (active: string, params: any) => {
       setVisible(true);
+      if (active === OPERATION_TYPE.EDIT) {
+        setRecord(params);
+        form.setFieldsValue({
+          title: params.title,
+          link: params.link,
+          type: params.type,
+          status: params.status,
+          description: params.description,
+        });
+      }
       setOperation(active);
     },
   }));
@@ -26,7 +38,18 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     const res = await getWebsiteAdd(values);
     if (res.stat) {
       setVisible(false);
+      form.resetFields();
       message.success('新增网站成功');
+      onSuccess && onSuccess();
+    }
+  };
+
+  const fetchWebsiteUpdate = async (values: Website.RequestType) => {
+    const res = await getWebsiteUpdate({ _id: record?._id, ...values });
+    if (res.stat) {
+      setVisible(false);
+      form.resetFields();
+      message.success('编辑网站成功');
       onSuccess && onSuccess();
     }
   };
@@ -34,9 +57,12 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const handleFinish = async () => {
     await form.validateFields();
     const values = await form.getFieldsValue();
-
     if (operation === OPERATION_TYPE.ADD) {
       fetchWebsiteAdd(values);
+      return;
+    }
+    if (operation === OPERATION_TYPE.EDIT) {
+      fetchWebsiteUpdate(values);
     }
   };
 
