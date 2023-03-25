@@ -21,7 +21,7 @@ export interface FilterTableProps {
 }
 
 const FilterTable: React.FC<FilterTableProps> = (props) => {
-  const { onChange, onReset, onOk } = props;
+  const { filter, onChange, onReset, onOk } = props;
 
   const handleChange = (key: string, ev: ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value;
@@ -37,6 +37,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <td>
               <Input
                 allowClear
+                value={filter.title}
                 style={{ width: '100%' }}
                 placeholder="请输入标题"
                 onChange={(event) => handleChange('title', event)}
@@ -48,6 +49,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <td>
               <Select
                 allowClear
+                value={filter.type}
                 style={{ width: '100%' }}
                 placeholder="请选择网站类型"
                 onChange={(value) => onChange?.('type', value)}
@@ -65,6 +67,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <td>
               <Select
                 allowClear
+                value={filter.status}
                 onChange={(value) => onChange?.('status', value)}
                 style={{ width: '100%' }}
                 placeholder="请选择网站状态"

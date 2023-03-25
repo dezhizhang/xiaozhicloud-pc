@@ -1,10 +1,11 @@
 import moment from 'moment';
+import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
-import { Button, Table, Divider, Popconfirm, message } from 'antd';
+import { Button, Table, Divider, Popconfirm, message, Image } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
-import { PAGE_INDEX, PAGE_SIZE } from '@/constants/index';
+import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
@@ -30,20 +31,16 @@ const Website: React.FC = () => {
     }
   };
 
-  const transformToParamsDefault = (params: any) => {
+  const transformToParamsDefault = (params: any, pageIndex?: number, pageSize?: number) => {
     const obj = {};
     for (let key in params) {
       obj[key] = undefined;
     }
     return {
-      pageIndex: PAGE_INDEX,
-      pageSize: PAGE_SIZE,
+      pageIndex: pageIndex || PAGE_INDEX,
+      pageSize: pageSize || PAGE_SIZE,
       filter: obj,
     };
-  };
-
-  const handleSubmit = () => {
-    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleConfirm = async (id: string) => {
@@ -54,19 +51,25 @@ const Website: React.FC = () => {
     }
   };
 
+  const handleSubmit = () => {
+    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+  };
+
   const handleReset = () => {
     const newFilter = transformToParamsDefault(filter);
     setFilter(newFilter);
-    fetchWebsiteList({ filter: newFilter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchWebsiteList(newFilter);
   };
 
   const handleChange = (key: string, value: string) => {
+    const newFilter = _.cloneDeep(filter);
     if (key === 'title') {
-      filter[key] = value ? value : undefined;
+      newFilter[key] = value ? value : undefined;
     } else {
-      filter[key] = value;
+      newFilter[key] = value;
     }
-    setFilter(filter);
+    console.log('newFilter', newFilter);
+    setFilter(newFilter);
   };
 
   const handlePageChange = (pageIndex: number, pageSize: number) => {
@@ -114,6 +117,15 @@ const Website: React.FC = () => {
       },
     },
     {
+      title: '封面',
+      dataIndex: 'url',
+      key: 'url',
+      width: '10%',
+      render: (text) => {
+        return <Image width={64} height={32} src={text} fallback={FALLBACK} />;
+      },
+    },
+    {
       title: '类型',
       dataIndex: 'type',
       width: '8%',
@@ -137,7 +149,7 @@ const Website: React.FC = () => {
     {
       title: '描述',
       key: 'description',
-      width: '20%',
+      width: '16%',
       dataIndex: 'description',
       render: (text) => {
         return <span>{text || empty()}</span>;
@@ -146,7 +158,7 @@ const Website: React.FC = () => {
     {
       title: '创建时间',
       key: 'add_time',
-      width: '14%',
+      width: '20%',
       dataIndex: 'add_time',
       render: (text) => {
         return <span>{moment(text).format(format()) || empty()}</span>;
