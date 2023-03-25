@@ -7,7 +7,11 @@ const SERVICE_MAP = {
   WEBSITE_DELETE: `/website/delete`,
   WEBSITE_UPDATE: `/website/edit`,
 
-  // 获取网站
+  // 办公文档
+  OFFICE_LIST: `/office/list`,
+  OFFICE_ADD: `/office/add`,
+  OFFICE_DELETE: `/office/delete`,
+  OFFICE_UPDATE: `/office/edit`,
 };
 
 Object.keys(SERVICE_MAP).map((item: string) => {

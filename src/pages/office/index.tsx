@@ -9,7 +9,7 @@ import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
-import WebsiteDrawer from './components/WebsiteDrawer';
+import OfficeDrawer from './components/OfficeDrawer';
 import styles from './index.less';
 
 const Website: React.FC = () => {
@@ -216,7 +216,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>办公文档
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             新增网站
@@ -234,7 +234,7 @@ const Website: React.FC = () => {
           dataSource={responseData?.data || []}
         />
       </div>
-      <WebsiteDrawer
+      <OfficeDrawer
         onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}
