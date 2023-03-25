@@ -17,7 +17,7 @@ export async function getManagerList(params: Managers.DataType) {
   });
 }
 
-export async function postUserAdd(params: Managers.RequestType) {
+export async function getManagerAdd(params: Managers.RequestType) {
   return request<Managers.ResponseList>('/api/v1/manager/add', {
     method: 'POST',
     data: params,

@@ -14,13 +14,14 @@ import type { ColumnsType } from 'antd/es/table';
 import { Button, Table, Popconfirm, message } from 'antd';
 import { getManagerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
+import { OPERATION_TYPE } from './constants';
 import { SEX_MAP } from './constants';
 import UserDrawer from './components/UserDrawer';
 import FilterTable from './components/FilterTable';
 import React, { useState, useEffect, useRef } from 'react';
 
 const Manager: React.FC = () => {
-  const userRef = useRef();
+  const ref = useRef();
   const [filter, setFilter] = useState<Managers.DataType>({
     username: undefined,
     phone: undefined,
@@ -129,10 +130,6 @@ const Manager: React.FC = () => {
     },
   ];
 
-  const handleAddUser = () => {
-    (userRef.current as any).show();
-  };
-
   // const fetchManagerList = async (params: Managers.DataType) => {
   //   setLoading(true);
   //   const res = await getManagerList(params);
@@ -177,8 +174,8 @@ const Manager: React.FC = () => {
           <div>
             共查询到&nbsp;<span style={{ color: 'red' }}>{total}</span>&nbsp;个用户
           </div>
-          <Button type="primary" onClick={handleAddUser}>
-            添加用户
+          <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
+            添加会员
           </Button>
         </div>
 
@@ -186,7 +183,7 @@ const Manager: React.FC = () => {
       </div>
       <UserDrawer
         //@ts-ignore
-        ref={userRef}
+        ref={ref}
         onSuccess={handleSuccess}
       />
     </div>
