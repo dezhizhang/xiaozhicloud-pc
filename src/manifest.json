@@ -1,6 +1,6 @@
 {
-  "name": "晓智云 Pro",
-  "short_name": "晓智云 Pro",
+  "name": "晓智云",
+  "short_name": "晓智云",
   "display": "standalone",
   "start_url": "./?utm_source=homescreen",
   "theme_color": "#002140",

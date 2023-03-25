@@ -18,15 +18,14 @@ const Settings: LayoutSettings & {
   primaryColor: '#1890ff',
   layout: 'mix',
   contentWidth: 'Fluid',
-  fixedHeader: false,
+  fixedHeader: true,
   fixSiderbar: true,
-
   colorWeak: false,
 
   title: '晓智云',
   pwa: false,
-  logo: 'https://gw.alipayobjects.com/zos/rmsportal/KDpgvguMpGfqaHPjicRK.svg',
-  iconfontUrl: '',
+  logo: 'http://xiaozhi.shop/public/default/image/logo.png',
+  iconfontUrl: '//at.alicdn.com/t/c/font_3976594_ie1k2h5pjxj.js',
 };
 
 export default Settings;

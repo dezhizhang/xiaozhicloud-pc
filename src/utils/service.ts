@@ -18,6 +18,12 @@ const SERVICE_MAP = {
   DESIGIN_ADD: `/design/add`,
   DESIGIN_DELETE: `/design/delete`,
   DESIGIN_UPDATE: `/design/edit`,
+
+  // 软件工具
+  TOOL_LIST: `/tool/list`,
+  TOOL_ADD: `/tool/add`,
+  TOOL_DELETE: `/tool/delete`,
+  TOOL_UPDATE: `/tool/edit`,
 };
 
 Object.keys(SERVICE_MAP).map((item: string) => {

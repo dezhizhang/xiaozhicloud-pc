@@ -9,7 +9,6 @@
  */
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-import { join } from 'path';
 
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
@@ -20,6 +19,7 @@ const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   hash: true,
   antd: {},
+  favicon: 'http://xiaozhi.shop/public/default/image/favicon.ico',
   dva: {
     hmr: true,
   },
