@@ -1,12 +1,28 @@
 .container {
+  //   padding: 16px;
+  .filter {
+    margin-bottom: 16px;
+  }
+
   .content {
-    padding: 24px;
+    padding: 16px;
     background: #fff;
     border-radius: 4px;
-    .title {
+
+    .operation {
       display: flex;
       justify-content: space-between;
       margin-bottom: 16px;
+
+      .left {
+        flex: 1;
+        font-size: 14px;
+        font-family: 'Source Han Sans CN';
+
+        & > span {
+          color: #fa5246;
+        }
+      }
     }
   }
 }
