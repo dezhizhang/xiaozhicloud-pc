@@ -42,10 +42,16 @@ export default [
     component: '@/pages/banner',
   },
   {
-    name: '网站管理',
+    name: '网站建设',
     icon: 'table',
     path: '/website',
     component: '@/pages/website',
+  },
+  {
+    name: '办公文档',
+    icon: 'table',
+    path: '/office',
+    component: '@/pages/office',
   },
   {
     path: '/',

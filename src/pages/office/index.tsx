@@ -137,24 +137,6 @@ const Website: React.FC = () => {
     },
 
     {
-      title: '描述',
-      key: 'description',
-      width: '16%',
-      dataIndex: 'description',
-      render: (text) => {
-        return <span>{text || empty()}</span>;
-      },
-    },
-    {
-      title: '创建时间',
-      key: 'add_time',
-      width: '20%',
-      dataIndex: 'add_time',
-      render: (text) => {
-        return <span>{moment(text).format(format()) || empty()}</span>;
-      },
-    },
-    {
       title: '状态',
       key: 'status',
       width: '10%',
@@ -173,6 +155,24 @@ const Website: React.FC = () => {
             )}
           </span>
         );
+      },
+    },
+    {
+      title: '描述',
+      key: 'description',
+      width: '16%',
+      dataIndex: 'description',
+      render: (text) => {
+        return <span>{text || empty()}</span>;
+      },
+    },
+    {
+      title: '创建时间',
+      key: 'add_time',
+      width: '20%',
+      dataIndex: 'add_time',
+      render: (text) => {
+        return <span>{moment(text).format(format()) || empty()}</span>;
       },
     },
     {
