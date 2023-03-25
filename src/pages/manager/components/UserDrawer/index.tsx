@@ -8,7 +8,7 @@
  * :date last edited: 2022-11-18 23:01:12
  */
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
-import { getManagerAdd } from '../../service';
+import { getManagerAdd, getManagerUpdate } from '../../service';
 import SparkMD5 from 'spark-md5';
 import { OPERATION_TYPE } from '../../constants';
 import { STATUS_TYPE } from '../../constants';
@@ -23,13 +23,23 @@ interface UserDrawerProps {
 const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
-
+  const [record, setRecord] = useState<Managers.DataType>();
   const [visible, setVisible] = useState<boolean>();
   const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
   useImperativeHandle(ref, () => ({
-    show: (action: string) => {
+    show: (action: string, record: any) => {
       setOperation(action);
       setVisible(true);
+      if (action === OPERATION_TYPE.EDIT) {
+        setRecord(record);
+        form.setFieldsValue({
+          sex: record.sex,
+          email: record.email,
+          mobile: record.mobile,
+          status: record.status,
+          username: record.username,
+        });
+      }
     },
   }));
 
@@ -45,14 +55,30 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     onSuccess && onSuccess();
   };
 
+  const fetchManagerUpdate = async (params: any) => {
+    const res = await getManagerUpdate(params);
+    if (!res.stat) {
+      message.warn(res.msg);
+      return;
+    }
+    message.success(res.msg);
+    form.resetFields();
+    setVisible(false);
+    onSuccess && onSuccess();
+  };
+
   const handleFinish = async () => {
     await form.validateFields();
     const values = await form.getFieldsValue();
-    values.password = SparkMD5.hash(values.password as string);
     // 如果是新增
     if (operation === OPERATION_TYPE.ADD) {
+      values.password = SparkMD5.hash(values.password as string);
       fetchManagerAdd(values);
       return;
+    }
+    if (operation === OPERATION_TYPE.EDIT) {
+      const _id = record?._id;
+      fetchManagerUpdate({ _id, ...values });
     }
   };
 
@@ -105,7 +131,7 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         <Form.Item
           label="密码"
           name="password"
-          rules={[{ required: true, message: '密码不能为空' }]}
+          rules={[{ required: operation === OPERATION_TYPE.ADD, message: '密码不能为空' }]}
         >
           <Input.Password placeholder="请输入密码" />
         </Form.Item>

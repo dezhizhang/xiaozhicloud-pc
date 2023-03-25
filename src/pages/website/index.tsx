@@ -223,7 +223,6 @@ const Website: React.FC = () => {
           </Button>
         </div>
         <Table
-          bordered
           pagination={{
             ...pagination,
             onChange: handlePageChange,

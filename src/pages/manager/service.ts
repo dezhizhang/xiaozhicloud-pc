@@ -25,6 +25,13 @@ export async function getManagerAdd(params: Managers.RequestType) {
   });
 }
 
+export async function getManagerUpdate(params: Managers.RequestType) {
+  return request(SERVICE_MAP.MANAGER_UPDATE, {
+    method: 'PUT',
+    data: params,
+  });
+}
+
 export async function deleteManager(params: { id: string }) {
   return request(SERVICE_MAP.MANAGER_DELETE, {
     method: 'DELETE',

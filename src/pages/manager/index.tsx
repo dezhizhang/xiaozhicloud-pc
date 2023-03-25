@@ -124,7 +124,7 @@ const Manager: React.FC = () => {
       render: (_: string, record: Managers.DataType) => {
         return (
           <div>
-            <a href="javascript;;" role="button">
+            <a role="button" onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT, record)}>
               修改
             </a>
             <Divider type="vertical" />
@@ -135,14 +135,7 @@ const Manager: React.FC = () => {
               okText="确认"
               cancelText="取消"
             >
-              <a
-                href="javascript;;"
-                role="button"
-                style={{ marginLeft: 8 }}
-                onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT)}
-              >
-                删除
-              </a>
+              <a role="button">删除</a>
             </Popconfirm>
           </div>
         );
