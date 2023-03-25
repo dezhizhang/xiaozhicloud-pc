@@ -40,6 +40,7 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       return;
     }
     message.success(res.msg);
+    form.resetFields();
     setVisible(false);
     onSuccess && onSuccess();
   };

@@ -11,10 +11,10 @@ import styles from './index.less';
 import dayjs from 'dayjs';
 import { FORMAT } from '@/utils/constants';
 import type { ColumnsType } from 'antd/es/table';
-import { Button, Table, Popconfirm, message } from 'antd';
+import { Button, Table, Popconfirm, message, Divider, Badge } from 'antd';
 import { getManagerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
-import { OPERATION_TYPE } from './constants';
+import { OPERATION_TYPE, STATUS_TYPE } from './constants';
 import { SEX_MAP } from './constants';
 import UserDrawer from './components/UserDrawer';
 import FilterTable from './components/FilterTable';
@@ -32,13 +32,12 @@ const Manager: React.FC = () => {
   const [dataSource, setDataSource] = useState<Managers.DataType[]>();
 
   const render = (text: string) => {
-    return <span>{text ?? empty()}</span>;
+    return <span>{text || empty()}</span>;
   };
 
   const fetchManagerList = async (params: Managers.DataType) => {
     setLoading(true);
     const res = await getManagerList(params);
-    console.log('res', res);
     if (res?.success) {
       setLoading(false);
       setTotal(res?.total);
@@ -86,6 +85,21 @@ const Manager: React.FC = () => {
       title: '状态',
       dataIndex: 'status',
       key: 'status',
+      render: (text) => {
+        const statusItem = STATUS_TYPE.find((item) => item.value === text);
+        return (
+          <span>
+            {statusItem ? (
+              <Badge
+                text={statusItem.label}
+                color={statusItem.value === 'enable' ? 'green' : 'volcano'}
+              />
+            ) : (
+              empty()
+            )}
+          </span>
+        );
+      },
     },
     {
       title: '创建时间',
@@ -110,9 +124,10 @@ const Manager: React.FC = () => {
       render: (_: string, record: Managers.DataType) => {
         return (
           <div>
-            <Button type="primary" size="small">
+            <a href="javascript;;" role="button">
               修改
-            </Button>
+            </a>
+            <Divider type="vertical" />
             <Popconfirm
               placement="topLeft"
               title="您确定要删除吗"
@@ -120,9 +135,14 @@ const Manager: React.FC = () => {
               okText="确认"
               cancelText="取消"
             >
-              <Button danger type="primary" size="small" style={{ marginLeft: 8 }}>
+              <a
+                href="javascript;;"
+                role="button"
+                style={{ marginLeft: 8 }}
+                onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT)}
+              >
                 删除
-              </Button>
+              </a>
             </Popconfirm>
           </div>
         );

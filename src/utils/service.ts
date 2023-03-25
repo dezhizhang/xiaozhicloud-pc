@@ -1,6 +1,12 @@
 export const BASE_URL = '/api/v1';
 
 const SERVICE_MAP = {
+  // 会员管理
+  MANAGER_LIST: `/manager/list`,
+  MANAGER_ADD: `/manager/add`,
+  MANAGER_UPDATE: `/manager/edit`,
+  MANAGER_DELETE: `/manager/delete`,
+
   // 获取网站列表
   WEBSITE_LIST: `/website/list`,
   WEBSITE_ADD: `/website/add`,

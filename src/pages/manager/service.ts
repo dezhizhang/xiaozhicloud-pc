@@ -7,25 +7,26 @@
  * :last editor: 张德志
  * :date last edited: 2022-11-18 23:23:30
  */
-import { request } from 'umi';
+import request from '@/utils/request';
+import SERVICE_MAP from '@/utils/service';
 
-/** 获取当前的用户 GET /api/currentUser */
-export async function getManagerList(params: Managers.DataType) {
-  return request<Managers.ResponseList>('/api/v1/manager/list', {
+// /** 获取当前的用户 GET /api/currentUser */
+export async function getManagerList(params: Managers.DataType): Promise<any> {
+  return request(SERVICE_MAP.MANAGER_LIST, {
     method: 'POST',
     data: params,
   });
 }
 
 export async function getManagerAdd(params: Managers.RequestType) {
-  return request<Managers.ResponseList>('/api/v1/manager/add', {
+  return request(SERVICE_MAP.MANAGER_ADD, {
     method: 'POST',
     data: params,
   });
 }
 
 export async function deleteManager(params: { id: string }) {
-  return request<Managers.ResponseList>('/api/v1/manager/delete', {
+  return request(SERVICE_MAP.MANAGER_DELETE, {
     method: 'DELETE',
     data: params,
   });
