@@ -21,7 +21,7 @@ const Website: React.FC = () => {
     status: undefined,
   });
 
-  const fetchWebsiteList = async (params: Website.RequestType) => {
+  const fetchWebsiteList = async (params: any) => {
     const res = await getWebsiteList(params);
     if (res.stat) {
       setResponseData(res?.result);
@@ -29,18 +29,20 @@ const Website: React.FC = () => {
     }
   };
 
-  const transformToParamsDefault = (params: Website.RequestType) => {
+  const transformToParamsDefault = (params: any) => {
     const obj = {};
     for (let key in params) {
       obj[key] = undefined;
     }
-    obj['pageIndex'] = PAGE_INDEX;
-    obj['pageSize'] = PAGE_SIZE;
-    return obj;
+    return {
+      pageIndex: PAGE_INDEX,
+      pageSize: PAGE_SIZE,
+      filter: obj,
+    };
   };
 
   const handleSubmit = () => {
-    fetchWebsiteList({ ...filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleConfirm = async (id: string) => {
@@ -54,7 +56,7 @@ const Website: React.FC = () => {
   const handleReset = () => {
     const newFilter = transformToParamsDefault(filter);
     setFilter(newFilter);
-    fetchWebsiteList({ ...newFilter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchWebsiteList({ filter: newFilter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleChange = (key: string, value: string) => {
@@ -77,7 +79,8 @@ const Website: React.FC = () => {
   };
 
   useEffect(() => {
-    fetchWebsiteList(filter);
+    console.log('111', transformToParamsDefault(filter));
+    fetchWebsiteList(transformToParamsDefault(filter));
   }, []);
 
   const columns: ColumnsType<Website.DataType> = [

@@ -2,7 +2,7 @@ import request from '@/utils/request';
 import { SERVICE_MAP } from '@/utils/service';
 
 // 获取网站列表
-export async function getWebsiteList(params: Website.RequestType): Promise<Website.ResponseInfo> {
+export async function getWebsiteList(params: any): Promise<Website.ResponseInfo> {
   return request(SERVICE_MAP.WEBSITE_LIST, {
     method: 'POST',
     data: params,
