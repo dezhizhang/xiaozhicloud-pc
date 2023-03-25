@@ -15,7 +15,7 @@ export default [
       {
         name: 'login',
         path: '/user/login',
-        component: './user/Login',
+        component: '@/pages/login',
       },
       {
         component: './404',
