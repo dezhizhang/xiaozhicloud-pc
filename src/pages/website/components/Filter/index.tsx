@@ -21,7 +21,7 @@ export interface FilterTableProps {
 }
 
 const FilterTable: React.FC<FilterTableProps> = (props) => {
-  const { onChange, filter, onReset, onOk } = props;
+  const { onChange, onReset, onOk } = props;
 
   const handleChange = (key: string, ev: ChangeEvent<HTMLInputElement>) => {
     const value = ev.target.value;
@@ -36,9 +36,9 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <th className={styles.labelArea}>标题：</th>
             <td>
               <Input
+                allowClear
                 style={{ width: '100%' }}
                 placeholder="请输入标题"
-                value={filter.title}
                 onChange={(event) => handleChange('title', event)}
               />
             </td>
@@ -46,7 +46,12 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
           <tr>
             <th className={styles.labelArea}>类型：</th>
             <td>
-              <Select style={{ width: '100%' }} placeholder="请选择网站类型">
+              <Select
+                allowClear
+                style={{ width: '100%' }}
+                placeholder="请选择网站类型"
+                onChange={(value) => onChange?.('type', value)}
+              >
                 {WEBSITE_TYPE.map((item) => (
                   <Select.Option value={item.value} key={item.value}>
                     {item.label}
@@ -58,7 +63,12 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
           <tr>
             <th className={styles.labelArea}>状态：</th>
             <td>
-              <Select style={{ width: '100%' }} placeholder="请选择网站状态" value={filter.status}>
+              <Select
+                allowClear
+                onChange={(value) => onChange?.('status', value)}
+                style={{ width: '100%' }}
+                placeholder="请选择网站状态"
+              >
                 {STATUS_TYPE.map((item) => (
                   <Select.Option value={item.value} key={item.value}>
                     {item.label}
@@ -70,11 +80,11 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
         </tbody>
       </table>
       <div className={styles.clear}>
-        <a href="javascript:;" role="button" onClick={onOk}>
-          搜索
-        </a>
         <a href="javascript:;" role="button" onClick={onReset}>
           重置
+        </a>
+        <a href="javascript:;" role="button" onClick={onOk}>
+          搜索
         </a>
       </div>
     </div>

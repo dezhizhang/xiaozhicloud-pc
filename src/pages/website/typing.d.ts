@@ -8,16 +8,21 @@ declare namespace Website {
   };
 
   interface DataType {
-    key: string;
-    name: string;
-    age: number;
-    address: string;
-    tags: string[];
+    add_time: string;
+    description: string;
+    link: string;
+    review: string;
+    title: string;
+    status: string;
+    _id: string;
   }
-  interface ResponseData {
+  interface ResponseInfo {
     stat: number;
     msg: string;
-    total: number;
-    data: DataType[];
+    result: ResponseData;
+  }
+  interface ResponseData {
+    total?: number;
+    data?: DataType[];
   }
 }

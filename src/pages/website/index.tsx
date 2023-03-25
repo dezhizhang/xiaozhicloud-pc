@@ -1,14 +1,14 @@
 import React, { useRef, useState, useEffect } from 'react';
-import styles from './index.less';
+import { Button, Table, Divider, Popconfirm, message } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE } from '@/constants/index';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
-import { getWebsiteList } from './service';
+import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import WebsiteDrawer from './components/WebsiteDrawer';
-import { Button, Table, Divider } from 'antd';
+import styles from './index.less';
 
 const Website: React.FC = () => {
   const ref = useRef();
@@ -24,7 +24,7 @@ const Website: React.FC = () => {
   const fetchWebsiteList = async (params: Website.RequestType) => {
     const res = await getWebsiteList(params);
     if (res.stat) {
-      setResponseData(res);
+      setResponseData(res?.result);
       setLoading(false);
     }
   };
@@ -43,6 +43,14 @@ const Website: React.FC = () => {
     fetchWebsiteList({ ...filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
+  const handleConfirm = async (id: string) => {
+    const res = await getWebsiteDelete({ id });
+    if (res.stat) {
+      message.success(res.msg);
+      fetchWebsiteList(transformToParamsDefault(filter));
+    }
+  };
+
   const handleReset = () => {
     const newFilter = transformToParamsDefault(filter);
     setFilter(newFilter);
@@ -50,9 +58,12 @@ const Website: React.FC = () => {
   };
 
   const handleChange = (key: string, value: string) => {
-    filter[key] = value;
+    if (key === 'title') {
+      filter[key] = value ? value : undefined;
+    } else {
+      filter[key] = value;
+    }
     setFilter(filter);
-    fetchWebsiteList(transformToParamsDefault(filter));
   };
 
   const handleSuccess = () => {
@@ -114,16 +125,24 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      render: () => {
+      render: (_, record: Website.DataType) => {
         return (
           <div>
             <a type="primary" role="button">
               编辑
             </a>
             <Divider type="vertical" />
-            <a type="primary" role="button">
-              删除
-            </a>
+            <Popconfirm
+              okText="确定"
+              placement="topLeft"
+              title={'您确定要删除吗？'}
+              onConfirm={() => handleConfirm(record._id)}
+              cancelText="取消"
+            >
+              <a type="primary" role="button">
+                删除
+              </a>
+            </Popconfirm>
           </div>
         );
       },
