@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:14:16
+ * :date last edited: 2023-04-26 01:40:31
  */
 /**
  * 在生产环境 代理是无法生效的，所以这里没有生产环境的配置
@@ -20,7 +20,7 @@ export default {
     // localhost:8000/api/** -> https://preview.pro.ant.design/api/**
     '/api/v1': {
       // 要代理的地址
-      target: 'http://127.0.0.1:8081',
+      target: 'http://127.0.0.1:8085',
       // 配置了这个可以从 http 代理到 https
       // 依赖 origin 的功能可能需要这个，比如 cookie
       changeOrigin: true,
