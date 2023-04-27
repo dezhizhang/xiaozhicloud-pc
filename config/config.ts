@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 21:01:51
+ * :date last edited: 2023-04-28 01:48:55
  */
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
@@ -51,6 +51,7 @@ export default defineConfig({
   // esbuild is father build tools
   // https://umijs.org/plugins/plugin-esbuild
   esbuild: {},
+  outputPath: 'build',
   title: false,
   ignoreMomentLocale: true,
   proxy: proxy[REACT_APP_ENV || 'dev'],
