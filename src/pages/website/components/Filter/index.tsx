@@ -1,14 +1,16 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/manager/components/FilterTable/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/website/components/Filter/index.tsx
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:41:33
+ * :date last edited: 2023-04-27 23:30:12
  */
 import React, { ChangeEvent } from 'react';
 import { Input, Select } from 'antd';
+import { FILTER_WIDTH } from '@/constants';
+
 import fcStyles from '@/styles/filter.less';
 import { WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
@@ -38,8 +40,8 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
               <Input
                 allowClear
                 value={filter.title}
-                style={{ width: '100%' }}
                 placeholder="请输入标题"
+                style={{ width: FILTER_WIDTH }}
                 onChange={(event) => handleChange('title', event)}
               />
             </td>
@@ -50,8 +52,8 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
               <Select
                 allowClear
                 value={filter.type}
-                style={{ width: '100%' }}
                 placeholder="请选择网站类型"
+                style={{ width: FILTER_WIDTH }}
                 onChange={(value) => onChange?.('type', value)}
               >
                 {WEBSITE_TYPE.map((item) => (
@@ -69,7 +71,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
                 allowClear
                 value={filter.status}
                 onChange={(value) => onChange?.('status', value)}
-                style={{ width: '100%' }}
+                style={{ width: FILTER_WIDTH }}
                 placeholder="请选择网站状态"
               >
                 {STATUS_TYPE.map((item) => (

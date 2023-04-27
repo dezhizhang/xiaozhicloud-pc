@@ -5,10 +5,11 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:41:33
+ * :date last edited: 2023-04-27 23:28:17
  */
 import React from 'react';
 import { Input, Button } from 'antd';
+import { FILTER_WIDTH } from '@/constants';
 import fcStyles from '@/styles/filter.less';
 import styles from './index.less';
 
@@ -31,6 +32,8 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
               <Input
                 placeholder="请输入用户名"
                 value={filter.username}
+                width={FILTER_WIDTH}
+                style={{ width: FILTER_WIDTH }}
                 onChange={(event) => onChange('username', event.target.value)}
               />
             </td>
@@ -41,6 +44,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
               <Input
                 placeholder="请输入手机号"
                 value={filter.phone}
+                style={{ width: FILTER_WIDTH }}
                 onChange={(event) => onChange('phone', event.target.value)}
               />
             </td>
@@ -51,6 +55,7 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
               <Input
                 value={filter.email}
                 placeholder="请输入邮箱地址"
+                style={{ width: FILTER_WIDTH }}
                 onChange={(event) => onChange('email', event.target.value)}
               />
             </td>

@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/advert/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-04-27 23:23:36
+ */
 import moment from 'moment';
 import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
@@ -6,7 +15,7 @@ import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
+import { WEBSITE_TYPE, STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import WebsiteDrawer from './components/WebsiteDrawer';
