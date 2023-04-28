@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2023-04-27 23:31:54
+ * :date last edited: 2023-04-28 13:29:14
  */
 import React, { ChangeEvent } from 'react';
 import { Input, Select } from 'antd';
@@ -84,10 +84,10 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
         </tbody>
       </table>
       <div className={styles.clear}>
-        <a href="javascript:;" role="button" onClick={onReset}>
+        <a role="button" onClick={onReset}>
           重置
         </a>
-        <a href="javascript:;" role="button" onClick={onOk}>
+        <a role="button" onClick={onOk}>
           搜索
         </a>
       </div>
