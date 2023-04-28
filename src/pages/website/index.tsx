@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/website/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, xiaozhi
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-04-28 11:42:11
+ */
 import moment from 'moment';
 import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
@@ -104,19 +113,6 @@ const Website: React.FC = () => {
       render: (text) => <a>{text || '--'}</a>,
     },
     {
-      title: '链接',
-      dataIndex: 'link',
-      key: 'link',
-      width: '16%',
-      render: (text) => {
-        return (
-          <a href={`//${text}`} target="_blank">
-            {text}
-          </a>
-        );
-      },
-    },
-    {
       title: '封面',
       dataIndex: 'url',
       key: 'url',
@@ -178,7 +174,7 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      width: '10%',
+      width: '15%',
       render: (_, record: Website.DataType) => {
         return (
           <div>
@@ -188,6 +184,12 @@ const Website: React.FC = () => {
               onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT, record)}
             >
               编辑
+            </a>
+            <Divider type="vertical" />
+            <a>{record.status === 'enable' ? '禁用' : '启用'}</a>
+            <Divider type="vertical" />
+            <a target="_blank" href={`/website/${record?._id}`}>
+              详情
             </a>
             <Divider type="vertical" />
             <Popconfirm

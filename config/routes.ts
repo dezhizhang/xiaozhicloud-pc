@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-19 08:53:27
+ * :date last edited: 2023-04-28 11:55:54
  */
 export default [
   {
@@ -44,7 +44,16 @@ export default [
     name: '网站建设',
     icon: 'icon-a-wangzhanguanli2x',
     path: '/website',
+    key: 'website',
     component: '@/pages/website',
+  },
+  {
+    name: '网站建设详情',
+    icon: 'icon-a-wangzhanguanli2x',
+    path: '/website/:id',
+    key: 'website-id',
+    hideInMenu: true,
+    component: '@/pages/website/[type]',
   },
   {
     name: '办公文档',
