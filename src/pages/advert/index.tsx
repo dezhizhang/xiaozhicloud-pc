@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-04-27 23:23:36
+ * :date last edited: 2023-04-28 13:46:59
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -239,6 +239,7 @@ const Website: React.FC = () => {
           }}
           loading={loading}
           columns={columns}
+          rowKey={(record) => record?._id}
           dataSource={responseData?.data || []}
         />
       </div>

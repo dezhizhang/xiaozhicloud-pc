@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2022-11-19 08:06:27
+ * :date last edited: 2023-04-28 13:48:12
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -192,7 +192,12 @@ const Manager: React.FC = () => {
           </Button>
         </div>
 
-        <Table loading={loading} dataSource={dataSource} columns={columns} />
+        <Table
+          loading={loading}
+          dataSource={dataSource}
+          columns={columns}
+          rowKey={(record) => record?._id}
+        />
       </div>
       <UserDrawer
         //@ts-ignore
