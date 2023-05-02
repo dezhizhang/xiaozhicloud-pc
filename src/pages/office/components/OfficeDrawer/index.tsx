@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/office/components/OfficeDrawer/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, xiaozhi
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-05-02 16:25:45
+ */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
@@ -26,9 +35,20 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     show: (active: string, params: any) => {
       setVisible(true);
+      form.resetFields();
       if (active === OPERATION_TYPE.EDIT) {
         setRecord(params);
+        const dateTime = new Date().getTime();
+        const uploadObj = {
+          uid: dateTime,
+          name: '',
+          url: params.url,
+          status: 'done',
+        };
+        setLoading(false);
+        setFileList([uploadObj]);
         form.setFieldsValue({
+          url: params.url,
           title: params.title,
           link: params.link,
           type: params.type,

@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/office/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, xiaozhi
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-05-02 16:22:34
+ */
 import moment from 'moment';
 import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
@@ -68,7 +77,6 @@ const Website: React.FC = () => {
     } else {
       newFilter[key] = value;
     }
-    console.log('newFilter', newFilter);
     setFilter(newFilter);
   };
 
@@ -223,7 +231,6 @@ const Website: React.FC = () => {
           </Button>
         </div>
         <Table
-          bordered
           pagination={{
             ...pagination,
             onChange: handlePageChange,
