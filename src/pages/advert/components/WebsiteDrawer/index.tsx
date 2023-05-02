@@ -1,11 +1,19 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/advert/components/WebsiteDrawer/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, xiaozhi
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-05-02 15:48:15
+ */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
-
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -27,13 +35,24 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     show: (active: string, params: any) => {
       setVisible(true);
+      const dateTime = new Date().getTime();
       if (active === OPERATION_TYPE.EDIT) {
         setRecord(params);
+        setFileList([
+          {
+            uid: dateTime,
+            name: '',
+            url: params.url,
+            status: 'done',
+          },
+        ]);
         form.setFieldsValue({
-          title: params.title,
+          url: params.url,
           link: params.link,
+          title: params.title,
           type: params.type,
           status: params.status,
+
           description: params.description,
         });
       }
@@ -160,21 +179,6 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             )}
           </Upload>
         </Form.Item>
-
-        <Form.Item
-          label="位置"
-          name="position"
-          rules={[{ required: true, message: '位置不能为空' }]}
-        >
-          <Select placeholder="请选择位置">
-            {WEBSITE_TYPE.map((item) => (
-              <Option key={item?.value} value={item.value}>
-                {item.label}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
-
         <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (
