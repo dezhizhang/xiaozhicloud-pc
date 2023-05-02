@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:45:23
+ * :date last edited: 2023-05-02 16:00:00
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -128,6 +128,7 @@ const Website: React.FC = () => {
       key: 'type',
       render: (text) => {
         const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
+        console.log('text', text);
         return <span>{typeItem?.label || empty()} </span>;
       },
     },
@@ -185,8 +186,6 @@ const Website: React.FC = () => {
             >
               编辑
             </a>
-            <Divider type="vertical" />
-            <a>{record.status === 'enable' ? '禁用' : '启用'}</a>
             <Divider type="vertical" />
             <a target="_blank" href={`/website/${record?._id}`}>
               详情
