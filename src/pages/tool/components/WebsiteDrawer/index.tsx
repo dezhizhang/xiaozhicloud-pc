@@ -1,8 +1,16 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/tool/components/WebsiteDrawer/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-05-02 16:48:29
+ */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
-
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
@@ -27,12 +35,22 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     show: (active: string, params: any) => {
       setVisible(true);
+      setFileList([]);
       if (active === OPERATION_TYPE.EDIT) {
+        const dateTime = new Date().getTime();
         setRecord(params);
+        const uploadObj = {
+          uid: dateTime,
+          name: '',
+          url: params.url,
+          status: 'done',
+        };
+        setFileList([uploadObj]);
         form.setFieldsValue({
-          title: params.title,
+          url: params.url,
           link: params.link,
           type: params.type,
+          title: params.title,
           status: params.status,
           description: params.description,
         });

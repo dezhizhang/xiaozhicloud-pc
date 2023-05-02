@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/tool/index.tsx
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-05-02 16:43:36
+ */
 import moment from 'moment';
 import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
@@ -223,7 +232,6 @@ const Website: React.FC = () => {
           </Button>
         </div>
         <Table
-          bordered
           pagination={{
             ...pagination,
             onChange: handlePageChange,

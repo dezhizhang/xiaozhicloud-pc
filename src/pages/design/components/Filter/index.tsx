@@ -2,10 +2,10 @@
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/design/components/Filter/index.tsx
  * :author: 张德志
- * :copyright: (c) 2022, Tungee
+ * :copyright: (c) 2022, xiaozhi
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:29:59
+ * :date last edited: 2023-05-02 16:41:30
  */
 import React, { ChangeEvent } from 'react';
 import { Input, Select } from 'antd';
