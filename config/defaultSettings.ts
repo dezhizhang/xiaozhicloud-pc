@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-20 09:17:06
+ * :date last edited: 2023-05-02 15:00:24
  */
 import { Settings as LayoutSettings } from '@ant-design/pro-components';
 
@@ -24,7 +24,7 @@ const Settings: LayoutSettings & {
 
   title: '晓智云',
   pwa: false,
-  logo: 'http://xiaozhi.shop/public/default/image/logo.png',
+  logo: 'https://xiaozhicloud.oss-cn-hangzhou.aliyuncs.com/icon.png',
   iconfontUrl: '//at.alicdn.com/t/c/font_3976594_ie1k2h5pjxj.js',
 };
 

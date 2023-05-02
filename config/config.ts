@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-04-28 01:48:55
+ * :date last edited: 2023-05-02 14:59:42
  */
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
@@ -19,7 +19,7 @@ const { REACT_APP_ENV } = process.env;
 export default defineConfig({
   hash: true,
   antd: {},
-  favicon: 'http://xiaozhi.shop/public/default/image/favicon.ico',
+  favicon: 'https://xiaozhicloud.oss-cn-hangzhou.aliyuncs.com/favicon.ico',
   dva: {
     hmr: true,
   },
