@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:48:12
+ * :date last edited: 2023-05-02 14:24:05
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -142,16 +142,6 @@ const Manager: React.FC = () => {
       },
     },
   ];
-
-  // const fetchManagerList = async (params: Managers.DataType) => {
-  //   setLoading(true);
-  //   const res = await getManagerList(params);
-  //   console.log('res', res);
-  //   if (res?.code === 200) {
-  //     setLoading(false);
-  //     setDataSource(res?.data);
-  //   }
-  // };
 
   const handleSuccess = () => {
     fetchManagerList(filter);
