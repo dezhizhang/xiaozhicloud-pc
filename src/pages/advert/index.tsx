@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:46:59
+ * :date last edited: 2023-05-02 15:52:31
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -134,26 +134,7 @@ const Website: React.FC = () => {
         return <Image width={64} height={32} src={text} fallback={FALLBACK} />;
       },
     },
-    {
-      title: '类型',
-      dataIndex: 'type',
-      width: '8%',
-      key: 'type',
-      render: (text) => {
-        const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
-        return <span>{typeItem?.label || empty()} </span>;
-      },
-    },
 
-    {
-      title: '描述',
-      key: 'description',
-      width: '16%',
-      dataIndex: 'description',
-      render: (text) => {
-        return <span>{text || empty()}</span>;
-      },
-    },
     {
       title: '创建时间',
       key: 'add_time',
@@ -182,6 +163,15 @@ const Website: React.FC = () => {
             )}
           </span>
         );
+      },
+    },
+    {
+      title: '描述',
+      key: 'description',
+      width: '16%',
+      dataIndex: 'description',
+      render: (text) => {
+        return <span>{text || empty()}</span>;
       },
     },
     {
