@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-18 22:55:29
  * :last editor: 张德志
- * :date last edited: 2022-11-18 22:57:04
+ * :date last edited: 2023-05-02 14:34:14
  */
 
 export const STATUS_TYPE = [
@@ -16,6 +16,17 @@ export const STATUS_TYPE = [
   {
     label: '禁用',
     value: 'disable',
+  },
+];
+
+export const IS_ADMIN_LIST = [
+  {
+    label: '是',
+    value: 1,
+  },
+  {
+    label: '否',
+    value: 0,
   },
 ];
 

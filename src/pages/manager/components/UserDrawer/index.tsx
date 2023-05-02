@@ -5,15 +5,14 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-12 22:03:26
  * :last editor: 张德志
- * :date last edited: 2022-11-18 23:01:12
+ * :date last edited: 2023-05-02 14:35:04
  */
-import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
-import { getManagerAdd, getManagerUpdate } from '../../service';
 import SparkMD5 from 'spark-md5';
-import { OPERATION_TYPE } from '../../constants';
-import { STATUS_TYPE } from '../../constants';
+import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { SEX_MAP } from '../../constants';
+import { getManagerAdd, getManagerUpdate } from '../../service';
+import { OPERATION_TYPE, IS_ADMIN_LIST, STATUS_TYPE, SEX_MAP } from '../../constants';
+
 const { Option } = Select;
 
 interface UserDrawerProps {
@@ -33,11 +32,7 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       if (action === OPERATION_TYPE.EDIT) {
         setRecord(record);
         form.setFieldsValue({
-          sex: record.sex,
-          email: record.email,
-          mobile: record.mobile,
-          status: record.status,
-          username: record.username,
+          ...record,
         });
       }
     },
@@ -139,6 +134,19 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         <Form.Item label="姓别" name="sex" rules={[{ required: true, message: '姓别不能为空' }]}>
           <Select placeholder="请选择性别">
             {SEX_MAP.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label="超级管理员"
+          name="is_admin"
+          rules={[{ required: true, message: '超级管理员不能为空' }]}
+        >
+          <Select placeholder="请选择状态">
+            {IS_ADMIN_LIST.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>

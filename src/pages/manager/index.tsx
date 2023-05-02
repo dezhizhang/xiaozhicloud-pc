@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:24:05
+ * :date last edited: 2023-05-02 14:27:36
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -99,6 +99,14 @@ const Manager: React.FC = () => {
             )}
           </span>
         );
+      },
+    },
+    {
+      title: '超级管理员',
+      dataIndex: 'is_admin',
+      key: 'is_admin',
+      render: (text: string) => {
+        return <span>{text ? '是' : '否'}</span>;
       },
     },
     {
