@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-12 22:03:26
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:35:04
+ * :date last edited: 2023-05-02 14:45:45
  */
 import SparkMD5 from 'spark-md5';
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
@@ -96,8 +96,8 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     >
       <Form
         form={form}
-        labelCol={{ span: 4 }}
-        wrapperCol={{ span: 20 }}
+        labelCol={{ span: 6 }}
+        wrapperCol={{ span: 18 }}
         onFinish={handleFinish}
         autoComplete="off"
       >
