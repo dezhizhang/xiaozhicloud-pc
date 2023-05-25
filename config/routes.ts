@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:22:25
+ * :date last edited: 2023-05-25 12:43:38
  */
 export default [
   {
@@ -33,6 +33,12 @@ export default [
     icon: 'icon-huiyuanguanli',
     path: '/manager',
     component: '@/pages/manager',
+  },
+  {
+    name: '人工智能',
+    icon: 'icon-guanggaoguanli',
+    path: '/aigc',
+    component: '@/pages/aigc',
   },
   {
     name: '广告管理',
