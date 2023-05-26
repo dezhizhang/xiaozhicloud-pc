@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-05-25 12:43:38
+ * :date last edited: 2023-05-26 17:43:28
  */
 export default [
   {
@@ -38,7 +38,22 @@ export default [
     name: '人工智能',
     icon: 'icon-guanggaoguanli',
     path: '/aigc',
-    component: '@/pages/aigc',
+    hideChildrenInMenu: true,
+    routes: [
+      {
+        name: '人工智能',
+        path: '/aigc',
+        component: '@/pages/aigc',
+      },
+      {
+        path: '/aigc/:id',
+        name: '众工智能详情',
+        component: '@/pages/aigc/[type]',
+      },
+      {
+        component: './404',
+      },
+    ],
   },
   {
     name: '广告管理',

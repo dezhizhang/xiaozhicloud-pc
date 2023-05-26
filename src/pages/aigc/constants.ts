@@ -5,8 +5,11 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-05-26 16:33:17
+ * :date last edited: 2023-05-26 17:37:34
  */
+
+export const baseUrl = '/aigc';
+
 // 操作类型
 export const OPERATION_TYPE = {
   ADD: 'ADD',

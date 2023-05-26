@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 16:44:18
+ * :date last edited: 2023-05-26 17:33:33
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -15,6 +15,7 @@ import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
+import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getAIGCList, getWebsiteDelete } from './service';
@@ -111,7 +112,11 @@ const Website: React.FC = () => {
       dataIndex: 'title',
       key: 'title',
       width: '10%',
-      render: (text) => <a>{text || '--'}</a>,
+      render: (text, record: Website.DataType) => (
+        <a href={`${baseUrl}/${record._id}`} target="_blank" rel="noreferrer">
+          {text || '--'}
+        </a>
+      ),
     },
     {
       title: '链接',
