@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/aigc/constants.ts
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-05-25 12:44:12
+ * :last editor: 张德志
+ * :date last edited: 2023-05-26 16:30:25
+ */
 // 操作类型
 export const OPERATION_TYPE = {
   ADD: 'ADD',
@@ -9,18 +18,14 @@ export const OPERATION_TEXT = {
   [OPERATION_TYPE.EDIT]: '编辑网站',
 };
 
-export const WEBSITE_TYPE = [
+export const AIGC_TYPE = [
   {
-    label: '顶部',
-    value: 'top',
+    label: '新闻',
+    value: 'news',
   },
   {
-    label: '中间',
-    value: 'middle',
-  },
-  {
-    label: '底部',
-    value: 'bottom',
+    label: '工具',
+    value: 'tool',
   },
 ];
 

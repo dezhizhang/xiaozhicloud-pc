@@ -1,17 +1,18 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/advert/components/Filter/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/aigc/components/Filter/index.tsx
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:28:45
+ * :date last edited: 2023-05-26 16:11:37
  */
-import React, { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import React from 'react';
 import { Input, Select } from 'antd';
 import { FILTER_WIDTH } from '@/constants';
 import fcStyles from '@/styles/filter.less';
-import { WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import { AIGC_TYPE, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
 
 export interface FilterTableProps {
@@ -50,12 +51,12 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
             <td>
               <Select
                 allowClear
-                value={filter.type}
+                value={filter?.type}
                 style={{ width: FILTER_WIDTH }}
-                placeholder="请选择网站类型"
+                placeholder="选择人工智能类型"
                 onChange={(value) => onChange?.('type', value)}
               >
-                {WEBSITE_TYPE.map((item) => (
+                {AIGC_TYPE.map((item) => (
                   <Select.Option value={item.value} key={item.value}>
                     {item.label}
                   </Select.Option>
