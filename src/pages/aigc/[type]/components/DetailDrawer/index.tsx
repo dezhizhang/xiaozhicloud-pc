@@ -5,11 +5,13 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 19:04:38
+ * :date last edited: 2023-05-26 19:15:24
  */
 
-import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
+import { Button, Drawer, Row } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
+import BraftEditor from 'braft-editor';
+import 'braft-editor/dist/index.css';
 import styles from './index.less';
 
 interface DetailDrawerProps {
@@ -17,6 +19,7 @@ interface DetailDrawerProps {
 }
 
 const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
+  const editorState = BraftEditor.createEditorState(null);
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
     show: (active: string, params: any) => {
@@ -25,6 +28,10 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   }));
 
   const handleFinish = () => {};
+
+  const handleEditorChange = () => {};
+
+  const submitContent = () => {};
 
   return (
     <Drawer
@@ -39,12 +46,12 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
           </Button>
         </Row>
       }
-      width={700}
+      width={800}
       title={'添加详情'}
       visible={visible}
       onClose={() => setVisible(false)}
     >
-      hello
+      <BraftEditor value={editorState} onChange={handleEditorChange} onSave={submitContent} />
     </Drawer>
   );
 });
