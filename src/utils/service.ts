@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-25 12:45:10
+ * :date last edited: 2023-05-26 15:40:41
  */
 export const BASE_URL = '/api/v1';
 
@@ -28,10 +28,10 @@ const SERVICE_MAP = {
   ADVERT_UPDATE: `/advert/edit`,
 
   // 获取网站列表
-  AIGC_LIST: `/advert/list`,
-  AIGC_ADD: `/advert/add`,
-  AIGC_DELETE: `/advert/delete`,
-  AIGC_UPDATE: `/advert/edit`,
+  AIGC_LIST: `/aigc/list`,
+  AIGC_ADD: `/aigc/add`,
+  AIGC_DELETE: `/aigc/delete`,
+  AIGC_UPDATE: `/aigc/edit`,
 
   // 办公文档
   OFFICE_LIST: `/office/list`,

@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-25 12:47:21
+ * :date last edited: 2023-05-26 16:07:55
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -215,10 +215,10 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个人工智能
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            新增广告
+            人工智能
           </Button>
         </div>
         <Table

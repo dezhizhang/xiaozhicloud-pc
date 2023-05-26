@@ -5,13 +5,14 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-25 12:47:12
+ * :date last edited: 2023-05-26 15:39:44
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
 
-// 获取网站列表
+// 获取人工智能列表
 export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
+  console.log('hello');
   return request(SERVICE_MAP.AIGC_LIST, {
     method: 'POST',
     data: params,
