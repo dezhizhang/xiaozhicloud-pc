@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/aigc/index.tsx
@@ -5,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 16:07:55
+ * :date last edited: 2023-05-26 16:44:18
  */
 import moment from 'moment';
 import _ from 'lodash';
