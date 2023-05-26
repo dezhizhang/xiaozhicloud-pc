@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/advert/components/WebsiteDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/aigc/components/WebsiteDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 15:51:15
+ * :date last edited: 2023-05-26 16:36:48
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -13,7 +13,7 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE } from '../../constants';
+import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, AIGC_TYPE } from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -65,7 +65,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('新增网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -75,7 +75,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('编辑网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -177,6 +177,15 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
               </div>
             )}
           </Upload>
+        </Form.Item>
+        <Form.Item label="状态" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
+          <Select placeholder="请选择类型">
+            {AIGC_TYPE.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
         </Form.Item>
         <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">

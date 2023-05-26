@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-05-26 16:30:25
+ * :date last edited: 2023-05-26 16:33:17
  */
 // 操作类型
 export const OPERATION_TYPE = {
@@ -14,8 +14,8 @@ export const OPERATION_TYPE = {
 };
 
 export const OPERATION_TEXT = {
-  [OPERATION_TYPE.ADD]: '新增网站',
-  [OPERATION_TYPE.EDIT]: '编辑网站',
+  [OPERATION_TYPE.ADD]: '新增人工智能',
+  [OPERATION_TYPE.EDIT]: '编辑人工智能',
 };
 
 export const AIGC_TYPE = [
