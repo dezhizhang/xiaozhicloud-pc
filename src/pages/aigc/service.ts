@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 15:39:44
+ * :date last edited: 2023-05-26 20:49:40
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -40,5 +40,21 @@ export async function getWebsiteUpdate(params: any): Promise<any> {
   return request(SERVICE_MAP.AIGC_UPDATE, {
     method: 'PUT',
     data: params,
+  });
+}
+
+// 详情添加
+export async function getDetailAdd(params: any): Promise<any> {
+  return request(SERVICE_MAP.DESIGIN_ADD, {
+    method: 'POST',
+    data: params,
+  });
+}
+
+// 获取详情
+export async function getDetailInfo(params: { detailId: string }): Promise<any> {
+  return request(SERVICE_MAP.DETAIL_INFO, {
+    method: 'GET',
+    params,
   });
 }

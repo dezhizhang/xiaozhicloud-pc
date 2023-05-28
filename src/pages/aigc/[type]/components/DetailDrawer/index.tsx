@@ -5,11 +5,13 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 19:15:24
+ * :date last edited: 2023-05-26 20:46:53
  */
 
 import { Button, Drawer, Row } from 'antd';
+import { useParams } from 'umi';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
+import { getDetailAdd } from '@/pages/aigc/service';
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import styles from './index.less';
@@ -19,19 +21,24 @@ interface DetailDrawerProps {
 }
 
 const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
-  const editorState = BraftEditor.createEditorState(null);
+  const { onSuccess } = props;
+  const params: { detailId: string } = useParams();
+  const [editorState, setEditorState] = useState(BraftEditor.createEditorState(null));
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
-    show: (active: string, params: any) => {
+    show: () => {
       setVisible(true);
     },
   }));
 
-  const handleFinish = () => {};
-
-  const handleEditorChange = () => {};
-
-  const submitContent = () => {};
+  const handleFinish = async () => {
+    const htmlContent = editorState?.toHTML();
+    const res = await getDetailAdd({ ...params, content: htmlContent });
+    if (res.stat) {
+      onSuccess?.();
+      setVisible(false);
+    }
+  };
 
   return (
     <Drawer
@@ -51,7 +58,11 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
       visible={visible}
       onClose={() => setVisible(false)}
     >
-      <BraftEditor value={editorState} onChange={handleEditorChange} onSave={submitContent} />
+      <BraftEditor
+        value={editorState}
+        onChange={(value) => setEditorState(value)}
+        onSave={handleFinish}
+      />
     </Drawer>
   );
 });
