@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 20:49:40
+ * :date last edited: 2023-05-29 10:33:01
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -20,7 +20,7 @@ export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
 }
 
 // 新增网站
-export async function getWebsiteAdd(params: Website.RequestType): Promise<any> {
+export async function getAigcAdd(params: Website.RequestType): Promise<any> {
   return request(SERVICE_MAP.AIGC_ADD, {
     method: 'POST',
     data: params,
@@ -45,7 +45,7 @@ export async function getWebsiteUpdate(params: any): Promise<any> {
 
 // 详情添加
 export async function getDetailAdd(params: any): Promise<any> {
-  return request(SERVICE_MAP.DESIGIN_ADD, {
+  return request(SERVICE_MAP.DETAIL_ADD, {
     method: 'POST',
     data: params,
   });

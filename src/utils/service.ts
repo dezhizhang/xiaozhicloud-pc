@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 20:39:36
+ * :date last edited: 2023-05-29 08:53:22
  */
 export const BASE_URL = '/api/v1';
 
@@ -34,6 +34,7 @@ const SERVICE_MAP = {
   // 获取网站列表
   AIGC_LIST: `/aigc/list`,
   AIGC_ADD: `/aigc/add`,
+  AIGC_INFO: '/aigc/info',
   AIGC_DELETE: `/aigc/delete`,
   AIGC_UPDATE: `/aigc/edit`,
 

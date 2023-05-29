@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/aigc/[type]/index.tsx
@@ -5,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-05-26 20:51:50
+ * :date last edited: 2023-05-29 12:35:16
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
@@ -24,9 +25,11 @@ const AigcDetail: React.FC = () => {
   const fetchDetailInfo = async () => {
     const res = await getDetailInfo(params);
     if (res.stat) {
-      setContent(res.data.content);
+      const value = res.result.data?.content;
+      setContent(value);
     }
   };
+
   useEffect(() => {
     fetchDetailInfo();
   }, [params]);
@@ -41,10 +44,11 @@ const AigcDetail: React.FC = () => {
               添加详情
             </Button>
           </div>
+          <div className="braft-output-content" dangerouslySetInnerHTML={{ __html: content }} />
         </div>
       </div>
       <DetailDrawer
-        onSuccess={handleSuccess}
+        onSuccess={() => fetchDetailInfo()}
         //@ts-ignore
         ref={ref}
       />
