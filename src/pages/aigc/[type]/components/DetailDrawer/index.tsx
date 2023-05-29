@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 20:46:53
+ * :date last edited: 2023-05-29 12:58:40
  */
 
 import { Button, Drawer, Row } from 'antd';
@@ -28,6 +28,7 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     show: () => {
       setVisible(true);
+      setEditorState(BraftEditor.createEditorState(null));
     },
   }));
 
