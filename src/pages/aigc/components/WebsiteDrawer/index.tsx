@@ -5,10 +5,10 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-26 16:36:48
+ * :date last edited: 2023-05-30 12:45:32
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants/index';
+import { OSS_OBJECT } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';

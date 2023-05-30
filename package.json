@@ -52,6 +52,7 @@
     "ali-oss": "^6.17.1",
     "antd": "^4.20.0",
     "braft-editor": "^2.3.9",
+    "braft-utils": "^3.0.12",
     "classnames": "^2.3.0",
     "dayjs": "^1.11.6",
     "lodash": "^4.17.0",
