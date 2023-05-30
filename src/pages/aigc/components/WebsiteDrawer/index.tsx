@@ -5,12 +5,12 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-30 12:45:32
+ * :date last edited: 2023-05-30 23:16:58
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
-import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
+import { getAigcAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, AIGC_TYPE } from '../../constants';
@@ -60,7 +60,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   }));
 
   const fetchWebsiteAdd = async (values: Website.RequestType) => {
-    const res = await getWebsiteAdd(values);
+    const res = await getAigcAdd(values);
     if (res.stat) {
       setVisible(false);
       form.resetFields();
