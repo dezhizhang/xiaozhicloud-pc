@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-30 13:39:58
+ * :date last edited: 2023-06-01 12:54:20
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
@@ -71,22 +71,16 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
     const dateTime = new Date().getTime();
     const client = await loadClient();
     const result = await client.put(`/detail/${dateTime}.${extension}`, file);
-    const uploadObj = {
-      uid: dateTime,
-      name: result?.name?.split('/')[1],
-      url: result.url,
-      status: 'done',
-    };
-    // ContentUtils;
-    //   ContentUtils.insertMedias(editorState, [
-    //     {
-    //       type: 'IMAGE',
-    //       url: `previewUrl?fileKey=${res.data.fileKey}`,
-    //     },
-    //   ]),
-    // );
-
-    // setFileList([uploadObj]);
+    setEditorState(
+      ContentUtils.insertMedias(editorState, [
+        {
+          uid: dateTime,
+          name: result?.name?.split('/')[1],
+          type: 'IMAGE',
+          url: result.url,
+        },
+      ]),
+    );
   };
 
   const extendControls = [
@@ -96,7 +90,7 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
       component: (
         <Upload
           listType="picture"
-          fileList={fileList}
+          // fileList={fileList}
           name="file"
           customRequest={handleRequest}
           onRemove={() => setFileList([])}
