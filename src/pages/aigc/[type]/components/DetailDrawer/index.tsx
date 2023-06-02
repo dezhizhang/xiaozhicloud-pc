@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-01 12:54:20
+ * :date last edited: 2023-06-02 12:44:33
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
@@ -81,6 +81,14 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
         },
       ]),
     );
+    const newFileList = [];
+    newFileList.push({
+      uid: dateTime,
+      name: '',
+      url: result.url,
+      status: 'done',
+    });
+    setFileList(newFileList);
   };
 
   const extendControls = [
@@ -90,7 +98,7 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
       component: (
         <Upload
           listType="picture"
-          // fileList={fileList}
+          fileList={fileList}
           name="file"
           customRequest={handleRequest}
           onRemove={() => setFileList([])}
