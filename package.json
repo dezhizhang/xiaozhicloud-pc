@@ -51,10 +51,15 @@
     "@umijs/route-utils": "^2.0.0",
     "ali-oss": "^6.17.1",
     "antd": "^4.20.0",
+    "babel-loader": "^9.1.2",
     "braft-editor": "^2.3.9",
     "braft-utils": "^3.0.12",
     "classnames": "^2.3.0",
+    "css-loader": "^6.7.1",
     "dayjs": "^1.11.6",
+    "file-loader": "^6.2.0",
+    "less": "^3.12.2",
+    "less-loader": "^6.2.0",
     "lodash": "^4.17.0",
     "moment": "^2.29.0",
     "omit.js": "^2.0.2",
@@ -65,8 +70,10 @@
     "react-dom": "^17.0.0",
     "react-helmet-async": "^1.2.0",
     "spark-md5": "^3.0.2",
+    "style-loader": "^3.3.1",
     "umi": "^3.5.0",
-    "umi-request": "^1.4.0"
+    "umi-request": "^1.4.0",
+    "url-loader": "^4.1.1"
   },
   "devDependencies": {
     "@ant-design/pro-cli": "^2.1.0",

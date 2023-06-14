@@ -5,14 +5,15 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:59:42
+ * :date last edited: 2023-06-14 12:27:28
  */
 // https://umijs.org/config/
 import { defineConfig } from 'umi';
-
 import defaultSettings from './defaultSettings';
 import proxy from './proxy';
 import routes from './routes';
+
+// 版本号
 
 const { REACT_APP_ENV } = process.env;
 
@@ -62,7 +63,7 @@ export default defineConfig({
   fastRefresh: {},
 
   nodeModulesTransform: { type: 'none' },
-  mfsu: {},
-  webpack5: {},
+  // mfsu: {},
+  // webpack5: {},
   exportStatic: {},
 });
