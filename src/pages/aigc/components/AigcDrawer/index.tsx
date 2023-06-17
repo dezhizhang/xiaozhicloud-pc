@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/components/WebsiteDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/aigc/components/AigcDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-30 23:16:58
+ * :date last edited: 2023-06-17 12:36:02
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -19,17 +19,17 @@ const { Option } = Select;
 
 const { TextArea } = Input;
 
-interface UserDrawerProps {
+interface AigcDrawerProps {
   onSuccess: () => void;
 }
 
-const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
+const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState<Website.DataType>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
@@ -178,7 +178,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             )}
           </Upload>
         </Form.Item>
-        <Form.Item label="状态" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
+        <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
           <Select placeholder="请选择类型">
             {AIGC_TYPE.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -205,4 +205,4 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   );
 });
 
-export default WebsiteDrawer;
+export default AigcDrawer;
