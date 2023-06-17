@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-17 12:36:32
+ * :date last edited: 2023-06-17 12:40:56
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,7 +17,7 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
+import { STATUS_TYPE, AIGC_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getAIGCList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
@@ -117,6 +117,15 @@ const Website: React.FC = () => {
           {text || '--'}
         </a>
       ),
+    },
+    {
+      title: '分类',
+      dataIndex: 'type',
+      width: '10%',
+      render: (text: string) => {
+        const itemType = AIGC_TYPE.find((item) => item.value === text);
+        return <span>{itemType?.label}</span>;
+      },
     },
     {
       title: '链接',

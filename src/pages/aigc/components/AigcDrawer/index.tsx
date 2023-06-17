@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-17 12:36:02
+ * :date last edited: 2023-06-17 12:39:06
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -178,8 +178,8 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
             )}
           </Upload>
         </Form.Item>
-        <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
-          <Select placeholder="请选择类型">
+        <Form.Item label="分类" name="type" rules={[{ required: true, message: '分类不能为空' }]}>
+          <Select placeholder="请选择分类">
             {AIGC_TYPE.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
