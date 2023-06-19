@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 15:59:57
+ * :date last edited: 2023-06-19 19:26:01
  */
 export const BASE_URL = '/api/v1';
 
@@ -32,11 +32,11 @@ const SERVICE_MAP = {
   DETAIL_ADD: '/detail/add',
 
   // 获取网站列表
-  AIGC_LIST: `/aigc/list`,
-  AIGC_ADD: `/aigc/add`,
-  AIGC_INFO: '/aigc/info',
-  AIGC_DELETE: `/aigc/delete`,
-  AIGC_UPDATE: `/aigc/edit`,
+  NEWS_INFORMATION_LIST: `/aigc/news-information/list`,
+  NEWS_INFORMATION_ADD: `/aigc/news-information/add`,
+  NEWS_INFORMATION_INFO: '/aigc/news-information/info',
+  NEWS_INFORMATION_DELETE: `/aigc/news-information/delete`,
+  NEWS_INFORMATION_UPDATE: `/aigc/news-information/edit`,
 
   // 智能产品
   INTELLIGENT_PRODUCTS_LIST: '/aigc/intelligent-products/list',
