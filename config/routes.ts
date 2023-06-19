@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-19 09:17:21
+ * :date last edited: 2023-06-19 09:25:33
  */
 export default [
   {
@@ -46,16 +46,22 @@ export default [
         component: '@/pages/aigc/news-information',
       },
       {
+        path: '/aigc/news-information/:detailId',
+        name: '新闻资讯详情',
+        hideInMenu: true,
+        component: '@/pages/aigc/news-information/[type]',
+      },
+      {
         name: '智能产品',
         path: '/aigc/intelligent-products',
         component: '@/pages/aigc/intelligent-products',
       },
-      // {
-      //   path: '/aigc/:detailId',
-      //   name: '众工智能详情',
-      //   hideInMenu: true,
-      //   component: '@/pages/aigc/[type]',
-      // },
+      {
+        path: '/aigc/intelligent-products/:detailId',
+        name: '智能产品详情',
+        hideInMenu: true,
+        component: '@/pages/aigc/intelligent-products/[type]',
+      },
       {
         component: './404',
       },
