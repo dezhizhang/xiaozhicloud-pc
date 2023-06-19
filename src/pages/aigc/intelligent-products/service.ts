@@ -5,13 +5,17 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 13:43:11
+ * :date last edited: 2023-06-19 16:02:14
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
 
-const { INTELLIGENT_PRODUCTS_LIST, INTELLIGENT_PRODUCTS_ADD, INTELLIGENT_PRODUCTS_DELETE } =
-  SERVICE_MAP;
+const {
+  INTELLIGENT_PRODUCTS_ADD,
+  INTELLIGENT_PRODUCTS_LIST,
+  INTELLIGENT_PRODUCTS_DELETE,
+  INTELLIGENT_PRODUCTS_UPDATE,
+} = SERVICE_MAP;
 
 // 获取人工智能列表
 export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
@@ -22,7 +26,7 @@ export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
   });
 }
 
-// 新增网站
+// 人工智能产品
 export async function getAigcAdd(params: Website.RequestType): Promise<any> {
   return request(INTELLIGENT_PRODUCTS_ADD, {
     method: 'POST',
@@ -40,7 +44,7 @@ export async function getWebsiteDelete(params: { _id: string }): Promise<any> {
 
 // 编辑网站
 export async function getWebsiteUpdate(params: any): Promise<any> {
-  return request(SERVICE_MAP.AIGC_UPDATE, {
+  return request(INTELLIGENT_PRODUCTS_UPDATE, {
     method: 'PUT',
     data: params,
   });

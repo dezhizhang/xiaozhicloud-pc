@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 13:40:58
+ * :date last edited: 2023-06-19 15:59:57
  */
 export const BASE_URL = '/api/v1';
 
@@ -42,6 +42,7 @@ const SERVICE_MAP = {
   INTELLIGENT_PRODUCTS_LIST: '/aigc/intelligent-products/list',
   INTELLIGENT_PRODUCTS_ADD: '/aigc/intelligent-products/add',
   INTELLIGENT_PRODUCTS_INFO: '/aigc/intelligent-products/info',
+  INTELLIGENT_PRODUCTS_UPDATE: '/aigc/intelligent-products/edit',
   INTELLIGENT_PRODUCTS_DELETE: '/aigc/intelligent-products/delete',
 
   // 办公文档
