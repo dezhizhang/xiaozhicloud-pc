@@ -1,11 +1,11 @@
 /*
- * :file description: 
+ * :file description:
  * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/constants.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-06-19 09:13:59
+ * :date last edited: 2023-06-19 19:51:07
  */
 /*
  * :file description:
@@ -18,6 +18,21 @@
  */
 
 export const baseUrl = '/aigc';
+
+export const TOP_CLASSIFY = [
+  {
+    label: '写作平台',
+    value: 'writing-platform',
+  },
+  {
+    label: '互动平台',
+    value: 'interactive-platform',
+  },
+  {
+    label: '绘画平台',
+    value: 'painting-platform',
+  },
+];
 
 // 操作类型
 export const OPERATION_TYPE = {
