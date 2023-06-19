@@ -5,18 +5,28 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-19 22:54:40
+ * :date last edited: 2023-06-19 23:10:03
  */
 
 export const baseUrl = '/aigc/intelligent-products';
 
 export enum TOP_CLASSIFY_TYPE {
+  //写作平台
   WRITING_PLATFORM = 'writing-platform',
+  //互动平台
   INTERACTIVE_PLATFORM = 'interactive-platform',
+  //绘画平台
   PAINTING_PLATFORM = 'painting-platform',
+  //视觉平台
   VISUAL_PLATFORM = 'visual-platform',
+  //影视平台
   TELEVISION_PLATFORMS = 'television-platforms',
+  //语音平台
   VOICE_PLATFORM = 'voice-platform',
+  //企业平台
+  ENTERPRISE_PLATFORM = 'enterprise-platform',
+  //办公平台
+  OFFICE_PLATFORM = 'office-platform',
 }
 
 export const TOP_CLASSIFY = [
@@ -46,11 +56,11 @@ export const TOP_CLASSIFY = [
   },
   {
     label: '企业平台',
-    value: 'enterprise-platform',
+    value: TOP_CLASSIFY_TYPE.ENTERPRISE_PLATFORM,
   },
   {
     label: '办公平台',
-    value: 'office-platform',
+    value: TOP_CLASSIFY_TYPE.OFFICE_PLATFORM,
   },
   {
     label: '运营平台',
@@ -137,6 +147,31 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '数字虚拟人',
       value: 'digital-virtual-humans',
+    },
+  ],
+  //语音平台
+  [TOP_CLASSIFY_TYPE.VOICE_PLATFORM]: [
+    {
+      label: '语音生成',
+      value: 'speech-generation',
+    },
+    {
+      label: '语音识别',
+      value: 'speech-recognition',
+    },
+  ],
+  //企业平台
+  [TOP_CLASSIFY_TYPE.ENTERPRISE_PLATFORM]: [
+    {
+      label: '企业服务',
+      value: 'enterprise-services',
+    },
+  ],
+  //
+  [TOP_CLASSIFY_TYPE.OFFICE_PLATFORM]: [
+    {
+      label: '办公工具',
+      value: 'office-tools',
     },
   ],
 };
