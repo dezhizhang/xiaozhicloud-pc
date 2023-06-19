@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-06-19 19:51:07
+ * :date last edited: 2023-06-19 20:09:25
  */
 /*
  * :file description:
@@ -31,6 +31,54 @@ export const TOP_CLASSIFY = [
   {
     label: '绘画平台',
     value: 'painting-platform',
+  },
+  {
+    label: '视觉平台',
+    value: 'visual-platform',
+  },
+  {
+    label: '影视平台',
+    value: 'television-platforms',
+  },
+  {
+    label: '语音平台',
+    value: 'voice-platform',
+  },
+  {
+    label: '企业平台',
+    value: 'enterprise-platform',
+  },
+  {
+    label: '办公平台',
+    value: 'office-platform',
+  },
+  {
+    label: '运营平台',
+    value: 'operation-platform',
+  },
+  {
+    label: '学习平台',
+    value: 'learning-platform',
+  },
+  {
+    label: '科研平台',
+    value: 'research-platform',
+  },
+  {
+    label: '开发平台',
+    value: 'development-platform',
+  },
+  {
+    label: '生活平台',
+    value: 'living-platform',
+  },
+  {
+    label: '游戏平台',
+    value: 'game-platform',
+  },
+  {
+    label: '权威机构',
+    value: 'authority-platform',
   },
 ];
 
