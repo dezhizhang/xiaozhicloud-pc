@@ -1,19 +1,21 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/service.ts
+ * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/service.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-29 10:33:01
+ * :date last edited: 2023-06-19 12:23:22
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
 
+const { INTELLIGENT_PRODUCTS_LIST } = SERVICE_MAP;
+
 // 获取人工智能列表
 export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
   console.log('hello');
-  return request(SERVICE_MAP.AIGC_LIST, {
+  return request(INTELLIGENT_PRODUCTS_LIST, {
     method: 'POST',
     data: params,
   });
