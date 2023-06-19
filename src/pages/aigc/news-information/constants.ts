@@ -1,13 +1,4 @@
 /*
- * :file description: 
- * :name: /xiaozhicloud-pc/src/pages/aigc/news-information/constants.ts
- * :author: 张德志
- * :copyright: (c) 2023, Tungee
- * :date created: 2023-06-19 09:14:00
- * :last editor: 张德志
- * :date last edited: 2023-06-19 09:14:01
- */
-/*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/aigc/constants.ts
  * :author: 张德志
@@ -17,7 +8,7 @@
  * :date last edited: 2023-05-26 17:37:34
  */
 
-export const baseUrl = '/aigc';
+export const baseUrl = '/aigc/news-information';
 
 // 操作类型
 export const OPERATION_TYPE = {

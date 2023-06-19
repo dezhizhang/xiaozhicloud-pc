@@ -1,14 +1,5 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/constants.ts
- * :author: 张德志
- * :copyright: (c) 2023, Tungee
- * :date created: 2023-06-19 09:13:58
- * :last editor: 张德志
- * :date last edited: 2023-06-19 20:27:43
- */
-/*
- * :file description:
  * :name: /xiaozhicloud-pc/src/pages/aigc/constants.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
@@ -17,7 +8,7 @@
  * :date last edited: 2023-05-26 17:37:34
  */
 
-export const baseUrl = '/aigc';
+export const baseUrl = '/aigc/intelligent-products';
 
 export enum TOP_CLASSIFY_TYPE {
   WRITING_PLATFORM = 'writing-platform',
