@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-06-19 20:16:10
+ * :date last edited: 2023-06-19 20:27:43
  */
 /*
  * :file description:
@@ -96,6 +96,14 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '自然语言',
       value: 'natural-language',
+    },
+    {
+      label: '写作提示',
+      value: 'writing-tips',
+    },
+    {
+      label: '内容检测',
+      value: 'content-detection',
     },
   ],
 };
