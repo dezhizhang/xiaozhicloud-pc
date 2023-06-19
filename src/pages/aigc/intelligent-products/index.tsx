@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 16:07:47
+ * :date last edited: 2023-06-19 22:29:07
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,7 +17,13 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { STATUS_TYPE, AIGC_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
+import {
+  STATUS_TYPE,
+  TOP_CLASSIFY,
+  OPERATION_TYPE,
+  SECONDARY_CLASSIFY,
+  DEFAULT_PAGINATION,
+} from './constants';
 import { getIntelligentProductList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
@@ -111,7 +117,6 @@ const Website: React.FC = () => {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      width: '10%',
       render: (text, record: Website.DataType) => (
         <a href={`${baseUrl}/${record._id}`} target="_blank" rel="noreferrer">
           {text || '--'}
@@ -119,11 +124,20 @@ const Website: React.FC = () => {
       ),
     },
     {
-      title: '分类',
-      dataIndex: 'type',
-      width: '10%',
+      title: '一级分类',
+      dataIndex: 'topClassify',
       render: (text: string) => {
-        const itemType = AIGC_TYPE.find((item) => item.value === text);
+        const itemType = TOP_CLASSIFY.find((item) => item.value === text);
+        return <span>{itemType?.label}</span>;
+      },
+    },
+    {
+      title: '二级分类',
+      dataIndex: 'topClassify',
+      render: (text: string, record: any) => {
+        const itemType = SECONDARY_CLASSIFY[text].find(
+          (item) => item.value === record.secondaryClassify,
+        );
         return <span>{itemType?.label}</span>;
       },
     },
@@ -131,7 +145,6 @@ const Website: React.FC = () => {
       title: '链接',
       dataIndex: 'link',
       key: 'link',
-      width: '16%',
       render: (text) => {
         return (
           <a href={`//${text}`} target="_blank" rel="noreferrer">
@@ -144,7 +157,6 @@ const Website: React.FC = () => {
       title: '封面',
       dataIndex: 'url',
       key: 'url',
-      width: '10%',
       render: (text) => {
         return <Image width={64} height={32} src={text} fallback={FALLBACK} />;
       },
@@ -162,7 +174,7 @@ const Website: React.FC = () => {
     {
       title: '状态',
       key: 'status',
-      width: '10%',
+
       dataIndex: 'status',
       render: (text) => {
         const statusItem = STATUS_TYPE.find((item) => item.value === text);
@@ -183,7 +195,6 @@ const Website: React.FC = () => {
     {
       title: '描述',
       key: 'description',
-      width: '16%',
       dataIndex: 'description',
       render: (text) => {
         return <span>{text || empty()}</span>;
@@ -192,7 +203,6 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      width: '10%',
       // eslint-disable-next-line @typescript-eslint/no-shadow
       render: (_: string, record: Website.DataType) => {
         return (
@@ -238,6 +248,7 @@ const Website: React.FC = () => {
           </Button>
         </div>
         <Table
+          bordered
           pagination={{
             ...pagination,
             onChange: handlePageChange,
