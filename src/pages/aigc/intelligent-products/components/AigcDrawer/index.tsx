@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 20:07:11
+ * :date last edited: 2023-06-19 20:21:36
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -13,7 +13,13 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getAigcAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, TOP_CLASSIFY } from '../../constants';
+import {
+  STATUS_TYPE,
+  TOP_CLASSIFY,
+  OPERATION_TYPE,
+  OPERATION_TEXT,
+  SECONDARY_CLASSIFY,
+} from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -26,6 +32,7 @@ interface AigcDrawerProps {
 const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
+  const [topClassify, setTopClassify] = useState<string>();
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState<Website.DataType>();
@@ -183,7 +190,15 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
           name="topClassify"
           rules={[{ required: true, message: '一级分类不能为空' }]}
         >
-          <Select placeholder="请选择一级分类">
+          <Select
+            placeholder="请选择一级分类"
+            onChange={(value) => {
+              form.setFieldsValue({
+                secondaryClassify: undefined,
+              });
+              setTopClassify(value);
+            }}
+          >
             {TOP_CLASSIFY.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
@@ -197,7 +212,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
           rules={[{ required: true, message: '二级分类不能为空' }]}
         >
           <Select placeholder="请选择二级分类">
-            {TOP_CLASSIFY.map((item) => (
+            {(SECONDARY_CLASSIFY[topClassify as string] || []).map((item: any) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>

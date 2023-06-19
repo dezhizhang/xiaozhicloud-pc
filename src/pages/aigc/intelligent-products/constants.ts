@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-06-19 20:09:25
+ * :date last edited: 2023-06-19 20:16:10
  */
 /*
  * :file description:
@@ -19,10 +19,14 @@
 
 export const baseUrl = '/aigc';
 
+export enum TOP_CLASSIFY_TYPE {
+  WRITING_PLATFORM = 'writing-platform',
+}
+
 export const TOP_CLASSIFY = [
   {
     label: '写作平台',
-    value: 'writing-platform',
+    value: TOP_CLASSIFY_TYPE.WRITING_PLATFORM,
   },
   {
     label: '互动平台',
@@ -81,6 +85,20 @@ export const TOP_CLASSIFY = [
     value: 'authority-platform',
   },
 ];
+
+// 二级分类
+export const SECONDARY_CLASSIFY = {
+  [TOP_CLASSIFY_TYPE.WRITING_PLATFORM]: [
+    {
+      label: '写作工具',
+      value: 'writing-tools',
+    },
+    {
+      label: '自然语言',
+      value: 'natural-language',
+    },
+  ],
+};
 
 // 操作类型
 export const OPERATION_TYPE = {
