@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-17 12:40:56
+ * :date last edited: 2023-06-19 16:07:47
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -18,7 +18,7 @@ import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { STATUS_TYPE, AIGC_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
-import { getAIGCList, getWebsiteDelete } from './service';
+import { getIntelligentProductList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
 import styles from './index.less';
@@ -35,7 +35,7 @@ const Website: React.FC = () => {
   });
 
   const fetchWebsiteList = async (params: any) => {
-    const res = await getAIGCList(params);
+    const res = await getIntelligentProductList(params);
     if (res.stat) {
       setResponseData(res?.result);
       setLoading(false);
@@ -193,7 +193,8 @@ const Website: React.FC = () => {
       title: '操作',
       key: 'operation',
       width: '10%',
-      render: (_, record: Website.DataType) => {
+      // eslint-disable-next-line @typescript-eslint/no-shadow
+      render: (_: string, record: Website.DataType) => {
         return (
           <div>
             <a

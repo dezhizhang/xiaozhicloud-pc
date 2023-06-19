@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 16:02:14
+ * :date last edited: 2023-06-19 16:08:20
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -18,8 +18,7 @@ const {
 } = SERVICE_MAP;
 
 // 获取人工智能列表
-export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
-  console.log('hello');
+export async function getIntelligentProductList(params: any): Promise<Website.ResponseInfo> {
   return request(INTELLIGENT_PRODUCTS_LIST, {
     method: 'POST',
     data: params,
