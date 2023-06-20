@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-20 20:40:08
+ * :date last edited: 2023-06-20 21:00:43
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -33,6 +33,10 @@ export enum TOP_CLASSIFY_TYPE {
   LEARNING_PLATFORM = 'learning-platform',
   //科研平台
   RESEARCH_PLATFORM = 'research-platform',
+  //开发平台
+  DEVELOPMENT_PLATFORM = 'development-platform',
+  // 生活平台
+  LIVING_PLATFORM = 'living-platform',
 }
 
 export const TOP_CLASSIFY = [
@@ -82,7 +86,7 @@ export const TOP_CLASSIFY = [
   },
   {
     label: '开发平台',
-    value: 'development-platform',
+    value: TOP_CLASSIFY_TYPE.DEVELOPMENT_PLATFORM,
   },
   {
     label: '生活平台',
@@ -201,6 +205,15 @@ export const SECONDARY_CLASSIFY = {
       value: '',
     },
   ],
+  //开发平台
+  [TOP_CLASSIFY_TYPE.DEVELOPMENT_PLATFORM]: [
+    {
+      label: '',
+      value: '',
+    },
+  ],
+  //生活平台
+  [TOP_CLASSIFY_TYPE.LIVING_PLATFORM]: [],
 };
 
 // 操作类型
