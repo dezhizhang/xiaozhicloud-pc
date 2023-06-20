@@ -5,10 +5,12 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:20:22
+ * :date last edited: 2023-06-20 22:46:49
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
+
+const { WEBSITE_INFO } = SERVICE_MAP;
 
 // 获取网站列表
 export async function getWebsiteList(params: any): Promise<Website.ResponseInfo> {
@@ -39,6 +41,13 @@ export async function getWebsiteUpdate(params: any): Promise<any> {
   return request(SERVICE_MAP.WEBSITE_UPDATE, {
     method: 'PUT',
     data: params,
+  });
+}
+
+export async function getWebsiteInfo(params: any): Promise<any> {
+  return request(WEBSITE_INFO, {
+    method: 'get',
+    params,
   });
 }
 

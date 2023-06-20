@@ -5,13 +5,21 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 18:31:49
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:31:52
+ * :date last edited: 2023-06-20 22:54:29
  */
 import React from 'react';
+import dayjs from 'dayjs';
+import { format } from '@/utils';
 import styles from './index.less';
 import { Descriptions } from 'antd';
 
-const Header: React.FC = () => {
+export interface HeaderProps {
+  baseInfo: any;
+}
+
+const Header: React.FC<HeaderProps> = ({ baseInfo }) => {
+  const { title, add_time, description, status } = baseInfo || {};
+
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
@@ -20,12 +28,12 @@ const Header: React.FC = () => {
           bordered
           column={{ xxl: 3, xl: 3, lg: 3, md: 3, sm: 3, xs: 3 }}
         >
-          <Descriptions.Item label="标题">Cloud Database</Descriptions.Item>
+          <Descriptions.Item label="标题">{title}</Descriptions.Item>
           <Descriptions.Item label="类型">Prepaid</Descriptions.Item>
           <Descriptions.Item label="封面">18:00:00</Descriptions.Item>
-          <Descriptions.Item label="创建时间">$80.00</Descriptions.Item>
-          <Descriptions.Item label="状态">$20.00</Descriptions.Item>
-          <Descriptions.Item label="描述">$60.00</Descriptions.Item>
+          <Descriptions.Item label="创建时间">{dayjs(add_time).format(format())}</Descriptions.Item>
+          <Descriptions.Item label="状态">{status}</Descriptions.Item>
+          <Descriptions.Item label="描述">{description}</Descriptions.Item>
         </Descriptions>
       </div>
     </div>

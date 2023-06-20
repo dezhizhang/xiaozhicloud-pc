@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:35:44
+ * :date last edited: 2023-06-20 22:38:08
  */
 export default [
   {
@@ -87,7 +87,7 @@ export default [
       },
       {
         name: '网站建设详情',
-        path: '/website/:websiteId',
+        path: '/website/:detailId',
         key: 'website-id',
         hideInMenu: true,
         component: '@/pages/website/[type]',
