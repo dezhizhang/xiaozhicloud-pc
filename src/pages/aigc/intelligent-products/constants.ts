@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-19 23:10:03
+ * :date last edited: 2023-06-20 20:40:08
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -27,6 +27,12 @@ export enum TOP_CLASSIFY_TYPE {
   ENTERPRISE_PLATFORM = 'enterprise-platform',
   //办公平台
   OFFICE_PLATFORM = 'office-platform',
+  //运营平台
+  OPERATION_PLATFORM = 'operation-platform',
+  //学习平台
+  LEARNING_PLATFORM = 'learning-platform',
+  //科研平台
+  RESEARCH_PLATFORM = 'research-platform',
 }
 
 export const TOP_CLASSIFY = [
@@ -64,15 +70,15 @@ export const TOP_CLASSIFY = [
   },
   {
     label: '运营平台',
-    value: 'operation-platform',
+    value: TOP_CLASSIFY_TYPE.OPERATION_PLATFORM,
   },
   {
     label: '学习平台',
-    value: 'learning-platform',
+    value: TOP_CLASSIFY_TYPE.LEARNING_PLATFORM,
   },
   {
     label: '科研平台',
-    value: 'research-platform',
+    value: TOP_CLASSIFY_TYPE.RESEARCH_PLATFORM,
   },
   {
     label: '开发平台',
@@ -172,6 +178,27 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '办公工具',
       value: 'office-tools',
+    },
+  ],
+  // 运营平台
+  [TOP_CLASSIFY_TYPE.OPERATION_PLATFORM]: [
+    {
+      label: '',
+      value: '',
+    },
+  ],
+  //学习平台
+  [TOP_CLASSIFY_TYPE.LEARNING_PLATFORM]: [
+    {
+      label: '',
+      value: '',
+    },
+  ],
+  // 科研平台
+  [TOP_CLASSIFY_TYPE.RESEARCH_PLATFORM]: [
+    {
+      label: '',
+      value: '',
     },
   ],
 };
