@@ -5,17 +5,24 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:00:00
+ * :date last edited: 2023-06-20 22:16:49
  */
 import moment from 'moment';
 import _ from 'lodash';
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
+import {
+  OPERATION_TYPE,
+  DEFAULT_PAGINATION,
+  WEBSITE_TYPE,
+  STATUS_TYPE,
+  baseURL,
+} from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import WebsiteDrawer from './components/WebsiteDrawer';
@@ -110,7 +117,9 @@ const Website: React.FC = () => {
       dataIndex: 'title',
       key: 'title',
       width: '10%',
-      render: (text) => <a>{text || '--'}</a>,
+      render: (text: string, record: Website.DataType) => (
+        <a href={`${baseURL}/${record?._id}`}>{text || '--'}</a>
+      ),
     },
     {
       title: '封面',

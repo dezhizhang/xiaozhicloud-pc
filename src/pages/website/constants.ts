@@ -1,3 +1,5 @@
+export const baseURL = '/website';
+
 // 操作类型
 export const OPERATION_TYPE = {
   ADD: 'ADD',

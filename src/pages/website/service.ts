@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/website/service.ts
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-06-20 22:20:22
+ */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
 
@@ -29,6 +38,22 @@ export async function getWebsiteDelete(params: { _id: string }): Promise<any> {
 export async function getWebsiteUpdate(params: any): Promise<any> {
   return request(SERVICE_MAP.WEBSITE_UPDATE, {
     method: 'PUT',
+    data: params,
+  });
+}
+
+// 获取详情
+export async function getDetailInfo(params: { detailId: string }): Promise<any> {
+  return request(SERVICE_MAP.DETAIL_INFO, {
+    method: 'GET',
+    params,
+  });
+}
+
+// 详情添加
+export async function getDetailAdd(params: any): Promise<any> {
+  return request(SERVICE_MAP.DETAIL_ADD, {
+    method: 'POST',
     data: params,
   });
 }
