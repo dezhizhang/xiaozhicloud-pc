@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:16:49
+ * :date last edited: 2023-06-21 16:34:21
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -49,7 +49,7 @@ const Website: React.FC = () => {
 
   const transformToParamsDefault = (params: any, pageIndex?: number, pageSize?: number) => {
     const obj = {};
-    for (let key in params) {
+    for (const key in params) {
       obj[key] = undefined;
     }
     return {
@@ -194,10 +194,6 @@ const Website: React.FC = () => {
               onClick={() => (ref.current as any).show(OPERATION_TYPE.EDIT, record)}
             >
               编辑
-            </a>
-            <Divider type="vertical" />
-            <a target="_blank" href={`/website/${record?._id}`}>
-              详情
             </a>
             <Divider type="vertical" />
             <Popconfirm

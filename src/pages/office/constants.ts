@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/office/constants.ts
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-06-21 15:28:25
+ */
 // 操作类型
 export const OPERATION_TYPE = {
   ADD: 'ADD',
