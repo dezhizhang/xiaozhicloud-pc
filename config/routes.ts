@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:41:55
+ * :date last edited: 2023-06-21 16:44:39
  */
 export default [
   {
@@ -120,12 +120,6 @@ export default [
     icon: 'icon-UIsheji',
     path: '/design',
     component: '@/pages/design',
-  },
-  {
-    name: '软件工具',
-    icon: 'icon-ruanjian-',
-    path: '/tool',
-    component: '@/pages/tool',
   },
   {
     path: '/',

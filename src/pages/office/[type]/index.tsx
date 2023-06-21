@@ -1,18 +1,18 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/website/[type]/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/office/[type]/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:50:14
+ * :date last edited: 2023-06-21 16:49:06
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
 import { useParams } from 'umi';
 import { Button } from 'antd';
-import { getDetailInfo, getWebsiteInfo } from '../service';
+import { getDetailInfo, getOfficeInfo } from '../service';
 import Header from './components/Header';
 import DetailDrawer from './components/DetailDrawer';
 
@@ -32,7 +32,7 @@ const AigcDetail: React.FC = () => {
   };
 
   const fetchWebsiteInfo = async () => {
-    const res = await getWebsiteInfo({ id: params.detailId });
+    const res = await getOfficeInfo({ id: params?.detailId });
     if (res?.stat) {
       setBaseInfo(res?.result);
     }

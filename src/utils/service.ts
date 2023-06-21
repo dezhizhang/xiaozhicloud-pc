@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:46:28
+ * :date last edited: 2023-06-21 16:47:16
  */
 export const BASE_URL = '/api/v1';
 
@@ -49,6 +49,7 @@ const SERVICE_MAP = {
   // 办公文档
   OFFICE_LIST: `/office/list`,
   OFFICE_ADD: `/office/add`,
+  OFFICE_INFO: `/office/info`,
   OFFICE_DELETE: `/office/delete`,
   OFFICE_UPDATE: `/office/edit`,
 
