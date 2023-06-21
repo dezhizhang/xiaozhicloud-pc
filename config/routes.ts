@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:38:08
+ * :date last edited: 2023-06-21 16:41:55
  */
 export default [
   {
@@ -98,7 +98,22 @@ export default [
     name: '办公文档',
     icon: 'icon-bangongwendangshenqing',
     path: '/office',
-    component: '@/pages/office',
+    routes: [
+      {
+        name: '办公文档',
+        hideInMenu: true,
+        key: 'office',
+        path: '/office',
+        component: '@/pages/office',
+      },
+      {
+        name: '网站建设详情',
+        path: '/office/:detailId',
+        key: 'office-id',
+        hideInMenu: true,
+        component: '@/pages/office/[type]',
+      },
+    ],
   },
   {
     name: '设计资源',

@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:22:34
+ * :date last edited: 2023-06-21 16:39:50
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -15,7 +15,13 @@ import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
+import {
+  OPERATION_TYPE,
+  DEFAULT_PAGINATION,
+  WEBSITE_TYPE,
+  STATUS_TYPE,
+  baseURL,
+} from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import OfficeDrawer from './components/OfficeDrawer';
@@ -42,7 +48,7 @@ const Website: React.FC = () => {
 
   const transformToParamsDefault = (params: any, pageIndex?: number, pageSize?: number) => {
     const obj = {};
-    for (let key in params) {
+    for (const key in params) {
       obj[key] = undefined;
     }
     return {
@@ -109,7 +115,11 @@ const Website: React.FC = () => {
       dataIndex: 'title',
       key: 'title',
       width: '10%',
-      render: (text) => <a>{text || '--'}</a>,
+      render: (text, record: Website.DataType) => (
+        <a target="_blank" href={`${baseURL}/${record._id}`} rel="noreferrer">
+          {text || '--'}
+        </a>
+      ),
     },
     {
       title: '链接',
@@ -118,7 +128,7 @@ const Website: React.FC = () => {
       width: '16%',
       render: (text) => {
         return (
-          <a href={`//${text}`} target="_blank">
+          <a href={`//${text}`} target="_blank" rel="noreferrer">
             {text}
           </a>
         );
