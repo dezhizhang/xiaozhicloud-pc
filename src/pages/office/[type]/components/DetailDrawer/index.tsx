@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/website/[type]/components/DetailDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/office/[type]/components/DetailDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-20 22:19:30
+ * :date last edited: 2023-06-21 16:59:12
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
@@ -36,7 +36,6 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   }));
 
   const handleFinish = async () => {
-    console.log('editorState', editorState);
     const htmlContent = editorState?.toHTML();
     const res = await getDetailAdd({ ...params, content: htmlContent });
     if (res.stat) {

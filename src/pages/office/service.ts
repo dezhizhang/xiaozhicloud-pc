@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:47:44
+ * :date last edited: 2023-06-21 16:59:38
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -57,5 +57,13 @@ export async function getDetailInfo(params: { detailId: string }): Promise<any> 
   return request(DETAIL_INFO, {
     method: 'GET',
     params,
+  });
+}
+
+// 详情添加
+export async function getDetailAdd(params: any): Promise<any> {
+  return request(SERVICE_MAP.DETAIL_ADD, {
+    method: 'POST',
+    data: params,
   });
 }
