@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/design/index.tsx
@@ -5,17 +6,24 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:29:43
+ * :date last edited: 2023-06-21 20:28:27
  */
 import moment from 'moment';
 import _ from 'lodash';
+
 import React, { useRef, useState, useEffect } from 'react';
 import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
+import {
+  baseURL,
+  OPERATION_TYPE,
+  DEFAULT_PAGINATION,
+  WEBSITE_TYPE,
+  STATUS_TYPE,
+} from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import DesignDrawer from './components/DesignDrawer';
@@ -42,7 +50,7 @@ const Website: React.FC = () => {
 
   const transformToParamsDefault = (params: any, pageIndex?: number, pageSize?: number) => {
     const obj = {};
-    for (let key in params) {
+    for (const key in params) {
       obj[key] = undefined;
     }
     return {
@@ -110,7 +118,11 @@ const Website: React.FC = () => {
       dataIndex: 'title',
       key: 'title',
       width: '10%',
-      render: (text) => <a>{text || '--'}</a>,
+      render: (text: string, record: Website.DataType) => (
+        <a target="_blank" href={`${baseURL}/${record?._id}`} rel="noreferrer">
+          {text || '--'}
+        </a>
+      ),
     },
     {
       title: '链接',
@@ -119,7 +131,7 @@ const Website: React.FC = () => {
       width: '16%',
       render: (text) => {
         return (
-          <a href={`//${text}`} target="_blank">
+          <a href={`//${text}`} target="_blank" rel="noreferrer">
             {text}
           </a>
         );
@@ -188,7 +200,7 @@ const Website: React.FC = () => {
       title: '操作',
       key: 'operation',
       width: '10%',
-      render: (_, record: Website.DataType) => {
+      render: (_: string, record: Website.DataType) => {
         return (
           <div>
             <a

@@ -1,3 +1,4 @@
+export const baseURL = '/design';
 // 操作类型
 export const OPERATION_TYPE = {
   ADD: 'ADD',

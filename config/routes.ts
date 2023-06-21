@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-21 17:00:55
+ * :date last edited: 2023-06-21 20:27:24
  */
 export default [
   {
@@ -120,7 +120,25 @@ export default [
     name: '设计资源',
     icon: 'icon-UIsheji',
     path: '/design',
-    component: '@/pages/design',
+    key: 'design',
+    routes: [
+      {
+        name: '设计资源',
+        icon: 'icon-UIsheji',
+        path: '/design',
+        key: 'design',
+        hideInMenu: true,
+        component: '@/pages/design',
+      },
+      {
+        name: '设计资源',
+        icon: 'icon-UIsheji',
+        hideInMenu: true,
+        key: 'design-detailId',
+        path: '/design/:detailId',
+        component: '@/pages/design/[type]',
+      },
+    ],
   },
   {
     path: '/',

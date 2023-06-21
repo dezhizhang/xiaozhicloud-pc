@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:47:16
+ * :date last edited: 2023-06-21 20:07:32
  */
 export const BASE_URL = '/api/v1';
 
@@ -56,6 +56,7 @@ const SERVICE_MAP = {
   // 办公文档
   DESIGIN_LIST: `/design/list`,
   DESIGIN_ADD: `/design/add`,
+  DESIGIN_INFO: `/design/info`,
   DESIGIN_DELETE: `/design/delete`,
   DESIGIN_UPDATE: `/design/edit`,
 
