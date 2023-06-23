@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 18:31:49
  * :last editor: 张德志
- * :date last edited: 2023-06-22 09:19:02
+ * :date last edited: 2023-06-23 10:33:53
  */
 import React from 'react';
 import dayjs from 'dayjs';
@@ -15,16 +15,17 @@ import styles from './index.less';
 
 export interface HeaderProps {
   baseInfo: any;
+  headerTitle: string;
 }
 
-const Header: React.FC<HeaderProps> = ({ baseInfo }) => {
+const Header: React.FC<HeaderProps> = ({ headerTitle, baseInfo }) => {
   const { title, url, typeText, add_time, description, statusText } = baseInfo || {};
 
   return (
     <div className={styles.container}>
       <div className={styles.wrapper}>
         <Descriptions
-          title="网站详情"
+          title={headerTitle}
           bordered
           column={{ xxl: 3, xl: 3, lg: 3, md: 3, sm: 3, xs: 3 }}
         >

@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/office/[type]/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/design/[type]/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:49:06
+ * :date last edited: 2023-06-23 10:31:20
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
@@ -31,7 +31,7 @@ const AigcDetail: React.FC = () => {
     }
   };
 
-  const fetchWebsiteInfo = async () => {
+  const fetchOfficeInfo = async () => {
     const res = await getOfficeInfo({ id: params?.detailId });
     if (res?.stat) {
       setBaseInfo(res?.result);
@@ -40,7 +40,7 @@ const AigcDetail: React.FC = () => {
 
   useEffect(() => {
     fetchDetailInfo();
-    fetchWebsiteInfo();
+    fetchOfficeInfo();
   }, [params]);
 
   return (

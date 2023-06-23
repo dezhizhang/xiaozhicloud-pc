@@ -6,13 +6,13 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-22 09:21:49
+ * :date last edited: 2023-06-23 10:38:33
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
 import { useParams } from 'umi';
 import { Button } from 'antd';
-import { getDetailInfo } from '../service';
+import { getDetailInfo, getNewsInfo } from '../service';
 import Header from '@/components/Header';
 import DetailDrawer from './components/DetailDrawer';
 
@@ -21,6 +21,7 @@ const AigcDetail: React.FC = () => {
 
   const params: { detailId: string } = useParams();
   const [content, setContent] = useState<string>();
+  const [baseInfo, setBaseInfo] = useState();
 
   const fetchDetailInfo = async () => {
     const res = await getDetailInfo(params);
@@ -30,13 +31,20 @@ const AigcDetail: React.FC = () => {
     }
   };
 
+  const fetchNewsInformationInfo = async () => {
+    const res = await getNewsInfo({ id: params?.detailId });
+    if (res?.stat) {
+      setBaseInfo(res?.result);
+    }
+  };
   useEffect(() => {
     fetchDetailInfo();
+    fetchNewsInformationInfo();
   }, [params]);
 
   return (
     <div className={styles.container}>
-      <Header />
+      <Header headerTitle="新闻资讯" baseInfo={baseInfo} />
       <div className={styles.content}>
         <div className={styles.wrapper}>
           <div className={styles.operation}>
@@ -44,7 +52,13 @@ const AigcDetail: React.FC = () => {
               添加详情
             </Button>
           </div>
-          <div className="braft-output-content" dangerouslySetInnerHTML={{ __html: content }} />
+          <div
+            className="braft-output-content"
+            dangerouslySetInnerHTML={{
+              //@ts-ignore
+              __html: content,
+            }}
+          />
         </div>
       </div>
       <DetailDrawer
