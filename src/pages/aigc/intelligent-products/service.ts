@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 16:08:20
+ * :date last edited: 2023-06-25 16:32:16
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -13,7 +13,9 @@ import SERVICE_MAP from '@/utils/service';
 const {
   INTELLIGENT_PRODUCTS_ADD,
   INTELLIGENT_PRODUCTS_LIST,
+  INTELLIGENT_PRODUCTS_INFO,
   INTELLIGENT_PRODUCTS_DELETE,
+
   INTELLIGENT_PRODUCTS_UPDATE,
 } = SERVICE_MAP;
 
@@ -46,6 +48,13 @@ export async function getWebsiteUpdate(params: any): Promise<any> {
   return request(INTELLIGENT_PRODUCTS_UPDATE, {
     method: 'PUT',
     data: params,
+  });
+}
+
+export async function getProductsInfo(params: { id: string }) {
+  return request(INTELLIGENT_PRODUCTS_INFO, {
+    method: 'GET',
+    params,
   });
 }
 
