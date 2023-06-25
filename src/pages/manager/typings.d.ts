@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-18 12:39:44
  * :last editor: 张德志
- * :date last edited: 2022-11-19 08:05:55
+ * :date last edited: 2023-06-25 18:25:25
  */
 declare namespace Managers {
   type RequestType = {
@@ -17,7 +17,7 @@ declare namespace Managers {
   };
 
   type DataType = {
-    _id?: string;
+    _id: string | undefined;
     username?: string;
     phone?: string;
     email?: string;

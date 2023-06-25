@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:27:36
+ * :date last edited: 2023-06-25 18:26:33
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -23,6 +23,7 @@ import React, { useState, useEffect, useRef } from 'react';
 const Manager: React.FC = () => {
   const ref = useRef();
   const [filter, setFilter] = useState<Managers.DataType>({
+    _id: undefined,
     username: undefined,
     phone: undefined,
     email: undefined,
@@ -62,8 +63,8 @@ const Manager: React.FC = () => {
     },
     {
       title: '手机号',
-      dataIndex: 'mobile',
-      key: 'mobile',
+      dataIndex: 'phone',
+      key: 'phone',
       render,
     },
     {
@@ -194,7 +195,7 @@ const Manager: React.FC = () => {
           loading={loading}
           dataSource={dataSource}
           columns={columns}
-          rowKey={(record) => record?._id}
+          rowKey={(record) => record?._id as string}
         />
       </div>
       <UserDrawer
