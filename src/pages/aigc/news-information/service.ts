@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-23 10:38:08
+ * :date last edited: 2023-06-25 16:43:46
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -13,6 +13,7 @@ import SERVICE_MAP from '@/utils/service';
 const {
   NEWS_INFORMATION_ADD,
   NEWS_INFORMATION_LIST,
+  NEWS_INFORMATION_INFO,
   NEWS_INFORMATION_DELETE,
   NEWS_INFORMATION_UPDATE,
 } = SERVICE_MAP;
@@ -57,9 +58,9 @@ export async function getDetailAdd(params: any): Promise<any> {
   });
 }
 
-export async function getNewsInfo(params: any): Promise<any> {
-  return request('123', {
-    method: 'get',
+export async function getBaseInfo(params: any): Promise<any> {
+  return request(NEWS_INFORMATION_INFO, {
+    method: 'GET',
     params,
   });
 }

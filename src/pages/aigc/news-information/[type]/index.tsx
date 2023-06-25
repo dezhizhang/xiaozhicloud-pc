@@ -6,13 +6,13 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-23 10:38:33
+ * :date last edited: 2023-06-25 16:45:23
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
 import { useParams } from 'umi';
 import { Button } from 'antd';
-import { getDetailInfo, getNewsInfo } from '../service';
+import { getDetailInfo, getBaseInfo } from '../service';
 import Header from '@/components/Header';
 import DetailDrawer from './components/DetailDrawer';
 
@@ -32,7 +32,7 @@ const AigcDetail: React.FC = () => {
   };
 
   const fetchNewsInformationInfo = async () => {
-    const res = await getNewsInfo({ id: params?.detailId });
+    const res = await getBaseInfo({ id: params?.detailId });
     if (res?.stat) {
       setBaseInfo(res?.result);
     }
