@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:44:03
+ * :date last edited: 2023-06-29 07:52:49
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -378,8 +378,28 @@ export const SECONDARY_CLASSIFY = {
   //学习平台
   [TOP_CLASSIFY_TYPE.LEARNING_PLATFORM]: [
     {
-      label: '',
-      value: '',
+      label: 'AIGC视频课',
+      value: 'aigc-video',
+    },
+    {
+      label: 'AIGC视频课',
+      value: 'aigc-video',
+    },
+    {
+      label: '运营启发',
+      value: 'operational-inspiration',
+    },
+    {
+      label: '好书推荐',
+      value: 'good-book-recommendation',
+    },
+    {
+      label: '好书推荐',
+      value: 'good-book-recommendation',
+    },
+    {
+      label: '教育助理',
+      value: 'education-assistant',
     },
   ],
   // 科研平台
