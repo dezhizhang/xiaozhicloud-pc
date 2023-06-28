@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-28 13:01:02
+ * :date last edited: 2023-06-28 23:39:40
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -157,8 +157,24 @@ export const SECONDARY_CLASSIFY = {
   //绘画平台
   [TOP_CLASSIFY_TYPE.PAINTING_PLATFORM]: [
     {
-      label: '聊天机器人',
-      value: 'chatbot',
+      label: '绘画生成',
+      value: 'drawing-generation',
+    },
+    {
+      label: '绘画提示',
+      value: 'drawing-tips',
+    },
+    {
+      label: '绘画社区',
+      value: 'painting-community',
+    },
+    {
+      label: '绘画模型',
+      value: 'painting-models',
+    },
+    {
+      label: '图形工作站',
+      value: 'graphic-work-station',
     },
   ],
   //视觉平台
@@ -170,6 +186,34 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '头像化身',
       value: 'avatar-design',
+    },
+    {
+      label: '图像处理',
+      value: 'image-processing',
+    },
+    {
+      label: '图像擦除',
+      value: 'image-erase',
+    },
+    {
+      label: '服装设计',
+      value: 'costume-designing',
+    },
+    {
+      label: '空间设计',
+      value: 'space-design',
+    },
+    {
+      label: '商业摄影',
+      value: 'photography',
+    },
+    {
+      label: '平面素材',
+      value: 'flat-materials',
+    },
+    {
+      label: '字体设计',
+      value: 'font-design',
     },
   ],
   //影视平台
