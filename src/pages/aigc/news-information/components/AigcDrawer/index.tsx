@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/components/AigcDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/aigc/news-information/components/AigcDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-17 12:39:06
+ * :date last edited: 2023-06-27 23:47:04
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';

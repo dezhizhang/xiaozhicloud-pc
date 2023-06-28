@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-20 21:00:43
+ * :date last edited: 2023-06-28 12:59:08
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -122,12 +122,32 @@ export const SECONDARY_CLASSIFY = {
       label: '内容检测',
       value: 'content-detection',
     },
+    {
+      label: '文献阅读',
+      value: 'literature-reading',
+    },
+    {
+      label: '网络文学',
+      value: 'network-literature',
+    },
   ],
   //互动平台
   [TOP_CLASSIFY_TYPE.INTERACTIVE_PLATFORM]: [
     {
       label: '聊天机器人',
       value: 'chatbot',
+    },
+    {
+      label: '知识问答',
+      value: 'question-answering',
+    },
+    {
+      label: '知识问答',
+      value: 'question-answering',
+    },
+    {
+      label: '搜索引擎',
+      value: 'search-engines',
     },
   ],
   //绘画平台
