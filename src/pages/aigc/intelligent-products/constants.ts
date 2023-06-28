@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:10:14
+ * :date last edited: 2023-06-29 07:17:20
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -287,6 +287,26 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '企业服务',
       value: 'enterprise-services',
+    },
+    {
+      label: '企业效率',
+      value: 'enterprise-efficiency',
+    },
+    {
+      label: '人力资源',
+      value: 'human-resources',
+    },
+    {
+      label: '电子合同',
+      value: 'electronic-contract',
+    },
+    {
+      label: '法律服务',
+      value: 'legal-service',
+    },
+    {
+      label: '金融事务',
+      value: 'financial-affairs',
     },
   ],
   //
