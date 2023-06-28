@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:26:53
+ * :date last edited: 2023-06-29 07:44:03
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -343,8 +343,36 @@ export const SECONDARY_CLASSIFY = {
   // 运营平台
   [TOP_CLASSIFY_TYPE.OPERATION_PLATFORM]: [
     {
-      label: '',
-      value: '',
+      label: '营销工具',
+      value: 'marketing-tools',
+    },
+    {
+      label: '行业门户',
+      value: 'industry-portal',
+    },
+    {
+      label: '流量优化',
+      value: 'traffic-optimization',
+    },
+    {
+      label: '流量优化',
+      value: 'traffic-optimization',
+    },
+    {
+      label: '自媒体账号',
+      value: 'personal-media-account',
+    },
+    {
+      label: '舆情分析',
+      value: 'public-opinion-analysis',
+    },
+    {
+      label: '数据分析',
+      value: 'data-analysis',
+    },
+    {
+      label: '行业报告',
+      value: 'industry-reports',
     },
   ],
   //学习平台
