@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 00:01:49
+ * :date last edited: 2023-06-29 07:10:14
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -264,6 +264,22 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '语音识别',
       value: 'speech-recognition',
+    },
+    {
+      label: '语音合成',
+      value: 'speech-synthesis',
+    },
+    {
+      label: '语音降噪',
+      value: 'speech-noise-reduction',
+    },
+    {
+      label: '音乐制作',
+      value: 'music-production',
+    },
+    {
+      label: '音乐鉴赏',
+      value: 'music-appreciation',
     },
   ],
   //企业平台
