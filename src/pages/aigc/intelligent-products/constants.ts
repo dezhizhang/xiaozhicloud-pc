@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:52:49
+ * :date last edited: 2023-06-29 07:58:17
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -417,7 +417,12 @@ export const SECONDARY_CLASSIFY = {
     },
   ],
   //生活平台
-  [TOP_CLASSIFY_TYPE.LIVING_PLATFORM]: [],
+  [TOP_CLASSIFY_TYPE.LIVING_PLATFORM]: [
+    {
+      label: '生活助手',
+      value: 'life-assistant',
+    },
+  ],
 };
 
 // 操作类型
