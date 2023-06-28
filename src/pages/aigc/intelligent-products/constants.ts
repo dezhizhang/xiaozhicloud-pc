@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-28 12:59:08
+ * :date last edited: 2023-06-28 13:01:02
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -148,6 +148,10 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '搜索引擎',
       value: 'search-engines',
+    },
+    {
+      label: '搜索图书',
+      value: 'search-books',
     },
   ],
   //绘画平台
