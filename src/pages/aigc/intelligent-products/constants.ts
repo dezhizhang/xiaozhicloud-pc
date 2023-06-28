@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:17:20
+ * :date last edited: 2023-06-29 07:26:53
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -309,11 +309,35 @@ export const SECONDARY_CLASSIFY = {
       value: 'financial-affairs',
     },
   ],
-  //
+  //办公平台
   [TOP_CLASSIFY_TYPE.OFFICE_PLATFORM]: [
     {
       label: '办公工具',
       value: 'office-tools',
+    },
+    {
+      label: '办公效率',
+      value: 'office-efficiency',
+    },
+    {
+      label: '文档处理',
+      value: 'document-processing',
+    },
+    {
+      label: '思维导图',
+      value: 'mind-mapping',
+    },
+    {
+      label: '语言翻译',
+      value: 'translation',
+    },
+    {
+      label: '制作ppt',
+      value: 'create-ppt',
+    },
+    {
+      label: 'ppt资源',
+      value: 'ppt-resources',
     },
   ],
   // 运营平台
