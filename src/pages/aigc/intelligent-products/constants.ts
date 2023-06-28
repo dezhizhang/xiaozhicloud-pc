@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-28 23:39:40
+ * :date last edited: 2023-06-29 00:01:49
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -225,6 +225,34 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '数字虚拟人',
       value: 'digital-virtual-humans',
+    },
+    {
+      label: '视频后期',
+      value: 'video-post',
+    },
+    {
+      label: '视频后期',
+      value: 'video-post',
+    },
+    {
+      label: '动作捕捉',
+      value: 'motion-capture',
+    },
+    {
+      label: '人物换脸',
+      value: 'character-face-changing',
+    },
+    {
+      label: '视频模型',
+      value: 'video-model',
+    },
+    {
+      label: '视频模型',
+      value: 'video-model',
+    },
+    {
+      label: '字幕翻译',
+      value: 'subtitling',
     },
   ],
   //语音平台
