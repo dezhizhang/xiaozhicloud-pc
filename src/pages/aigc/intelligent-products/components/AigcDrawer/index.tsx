@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 20:21:36
+ * :date last edited: 2023-06-29 13:48:23
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -125,7 +125,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/website/${dateTime}.${extension}`, file);
+    const result = await client.put(`/intelligent-products/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
@@ -187,7 +187,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
         </Form.Item>
         <Form.Item
           label="一级分类"
-          name="topClassify"
+          name="top_classify"
           rules={[{ required: true, message: '一级分类不能为空' }]}
         >
           <Select
@@ -208,7 +208,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
         </Form.Item>
         <Form.Item
           label="二级分类"
-          name="secondaryClassify"
+          name="secondary_classify"
           rules={[{ required: true, message: '二级分类不能为空' }]}
         >
           <Select placeholder="请选择二级分类">
@@ -229,7 +229,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="描述" name="description">
+        <Form.Item label="描述" name="desc">
           <TextArea rows={4} placeholder="请输入描述最多支持200字符" maxLength={200} />
         </Form.Item>
       </Form>
