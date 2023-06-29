@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 09:24:36
+ * :date last edited: 2023-06-29 09:31:57
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -414,8 +414,40 @@ export const SECONDARY_CLASSIFY = {
   //开发平台
   [TOP_CLASSIFY_TYPE.DEVELOPMENT_PLATFORM]: [
     {
-      label: '',
-      value: '',
+      label: '开发框架',
+      value: 'framework',
+    },
+    {
+      label: '开发者社区',
+      value: 'developer-community',
+    },
+    {
+      label: '开放平台',
+      value: 'open-platform',
+    },
+    {
+      label: '辅助编程',
+      value: 'computer-programing',
+    },
+    {
+      label: '开发课堂',
+      value: 'developing-classrooms',
+    },
+    {
+      label: 'SQL数据库',
+      value: 'sql-database',
+    },
+    {
+      label: '代码编程',
+      value: 'code-programming',
+    },
+    {
+      label: '训练模型',
+      value: 'training-model',
+    },
+    {
+      label: '应用接口',
+      value: 'application-interface',
     },
   ],
   //生活平台
