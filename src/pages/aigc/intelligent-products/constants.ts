@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 09:43:02
+ * :date last edited: 2023-06-29 12:43:28
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -497,7 +497,20 @@ export const SECONDARY_CLASSIFY = {
   ],
 
   //权威机构
-  [TOP_CLASSIFY_TYPE.AUTHORITY_INSTITUTION]: [{}],
+  [TOP_CLASSIFY_TYPE.AUTHORITY_INSTITUTION]: [
+    {
+      label: '相关组织',
+      value: 'related-organizations',
+    },
+    {
+      label: '官方活动',
+      value: 'official-activities',
+    },
+    {
+      label: '管理机构',
+      value: 'government',
+    },
+  ],
 };
 
 // 操作类型
