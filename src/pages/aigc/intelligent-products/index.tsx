@@ -6,12 +6,12 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-19 22:29:07
+ * :date last edited: 2023-06-29 12:56:27
  */
 import moment from 'moment';
 import _ from 'lodash';
 import React, { useRef, useState, useEffect } from 'react';
-import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd';
+import { Button, Table, Divider, Popconfirm, message, Image, Badge, Tooltip } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
@@ -136,7 +136,7 @@ const Website: React.FC = () => {
       dataIndex: 'topClassify',
       render: (text: string, record: any) => {
         const itemType = SECONDARY_CLASSIFY[text].find(
-          (item) => item.value === record.secondaryClassify,
+          (item: { value: any }) => item.value === record.secondaryClassify,
         );
         return <span>{itemType?.label}</span>;
       },
@@ -197,7 +197,11 @@ const Website: React.FC = () => {
       key: 'description',
       dataIndex: 'description',
       render: (text) => {
-        return <span>{text || empty()}</span>;
+        return (
+          <Tooltip placement="top" title={text}>
+            <span className={styles.desc}>{text || empty()}</span>
+          </Tooltip>
+        );
       },
     },
     {
