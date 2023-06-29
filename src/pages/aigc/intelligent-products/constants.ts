@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 07:58:17
+ * :date last edited: 2023-06-29 09:16:39
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -421,6 +421,26 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '生活助手',
       value: 'life-assistant',
+    },
+    {
+      label: '旅行助手',
+      value: 'travel-assistant',
+    },
+    {
+      label: '好玩有趣',
+      value: 'fun-and-fun',
+    },
+    {
+      label: '好玩有趣',
+      value: 'fun-and-fun',
+    },
+    {
+      label: '美妆工具',
+      value: 'beauty-tools',
+    },
+    {
+      label: '公益应用',
+      value: 'public-applications',
     },
   ],
 };
