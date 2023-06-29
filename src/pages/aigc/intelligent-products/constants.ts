@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 09:16:39
+ * :date last edited: 2023-06-29 09:24:36
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -37,6 +37,8 @@ export enum TOP_CLASSIFY_TYPE {
   DEVELOPMENT_PLATFORM = 'development-platform',
   // 生活平台
   LIVING_PLATFORM = 'living-platform',
+  //游戏平台
+  GAME_PLATFORM = 'game-platform',
 }
 
 export const TOP_CLASSIFY = [
@@ -441,6 +443,21 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '公益应用',
       value: 'public-applications',
+    },
+  ],
+  // 游戏平台
+  [TOP_CLASSIFY_TYPE.GAME_PLATFORM]: [
+    {
+      label: '游戏应用',
+      value: 'game-applications',
+    },
+    {
+      label: '元宇宙',
+      value: 'metaverse',
+    },
+    {
+      label: '游戏开发',
+      value: 'game-develop',
     },
   ],
 };
