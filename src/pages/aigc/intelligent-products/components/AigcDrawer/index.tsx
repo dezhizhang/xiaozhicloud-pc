@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-29 13:48:23
+ * :date last edited: 2023-07-01 13:42:59
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -151,7 +151,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
       }
       width={500}
       title={OPERATION_TEXT[operation]}
-      visible={visible}
+      open={visible}
       onClose={() => setVisible(false)}
     >
       <Form
@@ -229,7 +229,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="描述" name="desc">
+        <Form.Item label="描述" name="description">
           <TextArea rows={4} placeholder="请输入描述最多支持200字符" maxLength={200} />
         </Form.Item>
       </Form>

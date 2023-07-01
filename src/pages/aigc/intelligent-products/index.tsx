@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 13:25:45
+ * :date last edited: 2023-07-01 13:40:04
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -32,9 +32,9 @@ import styles from './index.less';
 const Website: React.FC = () => {
   const ref = useRef();
   const [loading, setLoading] = useState<boolean>(true);
-  const [responseData, setResponseData] = useState<Website.ResponseData>();
+  const [responseData, setResponseData] = useState<IntelligentProducts.ResponseData>();
   const [pagination, setPagination] = useState<TablePaginationConfig>(DEFAULT_PAGINATION);
-  const [filter, setFilter] = useState<Website.RequestType>({
+  const [filter, setFilter] = useState<IntelligentProducts.RequestType>({
     title: undefined,
     type: undefined,
     status: undefined,
@@ -112,12 +112,12 @@ const Website: React.FC = () => {
     fetchWebsiteList(transformToParamsDefault(filter));
   }, []);
 
-  const columns: ColumnsType<Website.DataType> = [
+  const columns: ColumnsType<IntelligentProducts.DataType> = [
     {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      render: (text, record: Website.DataType) => (
+      render: (text, record: IntelligentProducts.DataType) => (
         <a href={`${baseUrl}/${record._id}`} target="_blank" rel="noreferrer">
           {text || '--'}
         </a>
@@ -126,7 +126,8 @@ const Website: React.FC = () => {
     {
       title: '一级分类',
       dataIndex: 'top_classify',
-      render: (text: string) => {
+      render: (text: string, record) => {
+        console.log({ record });
         const itemType = TOP_CLASSIFY.find((item) => item.value === text);
         return <span>{itemType?.label}</span>;
       },
@@ -208,7 +209,7 @@ const Website: React.FC = () => {
       title: '操作',
       key: 'operation',
       // eslint-disable-next-line @typescript-eslint/no-shadow
-      render: (_: string, record: Website.DataType) => {
+      render: (_: string, record: IntelligentProducts.DataType) => {
         return (
           <div>
             <a
