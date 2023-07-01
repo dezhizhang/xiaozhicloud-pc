@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-29 12:56:27
+ * :date last edited: 2023-07-01 13:25:45
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -125,7 +125,7 @@ const Website: React.FC = () => {
     },
     {
       title: '一级分类',
-      dataIndex: 'topClassify',
+      dataIndex: 'top_classify',
       render: (text: string) => {
         const itemType = TOP_CLASSIFY.find((item) => item.value === text);
         return <span>{itemType?.label}</span>;
@@ -133,10 +133,10 @@ const Website: React.FC = () => {
     },
     {
       title: '二级分类',
-      dataIndex: 'topClassify',
+      dataIndex: 'top_classify',
       render: (text: string, record: any) => {
-        const itemType = SECONDARY_CLASSIFY[text].find(
-          (item: { value: any }) => item.value === record.secondaryClassify,
+        const itemType = SECONDARY_CLASSIFY[text]?.find(
+          (item: { value: any }) => item.value === record.secondary_classify,
         );
         return <span>{itemType?.label}</span>;
       },
