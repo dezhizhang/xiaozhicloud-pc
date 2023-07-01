@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 13:42:59
+ * :date last edited: 2023-07-01 21:47:54
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -71,7 +71,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('新增网站成功');
+      message.success('新增智能产品成功');
       onSuccess?.();
     }
   };
@@ -81,7 +81,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('编辑网站成功');
+      message.success('编辑智能产品成功');
       onSuccess?.();
     }
   };

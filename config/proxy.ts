@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-04-26 01:40:31
+ * :date last edited: 2023-07-01 20:28:05
  */
 /**
  * 在生产环境 代理是无法生效的，所以这里没有生产环境的配置
@@ -29,7 +29,7 @@ export default {
   },
   test: {
     '/api/': {
-      target: 'https://proapi.azurewebsites.net',
+      target: 'http://m.xiaozhi.shop',
       changeOrigin: true,
       pathRewrite: { '^': '' },
     },
