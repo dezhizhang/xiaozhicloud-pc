@@ -5,14 +5,14 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 17:47:21
+ * :date last edited: 2023-07-01 22:02:00
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
 import { OSS_OBJECT } from '@/constants';
 //@ts-ignore
 import { ContentUtils } from 'braft-utils';
-import { Button, Drawer, Row, Upload, message, Form, Input } from 'antd';
+import { Button, Drawer, Row, Upload, message } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { getDetailAdd } from '../../../service';
 import BraftEditor from 'braft-editor';
@@ -21,11 +21,11 @@ import styles from './index.less';
 
 interface DetailDrawerProps {
   onSuccess: () => void;
+  baseInfo: any;
 }
 
 const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
-  const { onSuccess } = props;
-  const [form] = Form.useForm();
+  const { onSuccess, baseInfo } = props;
   const params: { detailId: string } = useParams();
   const [fileList, setFileList] = useState<any>([]);
   const [editorState, setEditorState] = useState(BraftEditor.createEditorState(null));
@@ -38,15 +38,17 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   }));
 
   const handleFinish = async () => {
-    await form.validateFields();
-    const values = await form.getFieldsValue();
     const htmlContent = editorState?.toHTML();
-    const res = await getDetailAdd({ ...params, ...values, content: htmlContent });
+    const { title, link } = baseInfo || {};
+
+    const res = await getDetailAdd({ ...params, title, link, content: htmlContent });
     if (res.stat) {
       onSuccess?.();
       setVisible(false);
     }
   };
+
+  console.log(baseInfo);
 
   const beforeUpload = async (file: { type: string; size: number }) => {
     // 检查图片类型
@@ -135,14 +137,6 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
       visible={visible}
       onClose={() => setVisible(false)}
     >
-      <Form form={form} onFinish={handleFinish} autoComplete="off" style={{ marginBottom: 24 }}>
-        <Form.Item label="标题" name="title" rules={[{ required: true, message: '请输入标题!' }]}>
-          <Input placeholder="请输入标题" />
-        </Form.Item>
-        <Form.Item label="链接" name="link" rules={[{ required: true, message: '请输入链接!' }]}>
-          <Input placeholder="请输入链接" />
-        </Form.Item>
-      </Form>
       <BraftEditor
         value={editorState}
         onSave={handleFinish}

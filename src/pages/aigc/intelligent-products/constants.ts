@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-06-29 12:43:28
+ * :date last edited: 2023-07-01 22:32:39
  */
 
 export const baseUrl = '/aigc/intelligent-products';
@@ -141,10 +141,6 @@ export const SECONDARY_CLASSIFY = {
     {
       label: '聊天机器人',
       value: 'chatbot',
-    },
-    {
-      label: '知识问答',
-      value: 'question-answering',
     },
     {
       label: '知识问答',

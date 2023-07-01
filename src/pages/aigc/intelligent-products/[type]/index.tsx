@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-25 16:40:11
+ * :date last edited: 2023-07-01 21:51:02
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
@@ -57,6 +57,7 @@ const AigcDetail: React.FC = () => {
         </div>
       </div>
       <DetailDrawer
+        baseInfo={baseInfo}
         onSuccess={() => fetchDetailInfo()}
         //@ts-ignore
         ref={ref}
