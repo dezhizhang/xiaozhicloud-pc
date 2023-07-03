@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 20:51:15
+ * :date last edited: 2023-07-03 21:01:00
  */
 export const baseURL = '/website';
 
@@ -89,6 +89,21 @@ export const WEBSITE_COLOR = [
   {
     label: '灰色',
     value: 'grey',
+  },
+];
+
+export const INDUSTRY_CLASSIFICATION = [
+  {
+    label: '装修',
+    value: 'renovation',
+  },
+  {
+    label: '招聘',
+    value: 'recruit',
+  },
+  {
+    label: '中介',
+    value: 'intermediary',
   },
 ];
 
