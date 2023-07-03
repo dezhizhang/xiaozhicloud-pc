@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 21:01:00
+ * :date last edited: 2023-07-03 21:03:26
  */
 export const baseURL = '/website';
 
@@ -104,6 +104,10 @@ export const INDUSTRY_CLASSIFICATION = [
   {
     label: '中介',
     value: 'intermediary',
+  },
+  {
+    label: '法律',
+    value: 'law',
   },
 ];
 
