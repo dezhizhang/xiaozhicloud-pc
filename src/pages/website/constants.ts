@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 20:37:00
+ * :date last edited: 2023-07-03 20:47:10
  */
 export const baseURL = '/website';
 
@@ -41,6 +41,26 @@ export const WEBSITE_TYPE = [
   {
     label: '免费建站',
     value: 'free',
+  },
+];
+
+// 网站颜色
+export const WEBSITE_COLOR = [
+  {
+    label: '红色',
+    value: 'red',
+  },
+  {
+    label: '粉色',
+    value: 'pink',
+  },
+  {
+    label: '橙色',
+    value: 'orange',
+  },
+  {
+    label: '黄色',
+    value: 'yellow',
   },
 ];
 
