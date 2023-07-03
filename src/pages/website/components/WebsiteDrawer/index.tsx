@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:44:50
+ * :date last edited: 2023-07-03 22:58:52
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -18,6 +18,7 @@ import {
   OPERATION_TEXT,
   WEBSITE_TYPE,
   STATUS_TYPE,
+  WEBSITE_STYLES,
   INDUSTRY_CLASSIFICATION,
 } from '../../constants';
 import styles from './index.less';
@@ -72,7 +73,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('新增网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -82,7 +83,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('编辑网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -211,7 +212,19 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             ))}
           </Select>
         </Form.Item>
-
+        <Form.Item
+          label="网站风格"
+          name="style"
+          rules={[{ required: true, message: '类型不能为空' }]}
+        >
+          <Select placeholder="请选择类型">
+            {WEBSITE_STYLES.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
         <Form.Item
           label="行业分类"
           name="industry"

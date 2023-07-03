@@ -5,23 +5,24 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:42:46
+ * :date last edited: 2023-07-03 23:01:21
  */
 import moment from 'moment';
 import _ from 'lodash';
-
 import React, { useRef, useState, useEffect } from 'react';
-import { Button, Table, Divider, Popconfirm, message, Image, Badge, Empty } from 'antd';
+import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import {
-  OPERATION_TYPE,
-  DEFAULT_PAGINATION,
+  baseURL,
   WEBSITE_TYPE,
   STATUS_TYPE,
-  baseURL,
+  WEBSITE_COLOR,
+  WEBSITE_STYLES,
+  OPERATION_TYPE,
+  DEFAULT_PAGINATION,
   INDUSTRY_CLASSIFICATION,
 } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
@@ -114,16 +115,15 @@ const Website: React.FC = () => {
 
   const columns: ColumnsType<Website.DataType> = [
     {
-      title: '标题',
+      title: '网站标题',
       dataIndex: 'title',
       key: 'title',
-      width: '10%',
       render: (text: string, record: Website.DataType) => (
         <a href={`${baseURL}/${record?._id}`}>{text || '--'}</a>
       ),
     },
     {
-      title: '封面',
+      title: '网站封面',
       dataIndex: 'url',
       key: 'url',
       width: '10%',
@@ -132,9 +132,8 @@ const Website: React.FC = () => {
       },
     },
     {
-      title: '类型',
+      title: '网站类型',
       dataIndex: 'type',
-      width: '8%',
       key: 'type',
       render: (text) => {
         const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
@@ -143,20 +142,35 @@ const Website: React.FC = () => {
       },
     },
     {
+      title: '网站颜色',
+      dataIndex: 'color',
+      key: 'color',
+      render: (text: string) => {
+        const colorItem = WEBSITE_COLOR.find((item) => item.value === text);
+        return <span>{colorItem?.label || empty()}</span>;
+      },
+    },
+    {
       title: '行业分类',
       dataIndex: 'industry',
-      width: '8%',
       key: 'industry',
       render: (text: string) => {
         const industryItem = INDUSTRY_CLASSIFICATION.find((item) => item.value === text);
         return <span>{industryItem?.label || empty()}</span>;
       },
     },
-
+    {
+      title: '网站风格',
+      dataIndex: 'style',
+      key: 'style',
+      render: (text: string) => {
+        const styleItem = WEBSITE_STYLES.find((item) => item.value === text);
+        return <span>{styleItem?.label || empty()}</span>;
+      },
+    },
     {
       title: '描述',
       key: 'description',
-      width: '16%',
       dataIndex: 'description',
       render: (text) => {
         return <span>{text || empty()}</span>;
@@ -165,7 +179,6 @@ const Website: React.FC = () => {
     {
       title: '创建时间',
       key: 'add_time',
-      width: '20%',
       dataIndex: 'add_time',
       render: (text) => {
         return <span>{moment(text).format(format()) || empty()}</span>;
@@ -174,7 +187,6 @@ const Website: React.FC = () => {
     {
       title: '状态',
       key: 'status',
-      width: '10%',
       dataIndex: 'status',
       render: (text) => {
         const statusItem = STATUS_TYPE.find((item) => item.value === text);
@@ -195,7 +207,6 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      width: '15%',
       render: (_, record: Website.DataType) => {
         return (
           <div>

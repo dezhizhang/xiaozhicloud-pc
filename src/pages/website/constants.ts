@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:45:56
+ * :date last edited: 2023-07-03 22:57:15
  */
 export const baseURL = '/website';
 
@@ -181,6 +181,34 @@ export const INDUSTRY_CLASSIFICATION = [
   {
     label: '医疗',
     value: 'medical-treatment',
+  },
+];
+
+// 网站风格
+export const WEBSITE_STYLES = [
+  {
+    label: '欧美',
+    value: 'europe-america',
+  },
+  {
+    label: '韩国',
+    value: 'south-korea',
+  },
+  {
+    label: '韩国',
+    value: 'china',
+  },
+  {
+    label: '日本',
+    value: 'japan',
+  },
+  {
+    label: '创意',
+    value: 'originality',
+  },
+  {
+    label: '复古',
+    value: 'retro',
   },
 ];
 
