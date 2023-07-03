@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 20:47:10
+ * :date last edited: 2023-07-03 20:51:15
  */
 export const baseURL = '/website';
 
@@ -61,6 +61,34 @@ export const WEBSITE_COLOR = [
   {
     label: '黄色',
     value: 'yellow',
+  },
+  {
+    label: '绿色',
+    value: 'green',
+  },
+  {
+    label: '蓝色',
+    value: 'blue',
+  },
+  {
+    label: '紫色',
+    value: 'purple',
+  },
+  {
+    label: '棕色',
+    value: 'brown',
+  },
+  {
+    label: '黑色',
+    value: 'black',
+  },
+  {
+    label: '灰色',
+    value: 'grey',
+  },
+  {
+    label: '灰色',
+    value: 'grey',
   },
 ];
 
