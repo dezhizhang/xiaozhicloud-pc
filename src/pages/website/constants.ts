@@ -1,3 +1,12 @@
+/*
+ * :file description:
+ * :name: /xiaozhicloud-pc/src/pages/website/constants.ts
+ * :author: 张德志
+ * :copyright: (c) 2023, Tungee
+ * :date created: 2023-04-26 01:37:22
+ * :last editor: 张德志
+ * :date last edited: 2023-07-03 20:37:00
+ */
 export const baseURL = '/website';
 
 // 操作类型
@@ -11,6 +20,7 @@ export const OPERATION_TEXT = {
   [OPERATION_TYPE.EDIT]: '编辑网站',
 };
 
+// 一级分类
 export const WEBSITE_TYPE = [
   {
     label: '企业网站',
@@ -23,6 +33,10 @@ export const WEBSITE_TYPE = [
   {
     label: '商城网站',
     value: 'mall',
+  },
+  {
+    label: '后台网站',
+    value: 'backend',
   },
   {
     label: '免费建站',
