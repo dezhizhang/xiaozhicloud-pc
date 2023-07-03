@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 21:03:26
+ * :date last edited: 2023-07-03 22:37:49
  */
 export const baseURL = '/website';
 
@@ -92,6 +92,7 @@ export const WEBSITE_COLOR = [
   },
 ];
 
+// 行业分类
 export const INDUSTRY_CLASSIFICATION = [
   {
     label: '装修',
@@ -108,6 +109,82 @@ export const INDUSTRY_CLASSIFICATION = [
   {
     label: '法律',
     value: 'law',
+  },
+  {
+    label: '金融',
+    value: 'finance',
+  },
+  {
+    label: '金融',
+    value: 'finance',
+  },
+  {
+    label: '能源',
+    value: 'energy',
+  },
+  {
+    label: '物流',
+    value: 'logistics',
+  },
+  {
+    label: '建筑',
+    value: 'build',
+  },
+  {
+    label: '工业',
+    value: 'industry',
+  },
+  {
+    label: '农业',
+    value: 'agriculture',
+  },
+  {
+    label: '通信',
+    value: 'communication',
+  },
+  {
+    label: 'IT科技',
+    value: 'it-technology',
+  },
+  {
+    label: 'IDC服务器',
+    value: 'idc-server',
+  },
+  {
+    label: '汽车',
+    value: 'car',
+  },
+  {
+    label: '旅行',
+    value: 'travel',
+  },
+  {
+    label: '酒店',
+    value: 'hotel',
+  },
+  {
+    label: '运动',
+    value: 'motion',
+  },
+  {
+    label: '健康',
+    value: 'health',
+  },
+  {
+    label: '时尚',
+    value: 'fashion',
+  },
+  {
+    label: '服饰',
+    value: 'equipage',
+  },
+  {
+    label: '房产',
+    value: 'real-estate',
+  },
+  {
+    label: '医疗',
+    value: 'medical-treatment',
   },
 ];
 
