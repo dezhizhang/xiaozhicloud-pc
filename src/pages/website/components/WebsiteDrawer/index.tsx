@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:58:52
+ * :date last edited: 2023-07-03 23:04:37
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -18,10 +18,12 @@ import {
   OPERATION_TEXT,
   WEBSITE_TYPE,
   STATUS_TYPE,
+  WEBSITE_COLOR,
   WEBSITE_STYLES,
   INDUSTRY_CLASSIFICATION,
 } from '../../constants';
 import styles from './index.less';
+
 const { Option } = Select;
 
 const { TextArea } = Input;
@@ -36,7 +38,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState<Website.DataType>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
@@ -226,6 +228,19 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
         <Form.Item
+          label="网站颜色"
+          name="color"
+          rules={[{ required: true, message: '网站颜色不能为空' }]}
+        >
+          <Select placeholder="请选择类型">
+            {WEBSITE_COLOR.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item
           label="行业分类"
           name="industry"
           rules={[{ required: true, message: '类型不能为空' }]}
@@ -239,7 +254,11 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
+        <Form.Item
+          label="网站状态"
+          name="status"
+          rules={[{ required: true, message: '状态不能为空' }]}
+        >
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -249,7 +268,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="描述" name="description">
+        <Form.Item label="网站描述" name="description">
           <TextArea rows={4} placeholder="请输入描述最多支持200字符" maxLength={200} />
         </Form.Item>
       </Form>
