@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:08:20
+ * :date last edited: 2023-07-03 22:44:50
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -13,7 +13,13 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import {
+  OPERATION_TYPE,
+  OPERATION_TEXT,
+  WEBSITE_TYPE,
+  STATUS_TYPE,
+  INDUSTRY_CLASSIFICATION,
+} from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -155,14 +161,26 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
-        <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
+        <Form.Item
+          label="网站标题"
+          name="title"
+          rules={[{ required: true, message: '网站标题不能为空!' }]}
+        >
           <Input placeholder="请输入标题" />
         </Form.Item>
 
-        <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
+        <Form.Item
+          label="网站链接"
+          name="link"
+          rules={[{ required: true, message: '网站链接不能为空' }]}
+        >
           <Input placeholder="请输入链接" />
         </Form.Item>
-        <Form.Item label="封面" name="url" rules={[{ required: true, message: '链接不能为空' }]}>
+        <Form.Item
+          label="网站封面"
+          name="url"
+          rules={[{ required: true, message: '网站封面不能为空' }]}
+        >
           <Upload
             accept="image/*"
             listType="picture"
@@ -180,9 +198,27 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Upload>
         </Form.Item>
 
-        <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
+        <Form.Item
+          label="网站类型"
+          name="type"
+          rules={[{ required: true, message: '类型不能为空' }]}
+        >
           <Select placeholder="请选择类型">
             {WEBSITE_TYPE.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+
+        <Form.Item
+          label="行业分类"
+          name="industry"
+          rules={[{ required: true, message: '类型不能为空' }]}
+        >
+          <Select placeholder="请选择类型">
+            {INDUSTRY_CLASSIFICATION.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>

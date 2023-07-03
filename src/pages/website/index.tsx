@@ -5,13 +5,13 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:34:21
+ * :date last edited: 2023-07-03 22:42:46
  */
 import moment from 'moment';
 import _ from 'lodash';
 
 import React, { useRef, useState, useEffect } from 'react';
-import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd';
+import { Button, Table, Divider, Popconfirm, message, Image, Badge, Empty } from 'antd';
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
@@ -22,6 +22,7 @@ import {
   WEBSITE_TYPE,
   STATUS_TYPE,
   baseURL,
+  INDUSTRY_CLASSIFICATION,
 } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
@@ -139,6 +140,16 @@ const Website: React.FC = () => {
         const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
         console.log('text', text);
         return <span>{typeItem?.label || empty()} </span>;
+      },
+    },
+    {
+      title: '行业分类',
+      dataIndex: 'industry',
+      width: '8%',
+      key: 'industry',
+      render: (text: string) => {
+        const industryItem = INDUSTRY_CLASSIFICATION.find((item) => item.value === text);
+        return <span>{industryItem?.label || empty()}</span>;
       },
     },
 

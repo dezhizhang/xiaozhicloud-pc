@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:37:49
+ * :date last edited: 2023-07-03 22:45:56
  */
 export const baseURL = '/website';
 
@@ -109,10 +109,6 @@ export const INDUSTRY_CLASSIFICATION = [
   {
     label: '法律',
     value: 'law',
-  },
-  {
-    label: '金融',
-    value: 'finance',
   },
   {
     label: '金融',
