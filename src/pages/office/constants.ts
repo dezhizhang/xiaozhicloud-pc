@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 20:58:06
+ * :date last edited: 2023-07-04 21:45:37
  */
 
 export const baseURL = '/office';
@@ -47,31 +47,31 @@ export const OFFICE_MAP = {
     },
     {
       label: '企业培训',
-      value: '',
+      value: 'enterprise-training',
     },
     {
       label: '企业宣传',
-      value: '',
+      value: 'propaganda',
     },
     {
       label: '相册图集',
-      value: '',
+      value: 'album-atlas',
     },
     {
       label: '营销策划',
-      value: '',
+      value: 'marketing-planning',
     },
     {
       label: '商业计划书',
-      value: '',
+      value: 'business-plan',
     },
     {
       label: '个人简历',
-      value: '',
+      value: 'personal-resume',
     },
     {
       label: '岗位竞聘',
-      value: '',
+      value: 'job-competition',
     },
     {
       label: '论文答辩',
