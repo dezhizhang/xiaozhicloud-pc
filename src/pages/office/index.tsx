@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/office/index.tsx
@@ -5,7 +6,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-21 16:39:50
+ * :date last edited: 2023-07-04 19:07:49
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -16,11 +17,13 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import {
-  OPERATION_TYPE,
-  DEFAULT_PAGINATION,
+  baseURL,
+  STYLES,
+  OFFICE_MAP,
   WEBSITE_TYPE,
   STATUS_TYPE,
-  baseURL,
+  OPERATION_TYPE,
+  DEFAULT_PAGINATION,
 } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
@@ -30,9 +33,9 @@ import styles from './index.less';
 const Website: React.FC = () => {
   const ref = useRef();
   const [loading, setLoading] = useState<boolean>(true);
-  const [responseData, setResponseData] = useState<Website.ResponseData>();
+  const [responseData, setResponseData] = useState<Office.ResponseData>();
   const [pagination, setPagination] = useState<TablePaginationConfig>(DEFAULT_PAGINATION);
-  const [filter, setFilter] = useState<Website.RequestType>({
+  const [filter, setFilter] = useState<Office.RequestType>({
     title: undefined,
     type: undefined,
     status: undefined,
@@ -109,13 +112,12 @@ const Website: React.FC = () => {
     fetchWebsiteList(transformToParamsDefault(filter));
   }, []);
 
-  const columns: ColumnsType<Website.DataType> = [
+  const columns: ColumnsType<Office.DataType> = [
     {
       title: '标题',
       dataIndex: 'title',
       key: 'title',
-      width: '10%',
-      render: (text, record: Website.DataType) => (
+      render: (text, record: Office.DataType) => (
         <a target="_blank" href={`${baseURL}/${record._id}`} rel="noreferrer">
           {text || '--'}
         </a>
@@ -125,7 +127,6 @@ const Website: React.FC = () => {
       title: '链接',
       dataIndex: 'link',
       key: 'link',
-      width: '16%',
       render: (text) => {
         return (
           <a href={`//${text}`} target="_blank" rel="noreferrer">
@@ -138,7 +139,6 @@ const Website: React.FC = () => {
       title: '封面',
       dataIndex: 'url',
       key: 'url',
-      width: '10%',
       render: (text) => {
         return <Image width={64} height={32} src={text} fallback={FALLBACK} />;
       },
@@ -146,18 +146,35 @@ const Website: React.FC = () => {
     {
       title: '类型',
       dataIndex: 'type',
-      width: '8%',
       key: 'type',
       render: (text) => {
         const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
         return <span>{typeItem?.label || empty()} </span>;
       },
     },
-
+    {
+      title: '适用场景',
+      dataIndex: 'type',
+      key: 'type',
+      render: (text: string, record: Office.DataType) => {
+        const sceneItem = OFFICE_MAP[text].find(
+          (item: Office.OptionType) => item.value === record.applicable,
+        );
+        return <span>{sceneItem?.label || empty()}</span>;
+      },
+    },
+    {
+      title: '风格',
+      dataIndex: 'style',
+      key: 'style',
+      render: (text: string) => {
+        const styleItem = STYLES.find((item: Office.OptionType) => item.value === text);
+        return <span>{styleItem?.label || empty()}</span>;
+      },
+    },
     {
       title: '状态',
       key: 'status',
-      width: '10%',
       dataIndex: 'status',
       render: (text) => {
         const statusItem = STATUS_TYPE.find((item) => item.value === text);
@@ -178,7 +195,6 @@ const Website: React.FC = () => {
     {
       title: '描述',
       key: 'description',
-      width: '16%',
       dataIndex: 'description',
       render: (text) => {
         return <span>{text || empty()}</span>;
@@ -187,7 +203,6 @@ const Website: React.FC = () => {
     {
       title: '创建时间',
       key: 'add_time',
-      width: '20%',
       dataIndex: 'add_time',
       render: (text) => {
         return <span>{moment(text).format(format()) || empty()}</span>;
@@ -196,8 +211,7 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      width: '10%',
-      render: (_, record: Website.DataType) => {
+      render: (_: string, record: Website.DataType) => {
         return (
           <div>
             <a

@@ -5,13 +5,14 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 16:37:15
+ * :date last edited: 2023-07-04 17:37:24
  */
 
 export const baseURL = '/office';
 
 export enum OFFICE_TYPE {
   PTT = 'ppt',
+  WORD = 'word',
   EXCEL = 'excel',
 }
 
@@ -109,6 +110,8 @@ export const OFFICE_MAP = {
       value: '',
     },
   ],
+  [OFFICE_TYPE.WORD]: [{}],
+  // excel适用场影
   [OFFICE_TYPE.EXCEL]: [],
 };
 
@@ -118,7 +121,7 @@ export const OPERATION_TEXT = {
 };
 
 //ppt风格
-const STYLES = [
+export const STYLES = [
   {
     label: '商务',
     value: 'commercial-affairs',

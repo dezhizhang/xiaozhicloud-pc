@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:25:45
+ * :date last edited: 2023-07-04 17:45:26
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -28,8 +28,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [record, setRecord] = useState<Website.DataType>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [record, setRecord] = useState<Office.DataType>();
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
@@ -66,7 +66,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('新增网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -76,7 +76,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(false);
       form.resetFields();
       message.success('编辑网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
