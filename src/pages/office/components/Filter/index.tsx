@@ -5,9 +5,10 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2023-04-28 13:30:08
+ * :date last edited: 2023-07-04 19:11:05
  */
-import React, { ChangeEvent } from 'react';
+import type { ChangeEvent } from 'react';
+import React from 'react';
 import { Input, Select } from 'antd';
 import { FILTER_WIDTH } from '@/constants';
 import fcStyles from '@/styles/filter.less';

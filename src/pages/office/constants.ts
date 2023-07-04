@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 17:37:24
+ * :date last edited: 2023-07-04 19:13:01
  */
 
 export const baseURL = '/office';
@@ -154,20 +154,16 @@ export const STYLES = [
 
 export const WEBSITE_TYPE = [
   {
-    label: 'world模板',
-    value: 'world',
+    label: 'word模板',
+    value: 'word',
   },
   {
     label: 'ptt模板',
     value: 'ptt',
   },
   {
-    label: 'exce模板',
+    label: 'excel模板',
     value: 'excel',
-  },
-  {
-    label: '简历模板',
-    value: 'resume',
   },
 ];
 

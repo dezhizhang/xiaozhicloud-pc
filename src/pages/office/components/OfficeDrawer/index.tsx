@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 17:45:26
+ * :date last edited: 2023-07-04 19:18:02
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -13,7 +13,13 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import {
+  OFFICE_MAP,
+  WEBSITE_TYPE,
+  STATUS_TYPE,
+  OPERATION_TYPE,
+  OPERATION_TEXT,
+} from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -28,6 +34,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
+  const [type, setType] = useState<string>(WEBSITE_TYPE[0].value);
   const [record, setRecord] = useState<Office.DataType>();
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
@@ -133,6 +140,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   return (
     <Drawer
       className={styles.container}
+      maskClosable={false}
       footer={
         <Row justify="end">
           <Button onClick={() => setVisible(false)} style={{ marginRight: 16 }}>
@@ -183,6 +191,19 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
           <Select placeholder="请选择类型">
             {WEBSITE_TYPE.map((item) => (
+              <Option key={item?.value} value={item.value}>
+                {item.label}
+              </Option>
+            ))}
+          </Select>
+        </Form.Item>
+        <Form.Item
+          label="场景"
+          name="applicable"
+          rules={[{ required: true, message: '场景不能为空' }]}
+        >
+          <Select placeholder="请选择场景">
+            {OFFICE_MAP[type].map((item: Office.OptionType) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>
