@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:41:04
+ * :date last edited: 2023-07-04 20:58:06
  */
 
 export const baseURL = '/office';
@@ -110,7 +110,44 @@ export const OFFICE_MAP = {
       value: '',
     },
   ],
-  [OFFICE_TYPE.WORD]: [{}],
+  [OFFICE_TYPE.WORD]: [
+    {
+      label: '简历',
+      value: 'biographical-notes',
+    },
+    {
+      label: '手抄报/小报',
+      value: 'manuscript/tabloid',
+    },
+    {
+      label: 'Word设计',
+      value: 'word-design',
+    },
+    {
+      label: '工作范文',
+      value: 'work-model',
+    },
+    {
+      label: '企业管理',
+      value: 'enterprise-management',
+    },
+    {
+      label: '校园教育',
+      value: 'campus-education',
+    },
+    {
+      label: '合同协议',
+      value: 'contract-agreement',
+    },
+    {
+      label: 'XMind',
+      value: 'xmind',
+    },
+    {
+      label: '期它',
+      value: '',
+    },
+  ],
   // excel适用场影
   [OFFICE_TYPE.EXCEL]: [],
 };

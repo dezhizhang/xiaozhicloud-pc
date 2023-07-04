@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:52:55
+ * :date last edited: 2023-07-04 21:06:15
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -157,7 +157,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       }
       width={500}
       title={OPERATION_TEXT[operation]}
-      visible={visible}
+      open={visible}
       onClose={() => setVisible(false)}
     >
       <Form
@@ -193,7 +193,15 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         </Form.Item>
 
         <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
-          <Select placeholder="请选择类型" onChange={(value) => setType(value)}>
+          <Select
+            placeholder="请选择类型"
+            onChange={(value) => {
+              setType(value);
+              form.setFieldsValue({
+                applicable: undefined,
+              });
+            }}
+          >
             {OFFICE_TYPE_LIST.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
@@ -238,7 +246,6 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             ))}
           </Select>
         </Form.Item>
-
         <Form.Item label="描述" name="description">
           <TextArea rows={4} placeholder="请输入描述最多支持200字符" maxLength={200} />
         </Form.Item>
