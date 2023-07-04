@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:07:49
+ * :date last edited: 2023-07-04 19:43:14
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -20,9 +20,9 @@ import {
   baseURL,
   STYLES,
   OFFICE_MAP,
-  WEBSITE_TYPE,
   STATUS_TYPE,
   OPERATION_TYPE,
+  OFFICE_TYPE_LIST,
   DEFAULT_PAGINATION,
 } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
@@ -148,7 +148,7 @@ const Website: React.FC = () => {
       dataIndex: 'type',
       key: 'type',
       render: (text) => {
-        const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
+        const typeItem = OFFICE_TYPE_LIST.find((item) => item.value === text);
         return <span>{typeItem?.label || empty()} </span>;
       },
     },

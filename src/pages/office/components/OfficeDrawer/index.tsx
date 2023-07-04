@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:18:02
+ * :date last edited: 2023-07-04 19:52:55
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -14,11 +14,13 @@ import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import {
+  STYLES,
   OFFICE_MAP,
-  WEBSITE_TYPE,
   STATUS_TYPE,
+  OFFICE_TYPE,
   OPERATION_TYPE,
   OPERATION_TEXT,
+  OFFICE_TYPE_LIST,
 } from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
@@ -34,7 +36,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [type, setType] = useState<string>(WEBSITE_TYPE[0].value);
+  const [type, setType] = useState<string>(OFFICE_TYPE_LIST[0].value);
   const [record, setRecord] = useState<Office.DataType>();
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
@@ -137,6 +139,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     setFileList([uploadObj]);
   };
 
+  console.log(OFFICE_MAP[type]);
+
   return (
     <Drawer
       className={styles.container}
@@ -189,8 +193,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         </Form.Item>
 
         <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
-          <Select placeholder="请选择类型">
-            {WEBSITE_TYPE.map((item) => (
+          <Select placeholder="请选择类型" onChange={(value) => setType(value)}>
+            {OFFICE_TYPE_LIST.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>
@@ -203,14 +207,28 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           rules={[{ required: true, message: '场景不能为空' }]}
         >
           <Select placeholder="请选择场景">
-            {OFFICE_MAP[type].map((item: Office.OptionType) => (
+            {(OFFICE_MAP[type] || []).map((item: Office.OptionType) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>
             ))}
           </Select>
         </Form.Item>
-
+        {type === OFFICE_TYPE.PTT && (
+          <Form.Item
+            label="风格"
+            name="style"
+            rules={[{ required: true, message: '场景不能为空' }]}
+          >
+            <Select placeholder="请选择场景">
+              {(STYLES || []).map((item: Office.OptionType) => (
+                <Option key={item?.value} value={item.value}>
+                  {item.label}
+                </Option>
+              ))}
+            </Select>
+          </Form.Item>
+        )}
         <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (

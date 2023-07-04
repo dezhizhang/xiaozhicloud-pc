@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:13:01
+ * :date last edited: 2023-07-04 19:41:04
  */
 
 export const baseURL = '/office';
@@ -27,23 +27,23 @@ export const OFFICE_MAP = {
   [OFFICE_TYPE.PTT]: [
     {
       label: '述职汇报',
-      value: '',
+      value: 'report-work',
     },
     {
       label: '工作总结',
-      value: '',
+      value: 'work-summary',
     },
     {
       label: '教育课件',
-      value: '',
+      value: 'educational-courseware',
     },
     {
       label: '晚会颁奖',
-      value: '',
+      value: 'evening-awards',
     },
     {
       label: '节假节日',
-      value: '',
+      value: 'holidays-festivals',
     },
     {
       label: '企业培训',
@@ -152,18 +152,18 @@ export const STYLES = [
   },
 ];
 
-export const WEBSITE_TYPE = [
+export const OFFICE_TYPE_LIST = [
   {
     label: 'word模板',
-    value: 'word',
+    value: OFFICE_TYPE.WORD,
   },
   {
     label: 'ptt模板',
-    value: 'ptt',
+    value: OFFICE_TYPE.PTT,
   },
   {
     label: 'excel模板',
-    value: 'excel',
+    value: OFFICE_TYPE.EXCEL,
   },
 ];
 

@@ -5,14 +5,14 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-26 14:22:44
  * :last editor: 张德志
- * :date last edited: 2023-07-04 19:11:05
+ * :date last edited: 2023-07-04 19:48:48
  */
 import type { ChangeEvent } from 'react';
 import React from 'react';
 import { Input, Select } from 'antd';
 import { FILTER_WIDTH } from '@/constants';
 import fcStyles from '@/styles/filter.less';
-import { WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import { OFFICE_TYPE_LIST, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
 
 export interface FilterTableProps {
@@ -54,9 +54,10 @@ const FilterTable: React.FC<FilterTableProps> = (props) => {
                 value={filter.type}
                 placeholder="请选择网站类型"
                 style={{ width: FILTER_WIDTH }}
+                r
                 onChange={(value) => onChange?.('type', value)}
               >
-                {WEBSITE_TYPE.map((item) => (
+                {OFFICE_TYPE_LIST.map((item) => (
                   <Select.Option value={item.value} key={item.value}>
                     {item.label}
                   </Select.Option>
