@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 21:45:37
+ * :date last edited: 2023-07-04 21:51:28
  */
 
 export const baseURL = '/office';
@@ -75,39 +75,39 @@ export const OFFICE_MAP = {
     },
     {
       label: '论文答辩',
-      value: '',
+      value: 'thesis-defense',
     },
     {
       label: '产品发布',
-      value: '',
+      value: 'product-launch',
     },
     {
       label: '婚庆爱情',
-      value: '',
+      value: 'wedding-love',
     },
     {
       label: '生日聚会',
-      value: '',
+      value: 'birthday-party',
     },
     {
       label: 'PPT图表',
-      value: '',
+      value: 'ppt-chart',
     },
     {
       label: 'PPT背景',
-      value: '',
+      value: 'ppt-background',
     },
     {
       label: 'Keynote模板',
-      value: '',
+      value: 'Keynote-template',
     },
     {
       label: '医学护理',
-      value: '',
+      value: 'medical-care',
     },
     {
       label: '其他',
-      value: '',
+      value: 'other',
     },
   ],
   [OFFICE_TYPE.WORD]: [
