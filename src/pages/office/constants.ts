@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 21:51:28
+ * :date last edited: 2023-07-04 22:17:31
  */
 
 export const baseURL = '/office';
@@ -144,12 +144,53 @@ export const OFFICE_MAP = {
       value: 'xmind',
     },
     {
-      label: '期它',
-      value: '',
+      label: '其它',
+      value: 'other',
     },
   ],
   // excel适用场影
-  [OFFICE_TYPE.EXCEL]: [],
+  [OFFICE_TYPE.EXCEL]: [
+    {
+      label: '财务会计',
+      value: 'financial-accounting',
+    },
+    {
+      label: '市场营销',
+      value: 'marketing-management',
+    },
+    {
+      label: '仓储购销',
+      value: 'warehouse-purchase',
+    },
+    {
+      label: '人事管理',
+      value: 'personnel-management',
+    },
+    {
+      label: '行政管理',
+      value: 'administration',
+    },
+    {
+      label: '产品运营',
+      value: 'product-operations',
+    },
+    {
+      label: '教育培训',
+      value: 'education-training',
+    },
+    {
+      label: '个人日常',
+      value: 'personal-life',
+    },
+    {
+      label: '可视化图表',
+      value: 'visualization-chart',
+    },
+    {
+      label: '其他',
+      value: 'other',
+    },
+  ],
 };
 
 export const OPERATION_TEXT = {
