@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/tool/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/friendly-link/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:43:36
+ * :date last edited: 2023-07-06 20:55:55
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -18,7 +18,7 @@ import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
-import WebsiteDrawer from './components/WebsiteDrawer';
+import FriendlyLinkDrawer from './components/FriendlyLinkDrawer';
 import styles from './index.less';
 
 const Website: React.FC = () => {
@@ -42,7 +42,7 @@ const Website: React.FC = () => {
 
   const transformToParamsDefault = (params: any, pageIndex?: number, pageSize?: number) => {
     const obj = {};
-    for (let key in params) {
+    for (const key in params) {
       obj[key] = undefined;
     }
     return {
@@ -77,7 +77,6 @@ const Website: React.FC = () => {
     } else {
       newFilter[key] = value;
     }
-    console.log('newFilter', newFilter);
     setFilter(newFilter);
   };
 
@@ -119,7 +118,7 @@ const Website: React.FC = () => {
       width: '16%',
       render: (text) => {
         return (
-          <a href={`//${text}`} target="_blank">
+          <a href={`//${text}`} target="_blank" rel="noreferrer">
             {text}
           </a>
         );
@@ -242,7 +241,7 @@ const Website: React.FC = () => {
           dataSource={responseData?.data || []}
         />
       </div>
-      <WebsiteDrawer
+      <FriendlyLinkDrawer
         onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}

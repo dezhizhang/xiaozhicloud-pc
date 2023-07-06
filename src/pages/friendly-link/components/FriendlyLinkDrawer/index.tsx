@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/tool/components/WebsiteDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/friendly-link/components/FriendlyLinkDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 16:48:29
+ * :date last edited: 2023-07-06 20:55:11
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -13,23 +13,23 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, WEBSITE_TYPE, STATUS_TYPE } from '../../constants';
+import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE } from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
 const { TextArea } = Input;
 
-interface UserDrawerProps {
+interface FriendlyLinkDrawerProps {
   onSuccess: () => void;
 }
 
-const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
+const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState<Website.DataType>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
@@ -64,8 +64,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('新增网站成功');
-      onSuccess && onSuccess();
+      message.success('新增友情链接成功');
+      onSuccess?.();
     }
   };
 
@@ -74,8 +74,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('编辑网站成功');
-      onSuccess && onSuccess();
+      message.success('编辑友情链接成功');
+      onSuccess?.();
     }
   };
 
@@ -154,8 +154,12 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
-        <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
-          <Input placeholder="请输入标题" />
+        <Form.Item
+          label="名称"
+          name="name"
+          rules={[{ required: true, message: '公司名称/应用名称不能为空!' }]}
+        >
+          <Input placeholder="请输入公司名称/应用名称" />
         </Form.Item>
 
         <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
@@ -179,16 +183,6 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Upload>
         </Form.Item>
 
-        <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
-          <Select placeholder="请选择类型">
-            {WEBSITE_TYPE.map((item) => (
-              <Option key={item?.value} value={item.value}>
-                {item.label}
-              </Option>
-            ))}
-          </Select>
-        </Form.Item>
-
         <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (
@@ -207,4 +201,4 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   );
 });
 
-export default WebsiteDrawer;
+export default FriendlyLinkDrawer;
