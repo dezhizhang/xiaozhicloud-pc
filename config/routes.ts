@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-07-06 20:44:54
+ * :date last edited: 2023-07-07 07:57:18
  */
 export default [
   {
@@ -29,7 +29,7 @@ export default [
     component: '@/pages/workbench',
   },
   {
-    name: '超级会员',
+    name: '超级管理',
     icon: 'icon-huiyuanguanli',
     path: '/manager',
     component: '@/pages/manager',

@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/user/Login/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/login/index.tsx
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 13:25:48
+ * :date last edited: 2023-07-07 07:58:06
  */
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -104,22 +104,6 @@ const Login: React.FC = () => {
               },
             ]}
           />
-          <div
-            style={{
-              marginBottom: 24,
-            }}
-          >
-            {/* <ProFormCheckbox noStyle name="autoLogin">
-              <FormattedMessage id="pages.login.rememberMe" defaultMessage="自动登录" />
-            </ProFormCheckbox>
-            <a
-              style={{
-                float: 'right',
-              }}
-            >
-              <FormattedMessage id="pages.login.forgotPassword" defaultMessage="忘记密码" />
-            </a> */}
-          </div>
         </LoginForm>
       </div>
     </div>
