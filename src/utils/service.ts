@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-21 20:07:32
+ * :date last edited: 2023-07-07 07:40:29
  */
 export const BASE_URL = '/api/v1';
 
@@ -61,10 +61,10 @@ const SERVICE_MAP = {
   DESIGIN_UPDATE: `/design/edit`,
 
   // 软件工具
-  TOOL_LIST: `/tool/list`,
-  TOOL_ADD: `/tool/add`,
-  TOOL_DELETE: `/tool/delete`,
-  TOOL_UPDATE: `/tool/edit`,
+  FRIENDLY_LINK_LIST: `/friendly-link/list`,
+  FRIENDLY_LINK_ADD: `/friendly-link/add`,
+  FRIENDLY_LINK_DELETE: `/friendly-link/delete`,
+  FRIENDLY_LINK_UPDATE: `/friendly-link/edit`,
 };
 
 Object.keys(SERVICE_MAP).map((item: string) => {

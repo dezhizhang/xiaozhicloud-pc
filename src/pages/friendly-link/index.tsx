@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
  * :name: /xiaozhicloud-pc/src/pages/friendly-link/index.tsx
@@ -5,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-06 20:55:55
+ * :date last edited: 2023-07-07 07:46:28
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -15,7 +16,7 @@ import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { OPERATION_TYPE, DEFAULT_PAGINATION, WEBSITE_TYPE, STATUS_TYPE } from './constants';
+import { OPERATION_TYPE, DEFAULT_PAGINATION, STATUS_TYPE } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import FriendlyLinkDrawer from './components/FriendlyLinkDrawer';
@@ -105,9 +106,9 @@ const Website: React.FC = () => {
 
   const columns: ColumnsType<Website.DataType> = [
     {
-      title: '标题',
-      dataIndex: 'title',
-      key: 'title',
+      title: '名称',
+      dataIndex: 'name',
+      key: 'name',
       width: '10%',
       render: (text) => <a>{text || '--'}</a>,
     },
@@ -133,17 +134,6 @@ const Website: React.FC = () => {
         return <Image width={64} height={32} src={text} fallback={FALLBACK} />;
       },
     },
-    {
-      title: '类型',
-      dataIndex: 'type',
-      width: '8%',
-      key: 'type',
-      render: (text) => {
-        const typeItem = WEBSITE_TYPE.find((item) => item.value === text);
-        return <span>{typeItem?.label || empty()} </span>;
-      },
-    },
-
     {
       title: '描述',
       key: 'description',
@@ -224,10 +214,10 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个友情链接
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            新增软件工具
+            新增友情链接
           </Button>
         </div>
         <Table
