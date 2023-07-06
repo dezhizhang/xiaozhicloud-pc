@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-06 20:55:11
+ * :date last edited: 2023-07-06 20:58:12
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -118,7 +118,7 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/website/${dateTime}.${extension}`, file);
+    const result = await client.put(`/friendly-link/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
