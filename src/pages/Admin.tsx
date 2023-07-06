@@ -5,23 +5,17 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 12:20:42
+ * :date last edited: 2023-07-06 20:51:12
  */
 import { HeartTwoTone, SmileTwoTone } from '@ant-design/icons';
 import { PageHeaderWrapper } from '@ant-design/pro-components';
 import { Alert, Card, Typography } from 'antd';
 import React from 'react';
-import { useIntl } from 'umi';
 
 const Admin: React.FC = () => {
   const intl = useIntl();
   return (
-    <PageHeaderWrapper
-      content={intl.formatMessage({
-        id: 'pages.admin.subPage.title',
-        defaultMessage: 'This page can only be viewed by admin',
-      })}
-    >
+    <PageHeaderWrapper>
       <Card>
         <Alert
           message={intl.formatMessage({
