@@ -7,7 +7,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:53:44
+ * :date last edited: 2023-07-07 07:54:52
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -111,7 +111,7 @@ const Website: React.FC = () => {
       dataIndex: 'name',
       key: 'name',
       width: '10%',
-      render: (text) => <a>{text || '--'}</a>,
+      render: (text) => <span>{text || '--'}</span>,
     },
     {
       title: '链接',
