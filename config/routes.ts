@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-06-25 17:00:54
+ * :date last edited: 2023-07-06 20:44:54
  */
 export default [
   {
@@ -139,6 +139,12 @@ export default [
         component: '@/pages/design/[type]',
       },
     ],
+  },
+  {
+    name: '友情链接',
+    icon: 'icon-guanggaoguanli',
+    path: '/friendly-link',
+    component: '@/pages/friendly-link',
   },
   {
     path: '/',
