@@ -49,7 +49,6 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
         form.setFieldsValue({
           url: params.url,
           link: params.link,
-          type: params.type,
           title: params.title,
           status: params.status,
           description: params.description,
@@ -165,7 +164,7 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
         <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
           <Input placeholder="请输入链接" />
         </Form.Item>
-        <Form.Item label="封面" name="url" rules={[{ required: true, message: '链接不能为空' }]}>
+        <Form.Item label="图片" name="url" rules={[{ required: true, message: '链接不能为空' }]}>
           <Upload
             accept="image/*"
             listType="picture"

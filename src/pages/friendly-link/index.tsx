@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
@@ -6,7 +7,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:46:28
+ * :date last edited: 2023-07-07 07:53:44
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -126,7 +127,7 @@ const Website: React.FC = () => {
       },
     },
     {
-      title: '封面',
+      title: '公司logo',
       dataIndex: 'url',
       key: 'url',
       width: '10%',
@@ -177,7 +178,7 @@ const Website: React.FC = () => {
       title: '操作',
       key: 'operation',
       width: '10%',
-      render: (_, record: Website.DataType) => {
+      render: (_: string, record: Website.DataType) => {
         return (
           <div>
             <a
