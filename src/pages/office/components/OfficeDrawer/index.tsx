@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 21:06:15
+ * :date last edited: 2023-07-19 07:48:55
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -34,7 +34,8 @@ interface UserDrawerProps {
 const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
-  const [fileList, setFileList] = useState<any>([]);
+  const [urlFileList, setUrlFileList] = useState<any>([]);
+  const [downFileList, setDownFileList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [type, setType] = useState<string>(OFFICE_TYPE_LIST[0].value);
   const [record, setRecord] = useState<Office.DataType>();
@@ -55,7 +56,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           status: 'done',
         };
         setLoading(false);
-        setFileList([uploadObj]);
+        setUrlFileList([uploadObj]);
         form.setFieldsValue({
           url: params.url,
           title: params.title,
@@ -92,7 +93,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const handleFinish = async () => {
     await form.validateFields();
     const values = await form.getFieldsValue();
-    values.url = fileList[0]?.url;
+    values.url = urlFileList[0]?.url;
+    values.download = downFileList[0]?.url;
     if (operation === OPERATION_TYPE.ADD) {
       fetchWebsiteAdd(values);
       return;
@@ -118,25 +120,50 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     return IMAGE_TYPE.includes(file.type) && isLt2M;
   };
 
+  const beforeUpload1 = async (file: { type: string; size: number }) => {
+    // 检查图片类型
+
+    const isLt2M = file.size / 1024 / 1024 < 10;
+    if (!isLt2M) {
+      message.error('上传图片必须小于 2MB!');
+      return false;
+    }
+    return isLt2M;
+  };
+
   const loadClient = async () => {
     return new OSS(OSS_OBJECT);
   };
 
-  const handleRequest = async ({ file }: any) => {
-    setLoading(true);
-    const fileType = file.type;
+  const responseUpload = async (file: any) => {
+    const fileType = file?.type;
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/office/${dateTime}.${extension}`, file);
+    const result = await client.put(`/xiaozhicloud/office/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
       url: result.url,
       status: 'done',
     };
+    return uploadObj;
+  };
+
+  const handleCustomRequestUrl = async ({ file }: any) => {
+    console.log(file);
+    setLoading(true);
+    const uploadObj = await responseUpload(file);
     setLoading(false);
-    setFileList([uploadObj]);
+    setUrlFileList([uploadObj]);
+  };
+
+  const handleCustomRequestDown = async ({ file }: any) => {
+    console.log('file2');
+    setLoading(true);
+    const uploadObj = await responseUpload(file);
+    setLoading(false);
+    setDownFileList([uploadObj]);
   };
 
   console.log(OFFICE_MAP[type]);
@@ -178,13 +205,34 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           <Upload
             accept="image/*"
             listType="picture"
-            fileList={fileList}
+            fileList={urlFileList}
             name="file"
-            customRequest={handleRequest}
-            onRemove={() => setFileList([])}
+            customRequest={handleCustomRequestUrl}
+            onRemove={() => setUrlFileList([])}
             beforeUpload={beforeUpload}
           >
-            {fileList.length <= 0 && (
+            {urlFileList.length <= 0 && (
+              <div className={styles.upload}>
+                {loading ? <LoadingOutlined /> : <PlusOutlined />}
+              </div>
+            )}
+          </Upload>
+        </Form.Item>
+        <Form.Item
+          label="文件"
+          name="download"
+          rules={[{ required: true, message: '封面不能为空' }]}
+        >
+          <Upload
+            accept="aplication/zip"
+            listType="picture"
+            fileList={downFileList}
+            name="file"
+            customRequest={handleCustomRequestDown}
+            onRemove={() => setDownFileList([])}
+            beforeUpload={beforeUpload1}
+          >
+            {downFileList.length <= 0 && (
               <div className={styles.upload}>
                 {loading ? <LoadingOutlined /> : <PlusOutlined />}
               </div>

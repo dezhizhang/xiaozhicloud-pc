@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-19 00:00:53
+ * :date last edited: 2023-07-19 07:42:22
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -148,7 +148,6 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   };
 
   const handleCustomRequestDown = async ({ file }: any) => {
-    console.log('file2');
     setLoading(true);
     const uploadObj = await responseUpload(file);
     setLoading(false);
