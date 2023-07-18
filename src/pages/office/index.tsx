@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 21:15:21
+ * :date last edited: 2023-07-11 22:51:21
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -157,7 +157,7 @@ const Website: React.FC = () => {
       dataIndex: 'type',
       key: 'type',
       render: (text: string, record: Office.DataType) => {
-        const sceneItem = OFFICE_MAP[text].find(
+        const sceneItem = (OFFICE_MAP[text] || []).find(
           (item: Office.OptionType) => item.value === record.applicable,
         );
         return <span>{sceneItem?.label || empty()}</span>;

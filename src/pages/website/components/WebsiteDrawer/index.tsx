@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 23:04:37
+ * :date last edited: 2023-07-19 00:00:53
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -35,7 +35,8 @@ interface UserDrawerProps {
 const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
-  const [fileList, setFileList] = useState<any>([]);
+  const [urlFileList, setUrlFileList] = useState<any>([]);
+  const [downFileList, setDownFileList] = useState<any[]>([]);
   const [loading, setLoading] = useState(false);
   const [record, setRecord] = useState<Website.DataType>();
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
@@ -44,7 +45,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   useImperativeHandle(ref, () => ({
     show: (active: string, params: any) => {
       setVisible(true);
-      setFileList([]);
+      setUrlFileList([]);
       form.resetFields();
       if (active === OPERATION_TYPE.EDIT) {
         setRecord(params);
@@ -55,7 +56,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           url: params?.url,
           status: 'done',
         };
-        setFileList([uploadObj]);
+        setUrlFileList([uploadObj]);
         form.setFieldsValue({
           url: params.url,
           title: params.title,
@@ -74,7 +75,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('新增网站成功');
+      message.success('新增成功');
       onSuccess?.();
     }
   };
@@ -84,7 +85,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('编辑网站成功');
+      message.success('编辑成功');
       onSuccess?.();
     }
   };
@@ -92,7 +93,8 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const handleFinish = async () => {
     await form.validateFields();
     const values = await form.getFieldsValue();
-    values.url = fileList[0]?.url;
+    values.url = urlFileList[0]?.url;
+    values.download = downFileList[0]?.url;
     if (operation === OPERATION_TYPE.ADD) {
       fetchWebsiteAdd(values);
       return;
@@ -110,7 +112,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       message.error('请上传图片');
       return false;
     }
-    const isLt2M = file.size / 1024 / 1024 < 2;
+    const isLt2M = file.size / 1024 / 1024 < 10;
     if (!isLt2M) {
       message.error('上传图片必须小于 2MB!');
       return false;
@@ -122,21 +124,35 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     return new OSS(OSS_OBJECT);
   };
 
-  const handleRequest = async ({ file }: any) => {
-    setLoading(true);
-    const fileType = file.type;
+  const responseUpload = async (file: any) => {
+    const fileType = file?.type;
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/website/${dateTime}.${extension}`, file);
+    const result = await client.put(`/xiaozhicloud/website/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
       url: result.url,
       status: 'done',
     };
+    return uploadObj;
+  };
+
+  const handleCustomRequestUrl = async ({ file }: any) => {
+    console.log(file);
+    setLoading(true);
+    const uploadObj = await responseUpload(file);
     setLoading(false);
-    setFileList([uploadObj]);
+    setUrlFileList([uploadObj]);
+  };
+
+  const handleCustomRequestDown = async ({ file }: any) => {
+    console.log('file2');
+    setLoading(true);
+    const uploadObj = await responseUpload(file);
+    setLoading(false);
+    setDownFileList([uploadObj]);
   };
 
   return (
@@ -164,36 +180,52 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
+        <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
+          <Input placeholder="请输入标题" />
+        </Form.Item>
         <Form.Item
-          label="网站标题"
-          name="title"
-          rules={[{ required: true, message: '网站标题不能为空!' }]}
+          label="源码"
+          name="github"
+          rules={[{ required: true, message: '标题不能为空!' }]}
         >
           <Input placeholder="请输入标题" />
         </Form.Item>
 
-        <Form.Item
-          label="网站链接"
-          name="link"
-          rules={[{ required: true, message: '网站链接不能为空' }]}
-        >
+        <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
           <Input placeholder="请输入链接" />
         </Form.Item>
+        <Form.Item label="封面" name="url" rules={[{ required: true, message: '封面不能为空' }]}>
+          <Upload
+            accept="image/*"
+            listType="picture"
+            fileList={urlFileList}
+            name="file"
+            customRequest={handleCustomRequestUrl}
+            onRemove={() => setUrlFileList([])}
+            beforeUpload={beforeUpload}
+          >
+            {urlFileList.length <= 0 && (
+              <div className={styles.upload}>
+                {loading ? <LoadingOutlined /> : <PlusOutlined />}
+              </div>
+            )}
+          </Upload>
+        </Form.Item>
         <Form.Item
-          label="网站封面"
-          name="url"
-          rules={[{ required: true, message: '网站封面不能为空' }]}
+          label="文件"
+          name="download"
+          rules={[{ required: true, message: '封面不能为空' }]}
         >
           <Upload
             accept="image/*"
             listType="picture"
-            fileList={fileList}
+            fileList={downFileList}
             name="file"
-            customRequest={handleRequest}
-            onRemove={() => setFileList([])}
+            customRequest={handleCustomRequestDown}
+            onRemove={() => setDownFileList([])}
             beforeUpload={beforeUpload}
           >
-            {fileList.length <= 0 && (
+            {downFileList.length <= 0 && (
               <div className={styles.upload}>
                 {loading ? <LoadingOutlined /> : <PlusOutlined />}
               </div>
@@ -201,11 +233,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Upload>
         </Form.Item>
 
-        <Form.Item
-          label="网站类型"
-          name="type"
-          rules={[{ required: true, message: '类型不能为空' }]}
-        >
+        <Form.Item label="类型" name="type" rules={[{ required: true, message: '类型不能为空' }]}>
           <Select placeholder="请选择类型">
             {WEBSITE_TYPE.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -214,11 +242,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item
-          label="网站风格"
-          name="style"
-          rules={[{ required: true, message: '类型不能为空' }]}
-        >
+        <Form.Item label="风格" name="style" rules={[{ required: true, message: '类型不能为空' }]}>
           <Select placeholder="请选择类型">
             {WEBSITE_STYLES.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -227,11 +251,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item
-          label="网站颜色"
-          name="color"
-          rules={[{ required: true, message: '网站颜色不能为空' }]}
-        >
+        <Form.Item label="颜色" name="color" rules={[{ required: true, message: '颜色不能为空' }]}>
           <Select placeholder="请选择类型">
             {WEBSITE_COLOR.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -254,11 +274,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item
-          label="网站状态"
-          name="status"
-          rules={[{ required: true, message: '状态不能为空' }]}
-        >
+        <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (
               <Option key={item?.value} value={item.value}>
@@ -268,7 +284,7 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           </Select>
         </Form.Item>
 
-        <Form.Item label="网站描述" name="description">
+        <Form.Item label="描述" name="description">
           <TextArea rows={4} placeholder="请输入描述最多支持200字符" maxLength={200} />
         </Form.Item>
       </Form>

@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 23:01:21
+ * :date last edited: 2023-07-18 23:44:58
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -115,7 +115,7 @@ const Website: React.FC = () => {
 
   const columns: ColumnsType<Website.DataType> = [
     {
-      title: '网站标题',
+      title: '标题',
       dataIndex: 'title',
       key: 'title',
       render: (text: string, record: Website.DataType) => (
@@ -123,7 +123,7 @@ const Website: React.FC = () => {
       ),
     },
     {
-      title: '网站封面',
+      title: '封面',
       dataIndex: 'url',
       key: 'url',
       width: '10%',
@@ -132,7 +132,7 @@ const Website: React.FC = () => {
       },
     },
     {
-      title: '网站类型',
+      title: '类型',
       dataIndex: 'type',
       key: 'type',
       render: (text) => {
@@ -142,7 +142,7 @@ const Website: React.FC = () => {
       },
     },
     {
-      title: '网站颜色',
+      title: '颜色',
       dataIndex: 'color',
       key: 'color',
       render: (text: string) => {
@@ -160,7 +160,7 @@ const Website: React.FC = () => {
       },
     },
     {
-      title: '网站风格',
+      title: '风格',
       dataIndex: 'style',
       key: 'style',
       render: (text: string) => {
@@ -244,10 +244,10 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            新增网站
+            新增
           </Button>
         </div>
         <Table
