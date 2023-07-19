@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-11 22:51:21
+ * :date last edited: 2023-07-19 22:42:15
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -44,7 +44,7 @@ const Website: React.FC = () => {
   const fetchWebsiteList = async (params: any) => {
     const res = await getWebsiteList(params);
     if (res.stat) {
-      setResponseData(res?.result);
+      setResponseData(res?.result as any);
       setLoading(false);
     }
   };
@@ -129,7 +129,7 @@ const Website: React.FC = () => {
       key: 'link',
       render: (text) => {
         return (
-          <a href={`//${text}`} target="_blank" rel="noreferrer">
+          <a href={`${text}`} target="_blank" rel="noreferrer">
             {text}
           </a>
         );

@@ -5,10 +5,10 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-19 07:42:22
+ * :date last edited: 2023-07-19 22:43:03
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants/index';
+import { OSS_OBJECT, STORE_BUCKET } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -104,6 +104,16 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     }
   };
 
+  const beforeUpload1 = async (file: { type: string; size: number }) => {
+    // 检查图片类型
+    const isLt2M = file.size / 1024 / 1024 < 10;
+    if (!isLt2M) {
+      message.error('上传图片必须小于 2MB!');
+      return false;
+    }
+    return isLt2M;
+  };
+
   const beforeUpload = async (file: { type: string; size: number }) => {
     // 检查图片类型
     const IMAGE_TYPE = ['image/jpeg', 'image/png', 'image/bmp', 'image/webp'];
@@ -125,11 +135,10 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   };
 
   const responseUpload = async (file: any) => {
-    const fileType = file?.type;
-    const extension = fileType?.split('/')?.[1];
+    const fileName = file?.name;
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/xiaozhicloud/website/${dateTime}.${extension}`, file);
+    const result = await client.put(`/${STORE_BUCKET}/website/${dateTime}/${fileName}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
@@ -216,13 +225,13 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
           rules={[{ required: true, message: '封面不能为空' }]}
         >
           <Upload
-            accept="image/*"
+            accept="aplication/zip"
             listType="picture"
             fileList={downFileList}
             name="file"
             customRequest={handleCustomRequestDown}
             onRemove={() => setDownFileList([])}
-            beforeUpload={beforeUpload}
+            beforeUpload={beforeUpload1}
           >
             {downFileList.length <= 0 && (
               <div className={styles.upload}>
