@@ -1,17 +1,17 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/website/[type]/components/Header/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/office/[type]/components/Header/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 18:31:49
  * :last editor: 张德志
- * :date last edited: 2023-06-21 14:23:34
+ * :date last edited: 2023-07-19 09:03:49
  */
 import React from 'react';
 import dayjs from 'dayjs';
 import { format } from '@/utils';
 import { Image, Descriptions } from 'antd';
-import { STATUS_TYPE, WEBSITE_TYPE } from '../../../constants';
+import { STATUS_TYPE, OFFICE_TYPE_LIST } from '../../../constants';
 import styles from './index.less';
 
 export interface HeaderProps {
@@ -21,7 +21,7 @@ export interface HeaderProps {
 const Header: React.FC<HeaderProps> = ({ baseInfo }) => {
   const { title, url, type, add_time, description, status } = baseInfo || {};
   const statusItem = STATUS_TYPE.find((item) => item.value === status);
-  const typeItem = WEBSITE_TYPE.find((item) => item.value === type);
+  const typeItem = OFFICE_TYPE_LIST.find((item) => item.value === type);
 
   return (
     <div className={styles.container}>
