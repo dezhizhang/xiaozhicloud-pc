@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-19 07:48:55
+ * :date last edited: 2023-07-19 12:31:55
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants/index';
@@ -137,10 +137,14 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
 
   const responseUpload = async (file: any) => {
     const fileType = file?.type;
+    const fileName = file?.name;
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/xiaozhicloud/office/${dateTime}.${extension}`, file);
+    const result = await client.put(
+      `/xiaozhicloud/office/${dateTime}/${fileName}.${extension}`,
+      file,
+    );
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
