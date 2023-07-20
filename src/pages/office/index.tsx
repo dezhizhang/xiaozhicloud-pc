@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-19 22:42:15
+ * :date last edited: 2023-07-19 22:49:41
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -251,7 +251,7 @@ const Website: React.FC = () => {
             <span>&nbsp;{responseData?.total || 0}&nbsp;</span>办公文档
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            新增网站
+            新增办公文档
           </Button>
         </div>
         <Table

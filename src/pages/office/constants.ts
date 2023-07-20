@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-04 22:17:31
+ * :date last edited: 2023-07-19 22:50:18
  */
 
 export const baseURL = '/office';
@@ -194,8 +194,8 @@ export const OFFICE_MAP = {
 };
 
 export const OPERATION_TEXT = {
-  [OPERATION_TYPE.ADD]: '新增网站',
-  [OPERATION_TYPE.EDIT]: '编辑网站',
+  [OPERATION_TYPE.ADD]: '新增办公文档',
+  [OPERATION_TYPE.EDIT]: '编辑办公文档',
 };
 
 //ppt风格
