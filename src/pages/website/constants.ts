@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-03 22:57:15
+ * :date last edited: 2023-07-21 22:33:59
  */
 export const baseURL = '/website';
 
@@ -186,6 +186,10 @@ export const INDUSTRY_CLASSIFICATION = [
 
 // 网站风格
 export const WEBSITE_STYLES = [
+  {
+    label: '中国',
+    value: 'china',
+  },
   {
     label: '欧美',
     value: 'europe-america',
