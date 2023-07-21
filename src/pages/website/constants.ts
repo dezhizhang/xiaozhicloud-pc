@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-21 22:33:59
+ * :date last edited: 2023-07-21 23:45:20
  */
 export const baseURL = '/website';
 
@@ -197,10 +197,6 @@ export const WEBSITE_STYLES = [
   {
     label: '韩国',
     value: 'south-korea',
-  },
-  {
-    label: '韩国',
-    value: 'china',
   },
   {
     label: '日本',
