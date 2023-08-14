@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/metaverse/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 21:56:35
+ * :date last edited: 2023-08-14 23:59:59
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,13 +17,7 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import {
-  STATUS_TYPE,
-  TOP_CLASSIFY,
-  OPERATION_TYPE,
-  SECONDARY_CLASSIFY,
-  DEFAULT_PAGINATION,
-} from './constants';
+import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getIntelligentProductList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
@@ -123,25 +117,25 @@ const Website: React.FC = () => {
         </a>
       ),
     },
-    {
-      title: '一级分类',
-      dataIndex: 'top_classify',
-      render: (text: string, record) => {
-        console.log({ record });
-        const itemType = TOP_CLASSIFY.find((item) => item.value === text);
-        return <span>{itemType?.label}</span>;
-      },
-    },
-    {
-      title: '二级分类',
-      dataIndex: 'top_classify',
-      render: (text: string, record: any) => {
-        const itemType = SECONDARY_CLASSIFY[text]?.find(
-          (item: { value: any }) => item.value === record.secondary_classify,
-        );
-        return <span>{itemType?.label}</span>;
-      },
-    },
+    // {
+    //   title: '一级分类',
+    //   dataIndex: 'top_classify',
+    //   render: (text: string, record) => {
+    //     console.log({ record });
+    //     const itemType = TOP_CLASSIFY.find((item) => item.value === text);
+    //     return <span>{itemType?.label}</span>;
+    //   },
+    // },
+    // {
+    //   title: '二级分类',
+    //   dataIndex: 'top_classify',
+    //   render: (text: string, record: any) => {
+    //     const itemType = SECONDARY_CLASSIFY[text]?.find(
+    //       (item: { value: any }) => item.value === record.secondary_classify,
+    //     );
+    //     return <span>{itemType?.label}</span>;
+    //   },
+    // },
     {
       title: '链接',
       dataIndex: 'link',

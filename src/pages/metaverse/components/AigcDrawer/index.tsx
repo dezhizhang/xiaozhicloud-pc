@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/components/AigcDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/metaverse/components/AigcDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 21:47:54
+ * :date last edited: 2023-08-14 23:58:58
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -125,7 +125,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/intelligent-products/${dateTime}.${extension}`, file);
+    const result = await client.put(`/metaverse/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],
@@ -185,7 +185,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
             )}
           </Upload>
         </Form.Item>
-        <Form.Item
+        {/* <Form.Item
           label="一级分类"
           name="top_classify"
           rules={[{ required: true, message: '一级分类不能为空' }]}
@@ -218,7 +218,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
               </Option>
             ))}
           </Select>
-        </Form.Item>
+        </Form.Item> */}
         <Form.Item label="状态" name="status" rules={[{ required: true, message: '状态不能为空' }]}>
           <Select placeholder="请选择状态">
             {STATUS_TYPE.map((item) => (
