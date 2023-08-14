@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:57:18
+ * :date last edited: 2023-08-14 23:44:11
  */
 export default [
   {
@@ -33,6 +33,12 @@ export default [
     icon: 'icon-huiyuanguanli',
     path: '/manager',
     component: '@/pages/manager',
+  },
+  {
+    name: '元宇宙',
+    icon: 'icon-huiyuanguanli',
+    path: '/metaverse',
+    component: '@/pages/metaverse',
   },
   {
     name: '人工智能',
