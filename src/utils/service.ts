@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:40:29
+ * :date last edited: 2023-08-15 00:02:51
  */
 export const BASE_URL = '/api/v1';
 
@@ -15,6 +15,13 @@ const SERVICE_MAP = {
   MANAGER_ADD: `/manager/add`,
   MANAGER_UPDATE: `/manager/edit`,
   MANAGER_DELETE: `/manager/delete`,
+
+  METAVERSE_LIST: `/metaverse/list`,
+  METAVERSE_ADD: `/metaverse/add`,
+  METAVERSE_DELETE: `/metaverse/delete`,
+  METAVERSE_UPDATE: `/metaverse/edit`,
+  METAVERSE_INFO: '/metaverse/info',
+
   // 获取网站列表
   WEBSITE_LIST: `/website/list`,
   WEBSITE_ADD: `/website/add`,

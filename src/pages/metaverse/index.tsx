@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-08-14 23:59:59
+ * :date last edited: 2023-08-15 00:03:02
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -18,7 +18,7 @@ import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
-import { getIntelligentProductList, getWebsiteDelete } from './service';
+import { getMetaverseList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
 import styles from './index.less';
@@ -35,7 +35,7 @@ const Website: React.FC = () => {
   });
 
   const fetchWebsiteList = async (params: any) => {
-    const res = await getIntelligentProductList(params);
+    const res = await getMetaverseList(params);
     if (res.stat) {
       setResponseData(res?.result);
       setLoading(false);
