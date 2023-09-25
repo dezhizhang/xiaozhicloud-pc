@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/components/AigcDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/open-source/components/AigcDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-17 12:39:06
+ * :date last edited: 2023-09-26 07:50:46
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -118,7 +118,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     const extension = fileType?.split('/')?.[1];
     const dateTime = new Date().getTime();
     const client = await loadClient();
-    const result = await client.put(`/website/${dateTime}.${extension}`, file);
+    const result = await client.put(`/open-source/${dateTime}.${extension}`, file);
     const uploadObj = {
       uid: dateTime,
       name: result?.name?.split('/')[1],

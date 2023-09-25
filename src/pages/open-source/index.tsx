@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/open-source/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 21:56:35
+ * :date last edited: 2023-09-26 07:51:03
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,14 +17,8 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import {
-  STATUS_TYPE,
-  TOP_CLASSIFY,
-  OPERATION_TYPE,
-  SECONDARY_CLASSIFY,
-  DEFAULT_PAGINATION,
-} from './constants';
-import { getIntelligentProductList, getWebsiteDelete } from './service';
+import { STATUS_TYPE, TOP_CLASSIFY, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
+import { getOpenSourceList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
 import styles from './index.less';
@@ -41,7 +35,7 @@ const Website: React.FC = () => {
   });
 
   const fetchWebsiteList = async (params: any) => {
-    const res = await getIntelligentProductList(params);
+    const res = await getOpenSourceList(params);
     if (res.stat) {
       setResponseData(res?.result);
       setLoading(false);
@@ -129,16 +123,6 @@ const Website: React.FC = () => {
       render: (text: string, record) => {
         console.log({ record });
         const itemType = TOP_CLASSIFY.find((item) => item.value === text);
-        return <span>{itemType?.label}</span>;
-      },
-    },
-    {
-      title: '二级分类',
-      dataIndex: 'top_classify',
-      render: (text: string, record: any) => {
-        const itemType = SECONDARY_CLASSIFY[text]?.find(
-          (item: { value: any }) => item.value === record.secondary_classify,
-        );
         return <span>{itemType?.label}</span>;
       },
     },
@@ -246,10 +230,10 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个人工智能
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>开源软件
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
-            人工智能
+            新增开源软件
           </Button>
         </div>
         <Table

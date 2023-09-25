@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/service.ts
+ * :name: /xiaozhicloud-pc/src/pages/open-source/service.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-25 16:32:16
+ * :date last edited: 2023-09-26 07:50:10
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -19,17 +19,24 @@ const {
   INTELLIGENT_PRODUCTS_UPDATE,
 } = SERVICE_MAP;
 
-// 获取人工智能列表
-export async function getIntelligentProductList(params: any): Promise<Website.ResponseInfo> {
-  return request(INTELLIGENT_PRODUCTS_LIST, {
+/**
+ * @description:获取开源列表
+ * @return {*}
+ */
+export async function getOpenSourceList(params: any): Promise<Website.ResponseInfo> {
+  return request('/api/v1/open-source/list', {
     method: 'POST',
     data: params,
   });
 }
 
-// 人工智能产品
+/**
+ * @description:
+ * @param {Website} params
+ * @return {*}
+ */
 export async function getAigcAdd(params: Website.RequestType): Promise<any> {
-  return request(INTELLIGENT_PRODUCTS_ADD, {
+  return request('/api/v1/open-source/add', {
     method: 'POST',
     data: params,
   });
