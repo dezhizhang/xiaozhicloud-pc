@@ -1,12 +1,71 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/constants.ts
+ * :name: /xiaozhicloud-pc/src/pages/open-source/constants.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-07-01 22:32:39
+ * :date last edited: 2023-09-26 07:57:34
  */
+
+export const OPEN_SOURCE_TYPE = {
+  //AI聊天
+  AI_CHAT: 'ai-chat',
+  //AI绘画
+  AI_PAINTING: 'ai-painting',
+  //视频直播
+  LIVE_VIDEO: 'live-video',
+  //电商新零售
+  COMMERCE_NEW_RETAIL: 'commerce-new-retail',
+  //云知识库
+  CLOUD_KNOWLEDGE_BASE: 'cloud-knowledge-base',
+  //活动投票
+  ACTIVITY_VOTING: 'activity-voting',
+  //教育教学
+  EDUCATION_TEACHING: 'education-teaching',
+  //医疗健康
+  MEDICAL_HEALTH: 'medical-health',
+  BUDGET_MANAGEMENT: 'budget-management',
+};
+
+export const OPEN_SOURCE = [
+  {
+    label: 'AI聊天',
+    value: OPEN_SOURCE_TYPE.AI_CHAT,
+  },
+  {
+    label: 'AI绘画',
+    value: OPEN_SOURCE_TYPE.AI_PAINTING,
+  },
+  {
+    label: '视频直播',
+    value: OPEN_SOURCE_TYPE.LIVE_VIDEO,
+  },
+  {
+    label: '电商新零售',
+    value: OPEN_SOURCE_TYPE.COMMERCE_NEW_RETAIL,
+  },
+  {
+    label: '云知识库',
+    value: OPEN_SOURCE_TYPE.CLOUD_KNOWLEDGE_BASE,
+  },
+  {
+    label: '活动投票',
+    value: OPEN_SOURCE_TYPE.ACTIVITY_VOTING,
+  },
+  {
+    label: '教育教学',
+    value: OPEN_SOURCE_TYPE.EDUCATION_TEACHING,
+  },
+  {
+    label: '医疗健康',
+    value: OPEN_SOURCE_TYPE.MEDICAL_HEALTH,
+  },
+  {
+    label: '预算管理',
+    value: OPEN_SOURCE_TYPE.BUDGET_MANAGEMENT,
+  },
+];
 
 export const baseUrl = '/aigc/intelligent-products';
 

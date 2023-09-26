@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-26 07:51:03
+ * :date last edited: 2023-09-26 07:59:27
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,7 +17,7 @@ import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
 import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
-import { STATUS_TYPE, TOP_CLASSIFY, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
+import { STATUS_TYPE, OPEN_SOURCE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getOpenSourceList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import AigcDrawer from './components/AigcDrawer';
@@ -122,7 +122,7 @@ const Website: React.FC = () => {
       dataIndex: 'top_classify',
       render: (text: string, record) => {
         console.log({ record });
-        const itemType = TOP_CLASSIFY.find((item) => item.value === text);
+        const itemType = OPEN_SOURCE.find((item) => item.value === text);
         return <span>{itemType?.label}</span>;
       },
     },

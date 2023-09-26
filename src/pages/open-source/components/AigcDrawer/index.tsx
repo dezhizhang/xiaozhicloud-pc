@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-26 07:50:46
+ * :date last edited: 2023-09-26 08:00:24
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -13,7 +13,7 @@ import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd'
 import { getAigcAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, AIGC_TYPE } from '../../constants';
+import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, OPEN_SOURCE } from '../../constants';
 import styles from './index.less';
 const { Option } = Select;
 
@@ -178,9 +178,13 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
             )}
           </Upload>
         </Form.Item>
-        <Form.Item label="分类" name="type" rules={[{ required: true, message: '分类不能为空' }]}>
+        <Form.Item
+          label="分类"
+          name="top_classify"
+          rules={[{ required: true, message: '分类不能为空' }]}
+        >
           <Select placeholder="请选择分类">
-            {AIGC_TYPE.map((item) => (
+            {OPEN_SOURCE.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>
