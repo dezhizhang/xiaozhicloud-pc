@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-09-26 12:45:55
+ * :date last edited: 2023-09-27 07:20:14
  */
 export default [
   {
@@ -51,7 +51,7 @@ export default [
         component: '@/pages/open-source',
       },
       {
-        path: '/open-source/:type',
+        path: '/open-source/:detailId',
         component: '@/pages/open-source/[type]',
       },
       {
