@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-09-25 09:10:38
+ * :date last edited: 2023-09-26 12:45:55
  */
 export default [
   {
@@ -44,7 +44,20 @@ export default [
     name: '开源管理',
     icon: 'icon-huiyuanguanli',
     path: '/open-source',
-    component: '@/pages/open-source',
+
+    routes: [
+      {
+        path: '/open-source',
+        component: '@/pages/open-source',
+      },
+      {
+        path: '/open-source/:type',
+        component: '@/pages/open-source/[type]',
+      },
+      {
+        component: './404',
+      },
+    ],
   },
   {
     name: '人工智能',

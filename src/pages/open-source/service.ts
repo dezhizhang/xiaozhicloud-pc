@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-26 07:50:10
+ * :date last edited: 2023-09-26 12:51:45
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -58,8 +58,8 @@ export async function getWebsiteUpdate(params: any): Promise<any> {
   });
 }
 
-export async function getProductsInfo(params: { id: string }) {
-  return request(INTELLIGENT_PRODUCTS_INFO, {
+export async function getOpenSource(params: { id: string }) {
+  return request('/api/v1/open-source/info', {
     method: 'GET',
     params,
   });
@@ -67,7 +67,7 @@ export async function getProductsInfo(params: { id: string }) {
 
 // 详情添加
 export async function getDetailAdd(params: any): Promise<any> {
-  return request(SERVICE_MAP.DETAIL_ADD, {
+  return request('/api/v1/detail/add', {
     method: 'POST',
     data: params,
   });

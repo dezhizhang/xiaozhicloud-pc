@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-09-26 07:57:34
+ * :date last edited: 2023-09-26 12:43:40
  */
 
 export const OPEN_SOURCE_TYPE = {
@@ -67,7 +67,7 @@ export const OPEN_SOURCE = [
   },
 ];
 
-export const baseUrl = '/aigc/intelligent-products';
+export const baseUrl = '/open-source';
 
 export enum TOP_CLASSIFY_TYPE {
   //写作平台

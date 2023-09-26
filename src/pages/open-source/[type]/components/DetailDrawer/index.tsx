@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/[type]/components/DetailDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/open-source/[type]/components/DetailDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-02 12:44:33
+ * :date last edited: 2023-09-26 12:53:07
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
@@ -13,7 +13,7 @@ import { OSS_OBJECT } from '@/constants';
 import { ContentUtils } from 'braft-utils';
 import { Button, Drawer, Row, Upload, message } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { getDetailAdd } from '@/pages/aigc/service';
+import { getDetailAdd } from '../../../service';
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import styles from './index.less';
@@ -35,8 +35,11 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
     },
   }));
 
+  /**
+   * @description:
+   * @return {*}
+   */
   const handleFinish = async () => {
-    console.log('editorState', editorState);
     const htmlContent = editorState?.toHTML();
     const res = await getDetailAdd({ ...params, content: htmlContent });
     if (res.stat) {

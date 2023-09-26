@@ -1,19 +1,19 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/[type]/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/open-source/[type]/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-05-29 12:35:16
+ * :date last edited: 2023-09-26 12:47:47
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
 import { useParams } from 'umi';
 import { Button } from 'antd';
-import { getDetailInfo } from '@/pages/aigc/service';
-import Header from './components/Header';
+import { getDetailInfo } from '../service';
+import Header from '@/components/Header';
 import DetailDrawer from './components/DetailDrawer';
 
 const AigcDetail: React.FC = () => {
