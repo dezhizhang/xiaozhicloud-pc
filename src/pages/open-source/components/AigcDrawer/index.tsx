@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-27 07:27:06
+ * :date last edited: 2023-09-27 09:04:50
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT } from '@/constants';
@@ -57,7 +57,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('新增网站成功');
+      message.success('新增开源软件成功');
       onSuccess?.();
     }
   };
@@ -67,7 +67,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     if (res.stat) {
       setVisible(false);
       form.resetFields();
-      message.success('编辑网站成功');
+      message.success('编辑开源软件成功');
       onSuccess?.();
     }
   };
@@ -153,6 +153,9 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
 
         <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
           <Input placeholder="请输入链接" />
+        </Form.Item>
+        <Form.Item label="源码" name="code" rules={[{ required: true, message: '源码不能为空' }]}>
+          <Input placeholder="请输入源码地址" />
         </Form.Item>
         <Form.Item label="封面" name="url" rules={[{ required: true, message: '链接不能为空' }]}>
           <Upload
