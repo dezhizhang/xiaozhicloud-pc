@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-23 16:35:30
  * :last editor: 张德志
- * :date last edited: 2023-09-29 09:55:11
+ * :date last edited: 2023-09-29 10:16:31
  */
 // https://umijs.org/config/
 import path from 'path';
@@ -30,7 +30,7 @@ export default defineConfig({
   hash: true,
   antd: {
     config: {
-      prefixCls: 'zhongdian-ant', // 修改HTML里面的类名前缀
+      prefixCls: 'xiaozhi-ant', // 修改HTML里面的类名前缀
     },
   },
   favicon: 'https://cdn.tungee.com/warehouse/estate-finance/zhongdian/img/favicon.ico',
@@ -40,11 +40,10 @@ export default defineConfig({
   },
   alias: {
     '@': path.resolve(__dirname, 'src'),
-    '~antdV3': path.resolve(__dirname, '../node_modules/antdV3'),
   },
   lessLoader: {
     modifyVars: {
-      '@ant-prefix': 'zhongdian-ant',
+      '@ant-prefix': 'xiaozhi-ant',
     },
     javascriptEnabled: true,
   },
