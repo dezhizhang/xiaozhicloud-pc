@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-08-15 00:03:02
+ * :date last edited: 2023-09-29 12:18:25
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -36,7 +36,7 @@ const Website: React.FC = () => {
 
   const fetchWebsiteList = async (params: any) => {
     const res = await getMetaverseList(params);
-    if (res.stat) {
+    if (res.code === 200) {
       setResponseData(res?.result);
       setLoading(false);
     }
