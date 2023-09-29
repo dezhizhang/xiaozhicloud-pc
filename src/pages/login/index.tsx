@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:58:06
+ * :date last edited: 2023-09-29 16:29:51
  */
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -14,38 +14,30 @@ import { message } from 'antd';
 import React from 'react';
 import SparkMD5 from 'spark-md5';
 import { login } from './service';
-import { history, useModel } from 'umi';
+import { history } from 'umi';
 import styles from './index.less';
 
 const Login: React.FC = () => {
-  const { initialState, setInitialState } = useModel('@@initialState');
-
-  const fetchUserInfo = async () => {
-    const userInfo = await initialState?.fetchUserInfo?.();
-    if (userInfo) {
-      await setInitialState((s) => ({
-        ...s,
-        currentUser: userInfo,
-      }));
-    }
-  };
-
   const handleSubmit = async (values: User.LoginParams) => {
     try {
       // 登录
       values.password = SparkMD5.hash(values.password as string);
       const res = await login({ ...values });
-      if (!res.stat) {
+      if (res.code !== 200) {
         message.warn(res.msg);
         return;
       }
-      message.success('登录成功！');
-      await fetchUserInfo();
-      /** 此方法会跳转到 redirect 参数所在的位置 */
-      if (!history) return;
-      const { query } = history.location;
-      const { redirect } = query as { redirect: string };
-      history.push(redirect || '/');
+      // 用户登录完成
+      if (res.token && res.userId) {
+        const { query } = history.location;
+        message.success('登录成功！');
+        history.push({
+          pathname: '/',
+          query,
+        });
+        localStorage.setItem('token', res.token);
+        localStorage.setItem('user', JSON.stringify(res));
+      }
     } catch (error) {
       console.log(error);
     }
@@ -54,7 +46,9 @@ const Login: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.content}>
-        <div className={styles.title}>{/* <h2>晓智云</h2> */}</div>
+        <div className={styles.title}>
+          <h2>晓智科技</h2>
+        </div>
         <LoginForm
           initialValues={{
             autoLogin: true,
@@ -64,21 +58,21 @@ const Login: React.FC = () => {
           }}
         >
           <ProFormText
-            name="phone"
+            name="email"
             fieldProps={{
               size: 'large',
               prefix: <UserOutlined className={styles.prefixIcon} />,
             }}
-            placeholder="请办入手机号"
+            placeholder="请输入邮箱"
             rules={[
               {
                 required: true,
-                message: '手机号不能为空',
+                message: '邮箱不能为空',
               },
               {
                 pattern:
-                  /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/,
-                message: '手机号不会法',
+                  /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/,
+                message: '邮箱不会法',
               },
             ]}
           />

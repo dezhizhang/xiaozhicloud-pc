@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 21:56:35
+ * :date last edited: 2023-09-29 14:50:43
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -42,7 +42,7 @@ const Website: React.FC = () => {
 
   const fetchWebsiteList = async (params: any) => {
     const res = await getIntelligentProductList(params);
-    if (res.stat) {
+    if (res.code === 200) {
       setResponseData(res?.result);
       setLoading(false);
     }
@@ -62,7 +62,7 @@ const Website: React.FC = () => {
 
   const handleConfirm = async (id: string) => {
     const res = await getWebsiteDelete({ _id: id });
-    if (res.stat) {
+    if (res.code === 200) {
       message.success(res.msg);
       fetchWebsiteList(transformToParamsDefault(filter));
     }

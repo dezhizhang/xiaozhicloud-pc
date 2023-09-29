@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/services/ant-design-pro/typings.d.ts
+ * :name: /xiaozhicloud-pc/src/services/typing.d.ts
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-06 23:31:41
+ * :date last edited: 2023-09-29 16:26:08
  */
 // @ts-ignore
 /* eslint-disable */
@@ -33,10 +33,14 @@ declare namespace API {
   };
 
   type LoginResult = {
-    stat?: string;
+    code: number;
     type?: string;
     msg: string;
-    currentAuthority?: string;
+    token: string;
+    userId: string;
+    username: string;
+    status: string;
+    gender: number;
   };
 
   type PageParams = {
