@@ -5,12 +5,11 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 21:01:57
+ * :date last edited: 2023-09-29 09:51:03
  */
 import RightContent from '@/components/RightContent';
 import type { Settings as LayoutSettings } from '@ant-design/pro-components';
-import { PageLoading, SettingDrawer } from '@ant-design/pro-components';
-import type { RunTimeLayoutConfig } from 'umi';
+import { PageLoading } from '@ant-design/pro-components';
 import { history } from 'umi';
 import defaultSettings from '../config/defaultSettings';
 import { currentUser as queryCurrentUser } from './services';
@@ -56,45 +55,28 @@ export async function getInitialState(): Promise<{
 }
 
 // ProLayout 支持的api https://procomponents.ant.design/components/layout
-export const layout: RunTimeLayoutConfig = ({ initialState, setInitialState }) => {
-  return {
-    rightContentRender: () => <RightContent />,
-    disableContentMargin: false,
-    waterMarkProps: {
-      content: initialState?.currentUser?.name,
-    },
-    onPageChange: () => {
-      const { location } = history;
-      // 如果没有登录，重定向到 login
-      if (!initialState?.currentUser && location.pathname !== loginPath) {
-        history.push(loginPath);
-      }
-    },
-    menuHeaderRender: undefined,
-    // 自定义 403 页面
-    // unAccessible: <div>unAccessible</div>,
-    // 增加一个 loading 的状态
-    childrenRender: (children, props) => {
-      // if (initialState?.loading) return <PageLoading />;
-      return (
-        <>
-          {children}
-          {!props.location?.pathname?.includes('/login') && (
-            <SettingDrawer
-              disableUrlParams
-              enableDarkTheme
-              settings={initialState?.settings}
-              onSettingChange={(settings) => {
-                setInitialState((preInitialState) => ({
-                  ...preInitialState,
-                  settings,
-                }));
-              }}
-            />
-          )}
-        </>
-      );
-    },
-    ...initialState?.settings,
-  };
-};
+// export const layout = ({ initialState, setInitialState }) => {
+//   return {
+//     rightContentRender: () => <RightContent />,
+//     disableContentMargin: false,
+//     waterMarkProps: {
+//       content: initialState?.currentUser?.name,
+//     },
+//     // onPageChange: () => {
+//     //   const { location } = history;
+//     //   // 如果没有登录，重定向到 login
+//     //   if (!initialState?.currentUser && location.pathname !== loginPath) {
+//     //     history.push(loginPath);
+//     //   }
+//     // },
+//     menuHeaderRender: undefined,
+//     // 自定义 403 页面
+//     // unAccessible: <div>unAccessible</div>,
+//     // 增加一个 loading 的状态
+//     childrenRender: (children) => {
+//       // if (initialState?.loading) return <PageLoading />;
+//       return <>{children}</>;
+//     },
+//     ...initialState?.settings,
+//   };
+// };
