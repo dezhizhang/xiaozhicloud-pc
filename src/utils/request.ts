@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-08-05 20:55:19
  * :last editor: 张德志
- * :date last edited: 2022-11-15 12:52:13
+ * :date last edited: 2023-09-29 17:22:45
  */
 import type { ResponseError, RequestOptionsInit } from 'umi-request';
 import { extend } from 'umi-request';
@@ -69,6 +69,7 @@ const request: RequestType = extend({
   errorHandler,
   credentials: 'include',
   headers: {
+    token: `Bearer` + localStorage.getItem('token'),
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Credentials': 'true',
   },

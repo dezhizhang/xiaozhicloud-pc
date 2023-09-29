@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-09-29 16:29:51
+ * :date last edited: 2023-09-29 17:55:18
  */
 
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
@@ -35,8 +35,12 @@ const Login: React.FC = () => {
           pathname: '/',
           query,
         });
-        localStorage.setItem('token', res.token);
-        localStorage.setItem('user', JSON.stringify(res));
+        const { token, userId, username, gender, status, email } = res;
+        localStorage.setItem('token', token);
+        localStorage.setItem(
+          'user',
+          JSON.stringify({ token, userId, username, gender, status, email }),
+        );
       }
     } catch (error) {
       console.log(error);

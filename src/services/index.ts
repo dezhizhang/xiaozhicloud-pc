@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/services/ant-design-pro/api.ts
+ * :name: /xiaozhicloud-pc/src/services/index.ts
  * :author: 张德志
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2022-11-18 12:28:58
+ * :date last edited: 2023-09-29 18:41:18
  */
 // @ts-ignore
 /* eslint-disable */
@@ -90,5 +90,18 @@ export async function removeRule(options?: { [key: string]: any }) {
   return request<Record<string, any>>('/api/rule', {
     method: 'DELETE',
     ...(options || {}),
+  });
+}
+
+/**
+ * @description:对当前用户进行鉴权
+ * @return {*}
+ */
+export async function getUserCurrentAuth(params: {
+  user_id: string;
+}): Promise<{ code: number; is_auth: boolean }> {
+  return request(`/api/v1/user/current`, {
+    method: 'GET',
+    params,
   });
 }

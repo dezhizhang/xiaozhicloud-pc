@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-09-29 16:26:08
+ * :date last edited: 2023-09-29 17:55:06
  */
 // @ts-ignore
 /* eslint-disable */
@@ -36,6 +36,7 @@ declare namespace API {
     code: number;
     type?: string;
     msg: string;
+    email: string;
     token: string;
     userId: string;
     username: string;
