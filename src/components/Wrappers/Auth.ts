@@ -5,20 +5,21 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-09-29 16:51:49
  * :last editor: 张德志
- * :date last edited: 2023-09-29 18:49:54
+ * :date last edited: 2023-10-01 15:21:21
  */
 
 import { message } from 'antd';
 import React, { useEffect } from 'react';
-import { getUserCurrentAuth } from '@/services';
+import type { Dispatch } from 'umi';
 import { useLocation, history } from 'umi';
 
 export interface AuthProps {
+  dispatch: Dispatch;
   children: React.ReactElement;
 }
 
 const Auth: React.FC<AuthProps> = (props) => {
-  const { children } = props;
+  const { children, dispatch } = props;
   const location: any = useLocation();
   const { query } = location;
   // 登录地址
@@ -27,21 +28,28 @@ const Auth: React.FC<AuthProps> = (props) => {
   // 验证用户是否有登录系统的权限
   const fetchAuthUserIntoSystem = async () => {
     try {
-      const user: any = JSON.stringify(localStorage.getItem('user') || '{}');
-      const res = await getUserCurrentAuth({ user_id: user.userId });
-      if (res.code !== 200) {
-        history.push({
-          pathname: loginPath,
-          query,
-        });
-        return;
-      }
-      if (res.code === 200 && res.is_auth) {
-        history.push({
-          pathname: '/',
-          query,
-        });
-      }
+      const userString = localStorage.getItem('user');
+      const user: any = userString ? JSON.stringify(userString) : {};
+      console.log(dispatch);
+
+      dispatch({
+        type: 'user/getCurrentAuth',
+        payload: { user_id: user.userId },
+      });
+
+      // if (res.code !== 200) {
+      //   history.push({
+      //     pathname: loginPath,
+      //     query,
+      //   });
+      //   return;
+      // }
+      // if (res.code === 200 && res.is_auth) {
+      //   history.push({
+      //     pathname: '/',
+      //     query,
+      //   });
+      // }
     } catch (err) {
       console.log(err);
     }
