@@ -5,9 +5,10 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-25 15:27:47
  * :last editor: 张德志
- * :date last edited: 2023-10-01 15:18:34
+ * :date last edited: 2023-10-01 16:07:42
  */
 import type { Effect, Reducer } from 'umi';
+import { history } from 'umi';
 import { getUserCurrentAuth } from '@/services/index';
 
 export interface CurrentUser {
@@ -172,9 +173,13 @@ const UserModel: UserModelType = {
   effects: {
     *getCurrentAuth(action, { call, put }) {
       //@ts-ignore
-      const response = yield call(getUserCurrentAuth);
+      const response = yield call(getUserCurrentAuth, action.payload);
+      if (!response.is_auth) {
+        history.push('/user/login');
+        return;
+      }
 
-      if (!(response instanceof Error)) {
+      if (!(response instanceof Error) && response.is_auth) {
         yield put({
           type: 'saveProfile',
           payload: { profile: response },

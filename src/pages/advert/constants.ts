@@ -4,9 +4,9 @@ export const OPERATION_TYPE = {
   EDIT: 'EDIT',
 };
 
-export const OPERATION_TEXT = {
-  [OPERATION_TYPE.ADD]: '新增网站',
-  [OPERATION_TYPE.EDIT]: '编辑网站',
+export const OPERATION_TEXT: any = {
+  [OPERATION_TYPE.ADD]: '新增广告',
+  [OPERATION_TYPE.EDIT]: '编辑广告',
 };
 
 export const WEBSITE_TYPE = [

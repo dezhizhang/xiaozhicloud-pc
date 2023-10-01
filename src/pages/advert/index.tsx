@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-29 14:50:17
+ * :date last edited: 2023-10-01 16:28:28
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -18,7 +18,7 @@ import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
 import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getWebsiteList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
-import WebsiteDrawer from './components/WebsiteDrawer';
+import AdvertDrawer from './components/AdvertDrawer';
 import styles from './index.less';
 
 const Website: React.FC = () => {
@@ -32,7 +32,7 @@ const Website: React.FC = () => {
     status: undefined,
   });
 
-  const fetchWebsiteList = async (params: any) => {
+  const fetchAdvertList = async (params: any) => {
     const res = await getWebsiteList(params);
     if (res.code === 200) {
       setResponseData(res?.result);
@@ -56,12 +56,12 @@ const Website: React.FC = () => {
     const res = await getWebsiteDelete({ _id: id });
     if (res.code === 200) {
       message.success(res.msg);
-      fetchWebsiteList(transformToParamsDefault(filter));
+      fetchAdvertList(transformToParamsDefault(filter));
     }
   };
 
   const handleSubmit = () => {
-    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchAdvertList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleReset = () => {
@@ -87,7 +87,7 @@ const Website: React.FC = () => {
       current: pageIndex,
       pageSize,
     });
-    fetchWebsiteList({ filter, pageIndex, pageSize });
+    fetchAdvertList({ filter, pageIndex, pageSize });
   };
 
   const handleSuccess = () => {
@@ -97,11 +97,11 @@ const Website: React.FC = () => {
       current: 1,
       pageSize: 10,
     });
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchAdvertList(transformToParamsDefault(filter));
   };
 
   useEffect(() => {
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchAdvertList(transformToParamsDefault(filter));
   }, []);
 
   const columns: ColumnsType<Website.DataType> = [
@@ -225,7 +225,6 @@ const Website: React.FC = () => {
           pagination={{
             ...pagination,
             onChange: handlePageChange,
-            total: responseData?.total,
           }}
           loading={loading}
           columns={columns}
@@ -233,7 +232,7 @@ const Website: React.FC = () => {
           dataSource={responseData?.data || []}
         />
       </div>
-      <WebsiteDrawer
+      <AdvertDrawer
         onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}

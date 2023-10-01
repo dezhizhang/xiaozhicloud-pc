@@ -5,12 +5,13 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-09-29 16:51:49
  * :last editor: 张德志
- * :date last edited: 2023-10-01 15:21:21
+ * :date last edited: 2023-10-01 15:34:02
  */
 
 import { message } from 'antd';
 import React, { useEffect } from 'react';
 import type { Dispatch } from 'umi';
+import { connect } from 'umi';
 import { useLocation, history } from 'umi';
 
 export interface AuthProps {
@@ -29,27 +30,12 @@ const Auth: React.FC<AuthProps> = (props) => {
   const fetchAuthUserIntoSystem = async () => {
     try {
       const userString = localStorage.getItem('user');
-      const user: any = userString ? JSON.stringify(userString) : {};
-      console.log(dispatch);
+      const user: any = userString ? JSON.parse(userString) : {};
 
       dispatch({
         type: 'user/getCurrentAuth',
         payload: { user_id: user.userId },
       });
-
-      // if (res.code !== 200) {
-      //   history.push({
-      //     pathname: loginPath,
-      //     query,
-      //   });
-      //   return;
-      // }
-      // if (res.code === 200 && res.is_auth) {
-      //   history.push({
-      //     pathname: '/',
-      //     query,
-      //   });
-      // }
     } catch (err) {
       console.log(err);
     }
@@ -72,4 +58,4 @@ const Auth: React.FC<AuthProps> = (props) => {
   return children;
 };
 
-export default Auth;
+export default connect()(Auth);

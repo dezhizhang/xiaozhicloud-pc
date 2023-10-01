@@ -5,10 +5,10 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-05-02 15:51:15
+ * :date last edited: 2023-10-01 16:26:41
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants/index';
+import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -26,10 +26,9 @@ interface UserDrawerProps {
 const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
-  const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [record, setRecord] = useState<Website.DataType>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [fileList, setFileList] = useState<any>([]);
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
   useImperativeHandle(ref, () => ({
@@ -37,7 +36,6 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       setVisible(true);
       const dateTime = new Date().getTime();
       if (active === OPERATION_TYPE.EDIT) {
-        setRecord(params);
         setFileList([
           {
             uid: dateTime,
@@ -46,36 +44,29 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
             status: 'done',
           },
         ]);
-        form.setFieldsValue({
-          url: params.url,
-          link: params.link,
-          title: params.title,
-          type: params.type,
-          status: params.status,
-          description: params.description,
-        });
+        form.setFieldsValue(params);
       }
       setOperation(active);
     },
   }));
 
-  const fetchWebsiteAdd = async (values: Website.RequestType) => {
+  const fetchAdvertAdd = async (values: Website.RequestType) => {
     const res = await getWebsiteAdd(values);
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('新增网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
-  const fetchWebsiteUpdate = async (values: Website.RequestType) => {
-    const res = await getWebsiteUpdate({ _id: record?._id, ...values });
-    if (res.stat) {
+  const fetchAdvertUpdate = async (values: Website.RequestType) => {
+    const res = await getWebsiteUpdate(values);
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('编辑网站成功');
-      onSuccess && onSuccess();
+      onSuccess?.();
     }
   };
 
@@ -84,11 +75,11 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
     const values = await form.getFieldsValue();
     values.url = fileList[0]?.url;
     if (operation === OPERATION_TYPE.ADD) {
-      fetchWebsiteAdd(values);
+      fetchAdvertAdd(values);
       return;
     }
     if (operation === OPERATION_TYPE.EDIT) {
-      fetchWebsiteUpdate(values);
+      fetchAdvertUpdate(values);
     }
   };
 
@@ -154,9 +145,16 @@ const WebsiteDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
-        <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
-          <Input placeholder="请输入标题" />
-        </Form.Item>
+        {OPERATION_TYPE.EDIT ? (
+          <Form.Item
+            label="广告id"
+            name="_id"
+            style={{ display: 'none' }}
+            rules={[{ required: true, message: '广告不能为空!' }]}
+          >
+            <Input placeholder="请输入广告" />
+          </Form.Item>
+        ) : null}
 
         <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
           <Input placeholder="请输入链接" />

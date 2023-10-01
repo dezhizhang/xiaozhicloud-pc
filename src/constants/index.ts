@@ -5,11 +5,13 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-19 22:17:23
+ * :date last edited: 2023-10-01 16:15:50
  */
 // 默认起始页
 export const PAGE_INDEX = 1;
 export const PAGE_SIZE = 10;
+
+export const SUCCESS_CODE = 200;
 
 // OSS
 export const OSS_OBJECT = {
