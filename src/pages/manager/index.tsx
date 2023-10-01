@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-06-25 18:26:33
+ * :date last edited: 2023-10-01 17:02:58
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -15,7 +15,7 @@ import { Button, Table, Popconfirm, message, Divider, Badge } from 'antd';
 import { getManagerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
 import { OPERATION_TYPE, STATUS_TYPE } from './constants';
-import { SEX_MAP } from './constants';
+import { GENDER_MAP } from './constants';
 import UserDrawer from './components/UserDrawer';
 import FilterTable from './components/FilterTable';
 import React, { useState, useEffect, useRef } from 'react';
@@ -69,10 +69,10 @@ const Manager: React.FC = () => {
     },
     {
       title: '姓别',
-      dataIndex: 'sex',
-      key: 'sex',
+      dataIndex: 'gender',
+      key: 'gender',
       render: (text: number) => {
-        const lanel = SEX_MAP.find((item) => item.value == text)?.label;
+        const lanel = GENDER_MAP.find((item) => item.value == text)?.label;
         return <span>{lanel || empty()}</span>;
       },
     },

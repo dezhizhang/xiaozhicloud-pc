@@ -5,13 +5,21 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-12 22:03:26
  * :last editor: 张德志
- * :date last edited: 2023-05-02 14:45:45
+ * :date last edited: 2023-10-01 17:19:40
  */
 import SparkMD5 from 'spark-md5';
+import { SUCCESS_CODE } from '@/constants';
+
 import { Button, Form, Input, Drawer, Row, message, Select } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { getManagerAdd, getManagerUpdate } from '../../service';
-import { OPERATION_TYPE, IS_ADMIN_LIST, STATUS_TYPE, SEX_MAP } from '../../constants';
+import {
+  OPERATION_TYPE,
+  IS_ADMIN_LIST,
+  STATUS_TYPE,
+  GENDER_MAP,
+  OPERATION_TEXT,
+} from '../../constants';
 
 const { Option } = Select;
 
@@ -24,7 +32,8 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [record, setRecord] = useState<Managers.DataType>();
   const [visible, setVisible] = useState<boolean>();
-  const [operation, setOperation] = useState<String>(OPERATION_TYPE.ADD);
+  const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
+
   useImperativeHandle(ref, () => ({
     show: (action: string, record: any) => {
       setOperation(action);
@@ -52,14 +61,14 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
 
   const fetchManagerUpdate = async (params: any) => {
     const res = await getManagerUpdate(params);
-    if (!res.stat) {
-      message.warn(res.msg);
+    if (res.code === SUCCESS_CODE) {
+      onSuccess?.();
+      form.resetFields();
+      setVisible(false);
+      message.success('更新成功');
       return;
     }
-    message.success(res.msg);
-    form.resetFields();
-    setVisible(false);
-    onSuccess && onSuccess();
+    message.warn('更新失败');
   };
 
   const handleFinish = async () => {
@@ -91,7 +100,7 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
       }
       width={500}
       visible={visible}
-      title="添加用户"
+      title={OPERATION_TEXT[operation]}
       onClose={() => setVisible(false)}
     >
       <Form
@@ -101,13 +110,16 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
-        <Form.Item
-          label="会员名"
-          name="username"
-          rules={[{ required: true, message: '会员名不能为空!' }]}
-        >
-          <Input placeholder="请输入会员名" />
-        </Form.Item>
+        {operation === OPERATION_TYPE.EDIT ? (
+          <Form.Item
+            label="会员id"
+            name="_id"
+            style={{ display: 'none' }}
+            rules={[{ required: true, message: '会员id名不能为空!' }]}
+          >
+            <Input placeholder="请输入会员id" />
+          </Form.Item>
+        ) : null}
 
         <Form.Item
           label="手机号"
@@ -123,17 +135,19 @@ const UserDrawer: React.FC<UserDrawerProps> = forwardRef((props, ref) => {
         >
           <Input placeholder="请输入手机号" />
         </Form.Item>
-        <Form.Item
-          label="密码"
-          name="password"
-          rules={[{ required: operation === OPERATION_TYPE.ADD, message: '密码不能为空' }]}
-        >
-          <Input.Password placeholder="请输入密码" />
-        </Form.Item>
+        {operation === OPERATION_TYPE.ADD ? (
+          <Form.Item
+            label="密码"
+            name="password"
+            rules={[{ required: true, message: '密码不能为空' }]}
+          >
+            <Input.Password placeholder="请输入密码" />
+          </Form.Item>
+        ) : null}
 
-        <Form.Item label="姓别" name="sex" rules={[{ required: true, message: '姓别不能为空' }]}>
+        <Form.Item label="姓别" name="gender" rules={[{ required: true, message: '姓别不能为空' }]}>
           <Select placeholder="请选择性别">
-            {SEX_MAP.map((item) => (
+            {GENDER_MAP.map((item) => (
               <Option key={item?.value} value={item.value}>
                 {item.label}
               </Option>

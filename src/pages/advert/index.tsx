@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-01 16:28:28
+ * :date last edited: 2023-10-01 16:34:48
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -215,7 +215,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个网站
+            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个广告
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             新增广告
