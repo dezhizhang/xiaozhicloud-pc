@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-09-29 16:58:21
+ * :date last edited: 2023-10-02 15:10:32
  */
 export default [
   {
@@ -34,16 +34,16 @@ export default [
         component: '@/pages/workbench',
       },
       {
-        name: '广告管理',
-        icon: 'icon-guanggaoguanli',
-        path: '/advert',
-        component: '@/pages/advert',
-      },
-      {
         name: '会员管理',
         icon: 'icon-huiyuanguanli',
         path: '/manager',
         component: '@/pages/manager',
+      },
+      {
+        name: '广告管理',
+        icon: 'icon-guanggaoguanli',
+        path: '/advert',
+        component: '@/pages/advert',
       },
       {
         name: '宇宙管理',

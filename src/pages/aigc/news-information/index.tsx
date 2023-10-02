@@ -7,7 +7,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-02 10:58:30
+ * :date last edited: 2023-10-02 15:14:58
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -39,9 +39,12 @@ const Website: React.FC = () => {
     setLoading(true);
     const res = await getAIGCList(params);
     if (res.code === SUCCESS_CODE) {
-      const { data } = res || {};
-      setDataSource(data);
+      const { data, total } = res || {};
       setLoading(false);
+      setDataSource(data);
+      setPagination((old) => {
+        return { ...old, total };
+      });
     }
   };
 
@@ -195,7 +198,7 @@ const Website: React.FC = () => {
     {
       title: '操作',
       key: 'operation',
-      width: '10%',
+      width: '20%',
       render: (_: string, record: Website.DataType) => {
         return (
           <div>

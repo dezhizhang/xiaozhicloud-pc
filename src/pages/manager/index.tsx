@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-10-01 17:02:58
+ * :date last edited: 2023-10-02 15:11:02
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
@@ -93,7 +93,7 @@ const Manager: React.FC = () => {
             {statusItem ? (
               <Badge
                 text={statusItem.label}
-                color={statusItem.value === 'enable' ? 'green' : 'volcano'}
+                color={statusItem.value === '1' ? 'green' : 'volcano'}
               />
             ) : (
               empty()
