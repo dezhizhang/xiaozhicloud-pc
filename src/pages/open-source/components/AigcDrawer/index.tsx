@@ -5,12 +5,12 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-27 09:04:50
+ * :date last edited: 2023-10-02 09:59:26
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants';
+import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
-import { getAigcAdd, getWebsiteUpdate } from '../../service';
+import { getAigcAdd, getOpenSourceUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
 import { OPERATION_TYPE, OPERATION_TEXT, STATUS_TYPE, OPEN_SOURCE } from '../../constants';
@@ -52,9 +52,9 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     },
   }));
 
-  const fetchWebsiteAdd = async (values: Website.RequestType) => {
+  const fetchOpenSourceAdd = async (values: Website.RequestType) => {
     const res = await getAigcAdd(values);
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('新增开源软件成功');
@@ -63,8 +63,8 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   };
 
   const fetchWebsiteUpdate = async (values: Website.RequestType) => {
-    const res = await getWebsiteUpdate({ _id: record?._id, ...values });
-    if (res.stat) {
+    const res = await getOpenSourceUpdate(values);
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('编辑开源软件成功');
@@ -77,7 +77,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
     const values = await form.getFieldsValue();
     values.url = fileList[0]?.url;
     if (operation === OPERATION_TYPE.ADD) {
-      fetchWebsiteAdd(values);
+      fetchOpenSourceAdd(values);
       return;
     }
     if (operation === OPERATION_TYPE.EDIT) {
@@ -147,6 +147,16 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
+        {operation === OPERATION_TYPE.EDIT ? (
+          <Form.Item
+            style={{ display: 'none' }}
+            label="标题"
+            name="_id"
+            rules={[{ required: true, message: '标题不能为空!' }]}
+          >
+            <Input placeholder="请输入标题" />
+          </Form.Item>
+        ) : null}
         <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
           <Input placeholder="请输入标题" />
         </Form.Item>

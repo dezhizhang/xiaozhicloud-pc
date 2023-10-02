@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-08-15 00:04:17
+ * :date last edited: 2023-10-02 09:27:28
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -14,7 +14,7 @@ const { METAVERSE_ADD, METAVERSE_LIST, METAVERSE_INFO, METAVERSE_DELETE, METAVER
   SERVICE_MAP;
 
 // 获取人工智能列表
-export async function getMetaverseList(params: any): Promise<Website.ResponseInfo> {
+export async function getMetaverseList(params: any): Promise<Metaverse.ResponseData> {
   return request(METAVERSE_LIST, {
     method: 'POST',
     data: params,

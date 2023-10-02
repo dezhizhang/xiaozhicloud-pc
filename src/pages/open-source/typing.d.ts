@@ -1,13 +1,13 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/typing.d.ts
+ * :name: /xiaozhicloud-pc/src/pages/open-source/typing.d.ts
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-07-01 13:39:56
+ * :date last edited: 2023-10-02 09:49:05
  */
-declare namespace IntelligentProducts {
+declare namespace OpenSource {
   type RequestType = {
     title?: string;
     type?: string;
@@ -25,12 +25,10 @@ declare namespace IntelligentProducts {
     status: string;
     _id: string;
   }
-  interface ResponseInfo {
-    stat: number;
-    msg: string;
-    result: ResponseData;
-  }
+
   interface ResponseData {
+    code: number;
+    msg: string;
     total?: number;
     data?: DataType[];
   }

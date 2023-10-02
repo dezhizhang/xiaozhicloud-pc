@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-29 12:18:25
+ * :date last edited: 2023-10-02 09:31:34
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -16,7 +16,7 @@ import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
-import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
+import { PAGE_INDEX, PAGE_SIZE, FALLBACK, SUCCESS_CODE } from '@/constants';
 import { STATUS_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getMetaverseList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
@@ -26,7 +26,7 @@ import styles from './index.less';
 const Website: React.FC = () => {
   const ref = useRef();
   const [loading, setLoading] = useState<boolean>(true);
-  const [responseData, setResponseData] = useState<IntelligentProducts.ResponseData>();
+  const [dataSource, setDataSource] = useState<Metaverse.DataType[]>([]);
   const [pagination, setPagination] = useState<TablePaginationConfig>(DEFAULT_PAGINATION);
   const [filter, setFilter] = useState<IntelligentProducts.RequestType>({
     title: undefined,
@@ -34,11 +34,15 @@ const Website: React.FC = () => {
     status: undefined,
   });
 
-  const fetchWebsiteList = async (params: any) => {
+  const fetchMetaverseList = async (params: any) => {
     const res = await getMetaverseList(params);
-    if (res.code === 200) {
-      setResponseData(res?.result);
+    if (res.code === SUCCESS_CODE) {
+      const { data, total } = res || {};
       setLoading(false);
+      setDataSource(data);
+      setPagination((old) => {
+        return { ...old, total };
+      });
     }
   };
 
@@ -56,20 +60,20 @@ const Website: React.FC = () => {
 
   const handleConfirm = async (id: string) => {
     const res = await getWebsiteDelete({ _id: id });
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       message.success(res.msg);
-      fetchWebsiteList(transformToParamsDefault(filter));
+      fetchMetaverseList(transformToParamsDefault(filter));
     }
   };
 
   const handleSubmit = () => {
-    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchMetaverseList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleReset = () => {
     const newFilter = transformToParamsDefault(filter);
     setFilter(newFilter);
-    fetchWebsiteList(newFilter);
+    fetchMetaverseList(newFilter);
   };
 
   const handleChange = (key: string, value: string) => {
@@ -89,7 +93,7 @@ const Website: React.FC = () => {
       current: pageIndex,
       pageSize,
     });
-    fetchWebsiteList({ filter, pageIndex, pageSize });
+    fetchMetaverseList({ filter, pageIndex, pageSize });
   };
 
   const handleSuccess = () => {
@@ -99,11 +103,11 @@ const Website: React.FC = () => {
       current: 1,
       pageSize: 10,
     });
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchMetaverseList(transformToParamsDefault(filter));
   };
 
   useEffect(() => {
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchMetaverseList(transformToParamsDefault(filter));
   }, []);
 
   const columns: ColumnsType<IntelligentProducts.DataType> = [
@@ -117,25 +121,6 @@ const Website: React.FC = () => {
         </a>
       ),
     },
-    // {
-    //   title: '一级分类',
-    //   dataIndex: 'top_classify',
-    //   render: (text: string, record) => {
-    //     console.log({ record });
-    //     const itemType = TOP_CLASSIFY.find((item) => item.value === text);
-    //     return <span>{itemType?.label}</span>;
-    //   },
-    // },
-    // {
-    //   title: '二级分类',
-    //   dataIndex: 'top_classify',
-    //   render: (text: string, record: any) => {
-    //     const itemType = SECONDARY_CLASSIFY[text]?.find(
-    //       (item: { value: any }) => item.value === record.secondary_classify,
-    //     );
-    //     return <span>{itemType?.label}</span>;
-    //   },
-    // },
     {
       title: '链接',
       dataIndex: 'link',
@@ -240,7 +225,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个人工智能
+            <span>&nbsp;{pagination?.total || 0}&nbsp;</span>元
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             人工智能
@@ -251,12 +236,12 @@ const Website: React.FC = () => {
           pagination={{
             ...pagination,
             onChange: handlePageChange,
-            total: responseData?.total,
+            // total: responseData?.total,
           }}
           loading={loading}
           columns={columns}
           rowKey={(record) => record?._id}
-          dataSource={responseData?.data || []}
+          dataSource={dataSource}
         />
       </div>
       <AigcDrawer
