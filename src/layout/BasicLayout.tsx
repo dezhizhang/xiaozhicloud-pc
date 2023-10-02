@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-09-29 10:08:18
  * :last editor: 张德志
- * :date last edited: 2023-10-02 14:05:51
+ * :date last edited: 2023-10-02 15:39:00
  */
 import type {
   MenuDataItem,
@@ -48,10 +48,7 @@ const BasicLayout: React.FC<BasicLayoutProps> = (props) => {
   return (
     <ProLayout
       {...props}
-      logo={() => <div></div>}
       {...props.settings}
-      layout={'side'}
-      //   headerRender={false}
       menuItemRender={(menuItemProps, defaultDom) => {
         if (
           menuItemProps.isUrl ||
