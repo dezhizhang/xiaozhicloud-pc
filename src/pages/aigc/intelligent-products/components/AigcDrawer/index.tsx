@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-02 11:37:49
+ * :date last edited: 2023-10-02 11:59:23
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
@@ -45,6 +45,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
       setVisible(true);
       const dateTime = new Date().getTime();
       form.resetFields();
+      setFileList([]);
       if (active === OPERATION_TYPE.EDIT) {
         setFileList([
           {
@@ -160,7 +161,9 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
             <Input placeholder="请输入标题" />
           </Form.Item>
         ) : null}
-
+        <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空' }]}>
+          <Input placeholder="请输入标题" />
+        </Form.Item>
         <Form.Item label="链接" name="link" rules={[{ required: true, message: '链接不能为空' }]}>
           <Input placeholder="请输入链接" />
         </Form.Item>
