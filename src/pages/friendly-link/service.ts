@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-07 07:41:21
+ * :date last edited: 2023-10-02 10:28:13
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -14,7 +14,7 @@ const { FRIENDLY_LINK_LIST, FRIENDLY_LINK_ADD, FRIENDLY_LINK_DELETE, FRIENDLY_LI
   SERVICE_MAP;
 
 // 获取网站列表
-export async function getWebsiteList(params: any): Promise<Website.ResponseInfo> {
+export async function getFriendlayLinkList(params: any): Promise<FriendlyLink.ResponseData> {
   return request(FRIENDLY_LINK_LIST, {
     method: 'POST',
     data: params,

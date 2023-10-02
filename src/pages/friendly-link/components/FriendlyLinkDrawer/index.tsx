@@ -5,10 +5,10 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-06 20:58:12
+ * :date last edited: 2023-10-02 10:42:10
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants/index';
+import { OSS_OBJECT, SUCCESS_CODE } from '@/constants/index';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getWebsiteAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -26,9 +26,8 @@ interface FriendlyLinkDrawerProps {
 const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props, ref) => {
   const [form] = Form.useForm();
   const { onSuccess } = props;
-  const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [record, setRecord] = useState<Website.DataType>();
+  const [fileList, setFileList] = useState<any>([]);
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
@@ -38,7 +37,7 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
       setFileList([]);
       if (active === OPERATION_TYPE.EDIT) {
         const dateTime = new Date().getTime();
-        setRecord(params);
+
         const uploadObj = {
           uid: dateTime,
           name: '',
@@ -46,13 +45,7 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
           status: 'done',
         };
         setFileList([uploadObj]);
-        form.setFieldsValue({
-          url: params.url,
-          link: params.link,
-          title: params.title,
-          status: params.status,
-          description: params.description,
-        });
+        form.setFieldsValue(params);
       }
       setOperation(active);
     },
@@ -60,7 +53,7 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
 
   const fetchWebsiteAdd = async (values: Website.RequestType) => {
     const res = await getWebsiteAdd(values);
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('新增友情链接成功');
@@ -69,8 +62,8 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
   };
 
   const fetchWebsiteUpdate = async (values: Website.RequestType) => {
-    const res = await getWebsiteUpdate({ _id: record?._id, ...values });
-    if (res.stat) {
+    const res = await getWebsiteUpdate(values);
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('编辑友情链接成功');
@@ -153,6 +146,16 @@ const FriendlyLinkDrawer: React.FC<FriendlyLinkDrawerProps> = forwardRef((props,
         onFinish={handleFinish}
         autoComplete="off"
       >
+        {operation === OPERATION_TYPE.EDIT ? (
+          <Form.Item
+            label="名称"
+            name="_id"
+            style={{ display: 'none' }}
+            rules={[{ required: true, message: '公司名称/应用名称不能为空!' }]}
+          >
+            <Input placeholder="请输入公司名称/应用名称" />
+          </Form.Item>
+        ) : null}
         <Form.Item
           label="名称"
           name="name"

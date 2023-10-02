@@ -7,7 +7,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-29 12:14:54
+ * :date last edited: 2023-10-02 10:33:18
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -16,9 +16,9 @@ import { Button, Table, Divider, Popconfirm, message, Image, Badge } from 'antd'
 import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
-import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
+import { PAGE_INDEX, PAGE_SIZE, FALLBACK, SUCCESS_CODE } from '@/constants';
 import { OPERATION_TYPE, DEFAULT_PAGINATION, STATUS_TYPE } from './constants';
-import { getWebsiteList, getWebsiteDelete } from './service';
+import { getFriendlayLinkList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
 import FriendlyLinkDrawer from './components/FriendlyLinkDrawer';
 import styles from './index.less';
@@ -26,7 +26,7 @@ import styles from './index.less';
 const Website: React.FC = () => {
   const ref = useRef();
   const [loading, setLoading] = useState<boolean>(true);
-  const [responseData, setResponseData] = useState<Website.ResponseData>();
+  const [dataSource, setDataSource] = useState<FriendlyLink.DataType[]>([]);
   const [pagination, setPagination] = useState<TablePaginationConfig>(DEFAULT_PAGINATION);
   const [filter, setFilter] = useState<Website.RequestType>({
     title: undefined,
@@ -35,9 +35,14 @@ const Website: React.FC = () => {
   });
 
   const fetchWebsiteList = async (params: any) => {
-    const res = await getWebsiteList(params);
+    setLoading(true);
+    const res = await getFriendlayLinkList(params);
     if (res.code === 200) {
-      setResponseData(res?.result);
+      const { data, total } = res || {};
+      setDataSource(data);
+      setPagination((old) => {
+        return { ...old, total };
+      });
       setLoading(false);
     }
   };
@@ -56,7 +61,7 @@ const Website: React.FC = () => {
 
   const handleConfirm = async (id: string) => {
     const res = await getWebsiteDelete({ _id: id });
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       message.success(res.msg);
       fetchWebsiteList(transformToParamsDefault(filter));
     }
@@ -215,7 +220,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个友情链接
+            <span>&nbsp;{pagination?.total || 0}&nbsp;</span>个友情链接
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             新增友情链接
@@ -225,11 +230,10 @@ const Website: React.FC = () => {
           pagination={{
             ...pagination,
             onChange: handlePageChange,
-            total: responseData?.total,
           }}
           loading={loading}
           columns={columns}
-          dataSource={responseData?.data || []}
+          dataSource={dataSource}
         />
       </div>
       <FriendlyLinkDrawer
