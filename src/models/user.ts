@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-25 15:27:47
  * :last editor: 张德志
- * :date last edited: 2023-10-02 16:32:55
+ * :date last edited: 2023-10-02 16:51:17
  */
 import type { Effect, Reducer } from 'umi';
 import { history } from 'umi';
@@ -176,13 +176,13 @@ const UserModel: UserModelType = {
       const response = yield call(getUserCurrentAuth, action.payload);
 
       //  用户是否有权限
-      if (!response.user_id) {
+      if (!response.user_id && !response.is_auth) {
         history.push('/user/login');
         return;
       }
 
       // 当前权限继续下执行
-      if (!(response instanceof Error) && response.user_id) {
+      if (!(response instanceof Error)) {
         yield put({
           type: 'saveCurrentAuth',
           payload: response,
