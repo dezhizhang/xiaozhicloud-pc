@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-06-19 09:13:58
  * :last editor: 张德志
- * :date last edited: 2023-07-01 13:39:56
+ * :date last edited: 2023-10-02 11:23:04
  */
 declare namespace IntelligentProducts {
   type RequestType = {
@@ -25,12 +25,10 @@ declare namespace IntelligentProducts {
     status: string;
     _id: string;
   }
-  interface ResponseInfo {
-    stat: number;
-    msg: string;
-    result: ResponseData;
-  }
+
   interface ResponseData {
+    code: number;
+    msg: string;
     total?: number;
     data?: DataType[];
   }
