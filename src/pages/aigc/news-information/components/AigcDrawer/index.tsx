@@ -5,10 +5,10 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-27 23:47:04
+ * :date last edited: 2023-10-02 11:13:35
  */
 import OSS from 'ali-oss';
-import { OSS_OBJECT } from '@/constants';
+import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
 import { Button, Form, Input, Drawer, Row, message, Select, Upload } from 'antd';
 import { getAigcAdd, getWebsiteUpdate } from '../../service';
 import { LoadingOutlined, PlusOutlined } from '@ant-design/icons';
@@ -28,7 +28,6 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [record, setRecord] = useState<Website.DataType>();
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
@@ -37,7 +36,6 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
       setVisible(true);
       const dateTime = new Date().getTime();
       if (active === OPERATION_TYPE.EDIT) {
-        setRecord(params);
         setFileList([
           {
             uid: dateTime,
@@ -46,14 +44,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
             status: 'done',
           },
         ]);
-        form.setFieldsValue({
-          url: params.url,
-          link: params.link,
-          title: params.title,
-          type: params.type,
-          status: params.status,
-          description: params.description,
-        });
+        form.setFieldsValue(params);
       }
       setOperation(active);
     },
@@ -61,7 +52,7 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
 
   const fetchWebsiteAdd = async (values: Website.RequestType) => {
     const res = await getAigcAdd(values);
-    if (res.stat) {
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('新增网站成功');
@@ -70,8 +61,8 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   };
 
   const fetchWebsiteUpdate = async (values: Website.RequestType) => {
-    const res = await getWebsiteUpdate({ _id: record?._id, ...values });
-    if (res.stat) {
+    const res = await getWebsiteUpdate(values);
+    if (res.code === SUCCESS_CODE) {
       setVisible(false);
       form.resetFields();
       message.success('编辑网站成功');
@@ -154,6 +145,11 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
         onFinish={handleFinish}
         autoComplete="off"
       >
+        {operation === OPERATION_TYPE.EDIT ? (
+          <Form.Item label="标题" name="_id" style={{ display: 'none' }}>
+            <Input placeholder="请输入标题" />
+          </Form.Item>
+        ) : null}
         <Form.Item label="标题" name="title" rules={[{ required: true, message: '标题不能为空!' }]}>
           <Input placeholder="请输入标题" />
         </Form.Item>

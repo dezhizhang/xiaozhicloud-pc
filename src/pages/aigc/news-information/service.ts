@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-06-25 16:43:46
+ * :date last edited: 2023-10-02 10:56:07
  */
 import request from '@/utils/request';
 import SERVICE_MAP from '@/utils/service';
@@ -19,7 +19,7 @@ const {
 } = SERVICE_MAP;
 
 // 获取人工智能列表
-export async function getAIGCList(params: any): Promise<Website.ResponseInfo> {
+export async function getAIGCList(params: any): Promise<NewsInformation.ResponseData> {
   return request(NEWS_INFORMATION_LIST, {
     method: 'POST',
     data: params,

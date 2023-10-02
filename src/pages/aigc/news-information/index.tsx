@@ -7,7 +7,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-09-29 14:51:40
+ * :date last edited: 2023-10-02 10:58:30
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -17,7 +17,7 @@ import type { ColumnsType } from 'antd/es/table';
 import Filter from './components/Filter';
 import { empty, format } from '@/utils/index';
 import { baseUrl } from './constants';
-import { PAGE_INDEX, PAGE_SIZE, FALLBACK } from '@/constants';
+import { PAGE_INDEX, PAGE_SIZE, FALLBACK, SUCCESS_CODE } from '@/constants';
 import { STATUS_TYPE, AIGC_TYPE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getAIGCList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
@@ -27,7 +27,7 @@ import styles from './index.less';
 const Website: React.FC = () => {
   const ref = useRef();
   const [loading, setLoading] = useState<boolean>(true);
-  const [responseData, setResponseData] = useState<Website.ResponseData>();
+  const [dataSource, setDataSource] = useState<Website.DataType[]>();
   const [pagination, setPagination] = useState<TablePaginationConfig>(DEFAULT_PAGINATION);
   const [filter, setFilter] = useState<Website.RequestType>({
     title: undefined,
@@ -35,10 +35,12 @@ const Website: React.FC = () => {
     status: undefined,
   });
 
-  const fetchWebsiteList = async (params: any) => {
+  const fetchNewInformationList = async (params: any) => {
+    setLoading(true);
     const res = await getAIGCList(params);
-    if (res.code === 200) {
-      setResponseData(res?.result);
+    if (res.code === SUCCESS_CODE) {
+      const { data } = res || {};
+      setDataSource(data);
       setLoading(false);
     }
   };
@@ -57,20 +59,20 @@ const Website: React.FC = () => {
 
   const handleConfirm = async (id: string) => {
     const res = await getWebsiteDelete({ _id: id });
-    if (res.code === 200) {
+    if (res.code === SUCCESS_CODE) {
       message.success(res.msg);
-      fetchWebsiteList(transformToParamsDefault(filter));
+      fetchNewInformationList(transformToParamsDefault(filter));
     }
   };
 
   const handleSubmit = () => {
-    fetchWebsiteList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
+    fetchNewInformationList({ filter, pageIndex: PAGE_INDEX, pageSize: PAGE_SIZE });
   };
 
   const handleReset = () => {
     const newFilter = transformToParamsDefault(filter);
     setFilter(newFilter);
-    fetchWebsiteList(newFilter);
+    fetchNewInformationList(newFilter);
   };
 
   const handleChange = (key: string, value: string) => {
@@ -90,7 +92,7 @@ const Website: React.FC = () => {
       current: pageIndex,
       pageSize,
     });
-    fetchWebsiteList({ filter, pageIndex, pageSize });
+    fetchNewInformationList({ filter, pageIndex, pageSize });
   };
 
   const handleSuccess = () => {
@@ -100,11 +102,11 @@ const Website: React.FC = () => {
       current: 1,
       pageSize: 10,
     });
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchNewInformationList(transformToParamsDefault(filter));
   };
 
   useEffect(() => {
-    fetchWebsiteList(transformToParamsDefault(filter));
+    fetchNewInformationList(transformToParamsDefault(filter));
   }, []);
 
   const columns: ColumnsType<Website.DataType> = [
@@ -231,7 +233,7 @@ const Website: React.FC = () => {
         <div className={styles.operation}>
           <div className={styles.left}>
             共有
-            <span>&nbsp;{responseData?.total || 0}&nbsp;</span>个人工智能
+            <span>&nbsp;{pagination?.total || 0}&nbsp;</span>个人工智能
           </div>
           <Button type="primary" onClick={() => (ref.current as any).show(OPERATION_TYPE.ADD)}>
             人工智能
@@ -241,12 +243,11 @@ const Website: React.FC = () => {
           pagination={{
             ...pagination,
             onChange: handlePageChange,
-            total: responseData?.total,
           }}
           loading={loading}
           columns={columns}
           rowKey={(record) => record?._id}
-          dataSource={responseData?.data || []}
+          dataSource={dataSource}
         />
       </div>
       <AigcDrawer
