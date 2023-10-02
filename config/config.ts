@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-23 16:35:30
  * :last editor: 张德志
- * :date last edited: 2023-09-29 10:16:31
+ * :date last edited: 2023-10-02 14:03:27
  */
 // https://umijs.org/config/
 import path from 'path';
@@ -33,7 +33,7 @@ export default defineConfig({
       prefixCls: 'xiaozhi-ant', // 修改HTML里面的类名前缀
     },
   },
-  favicon: 'https://cdn.tungee.com/warehouse/estate-finance/zhongdian/img/favicon.ico',
+  favicon: 'http://www.xiaozhi.shop/public/image/favicon.ico',
   dva: {
     hmr: true,
     immer: true,
