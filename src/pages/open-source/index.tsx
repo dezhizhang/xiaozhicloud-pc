@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-02 09:55:04
+ * :date last edited: 2023-10-02 10:02:59
  */
 import moment from 'moment';
 import _ from 'lodash';
@@ -20,7 +20,7 @@ import { PAGE_INDEX, PAGE_SIZE, FALLBACK, SUCCESS_CODE } from '@/constants';
 import { STATUS_TYPE, OPEN_SOURCE, OPERATION_TYPE, DEFAULT_PAGINATION } from './constants';
 import { getOpenSourceList, getWebsiteDelete } from './service';
 import type { TablePaginationConfig } from 'antd/lib/table/Table';
-import AigcDrawer from './components/AigcDrawer';
+import OpenSourceDrawer from './components/OpenSourceDrawer';
 import styles from './index.less';
 
 const Website: React.FC = () => {
@@ -265,7 +265,7 @@ const Website: React.FC = () => {
           dataSource={dataSource}
         />
       </div>
-      <AigcDrawer
+      <OpenSourceDrawer
         onSuccess={handleSuccess}
         //@ts-ignore
         ref={ref}
