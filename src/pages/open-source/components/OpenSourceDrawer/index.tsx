@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/open-source/components/AigcDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/open-source/components/OpenSourceDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-02 09:59:26
+ * :date last edited: 2023-10-07 20:13:58
  */
 import OSS from 'ali-oss';
 import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
@@ -28,7 +28,6 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
   const { onSuccess } = props;
   const [fileList, setFileList] = useState<any>([]);
   const [loading, setLoading] = useState(false);
-  const [record, setRecord] = useState<Website.DataType>();
   const [operation, setOperation] = useState<string>(OPERATION_TYPE.ADD);
 
   const [visible, setVisible] = useState<boolean>();
@@ -37,7 +36,6 @@ const AigcDrawer: React.FC<AigcDrawerProps> = forwardRef((props, ref) => {
       setVisible(true);
       const dateTime = new Date().getTime();
       if (active === OPERATION_TYPE.EDIT) {
-        setRecord(params);
         setFileList([
           {
             uid: dateTime,

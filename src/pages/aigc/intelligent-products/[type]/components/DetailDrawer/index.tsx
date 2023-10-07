@@ -5,11 +5,11 @@
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-07-01 22:02:00
+ * :date last edited: 2023-10-07 20:16:58
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
-import { OSS_OBJECT } from '@/constants';
+import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
 //@ts-ignore
 import { ContentUtils } from 'braft-utils';
 import { Button, Drawer, Row, Upload, message } from 'antd';
@@ -42,13 +42,13 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
     const { title, link } = baseInfo || {};
 
     const res = await getDetailAdd({ ...params, title, link, content: htmlContent });
-    if (res.stat) {
+    debugger;
+
+    if (res.code === SUCCESS_CODE) {
       onSuccess?.();
       setVisible(false);
     }
   };
-
-  console.log(baseInfo);
 
   const beforeUpload = async (file: { type: string; size: number }) => {
     // 检查图片类型
