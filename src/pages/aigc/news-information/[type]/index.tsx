@@ -6,7 +6,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-06-25 16:45:23
+ * :date last edited: 2023-10-07 20:51:34
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
@@ -14,7 +14,8 @@ import { useParams } from 'umi';
 import { Button } from 'antd';
 import { getDetailInfo, getBaseInfo } from '../service';
 import Header from '@/components/Header';
-import DetailDrawer from './components/DetailDrawer';
+import DetailDrawer from '@/components/DetailDrawer';
+import { SUCCESS_CODE } from '@/constants';
 
 const AigcDetail: React.FC = () => {
   const ref = useRef();
@@ -25,15 +26,15 @@ const AigcDetail: React.FC = () => {
 
   const fetchDetailInfo = async () => {
     const res = await getDetailInfo(params);
-    if (res.stat) {
-      const value = res.result.data?.content;
+    if (res.code === SUCCESS_CODE) {
+      const value = res.data?.content;
       setContent(value);
     }
   };
 
   const fetchNewsInformationInfo = async () => {
     const res = await getBaseInfo({ id: params?.detailId });
-    if (res?.stat) {
+    if (res?.code === SUCCESS_CODE) {
       setBaseInfo(res?.result);
     }
   };

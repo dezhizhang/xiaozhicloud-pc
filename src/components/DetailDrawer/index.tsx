@@ -1,11 +1,11 @@
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/[type]/components/DetailDrawer/index.tsx
+ * :name: /xiaozhicloud-pc/src/components/DetailDrawer/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, xiaozhi
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-10-07 20:16:58
+ * :date last edited: 2023-10-07 20:44:00
  */
 import OSS from 'ali-oss';
 import { useParams } from 'umi';
@@ -14,7 +14,7 @@ import { OSS_OBJECT, SUCCESS_CODE } from '@/constants';
 import { ContentUtils } from 'braft-utils';
 import { Button, Drawer, Row, Upload, message } from 'antd';
 import React, { forwardRef, useState, useImperativeHandle } from 'react';
-import { getDetailAdd } from '../../../service';
+import { detailAdd } from './service';
 import BraftEditor from 'braft-editor';
 import 'braft-editor/dist/index.css';
 import styles from './index.less';
@@ -30,6 +30,7 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   const [fileList, setFileList] = useState<any>([]);
   const [editorState, setEditorState] = useState(BraftEditor.createEditorState(null));
   const [visible, setVisible] = useState<boolean>();
+
   useImperativeHandle(ref, () => ({
     show: () => {
       setVisible(true);
@@ -40,9 +41,7 @@ const DetailDrawer: React.FC<DetailDrawerProps> = forwardRef((props, ref) => {
   const handleFinish = async () => {
     const htmlContent = editorState?.toHTML();
     const { title, link } = baseInfo || {};
-
-    const res = await getDetailAdd({ ...params, title, link, content: htmlContent });
-    debugger;
+    const res = await detailAdd({ ...params, title, link, content: htmlContent });
 
     if (res.code === SUCCESS_CODE) {
       onSuccess?.();

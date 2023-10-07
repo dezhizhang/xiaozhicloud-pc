@@ -1,12 +1,12 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 /*
  * :file description:
- * :name: /xiaozhicloud-pc/src/pages/aigc/intelligent-products/[type]/index.tsx
+ * :name: /xiaozhicloud-pc/src/pages/metaverse/[type]/index.tsx
  * :author: 张德志
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-26 17:36:27
  * :last editor: 张德志
- * :date last edited: 2023-07-01 21:51:02
+ * :date last edited: 2023-10-07 20:46:11
  */
 import React, { useRef, useEffect, useState } from 'react';
 import styles from './index.less';
@@ -14,7 +14,7 @@ import { useParams } from 'umi';
 import { Button } from 'antd';
 import { getDetailInfo, getProductsInfo } from '../service';
 import Header from '@/components/Header';
-import DetailDrawer from './components/DetailDrawer';
+import DetailDrawer from '@/components/DetailDrawer';
 
 const AigcDetail: React.FC = () => {
   const ref = useRef();
