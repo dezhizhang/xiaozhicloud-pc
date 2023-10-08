@@ -5,19 +5,20 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-10 12:30:33
  * :last editor: 张德志
- * :date last edited: 2023-10-02 15:11:02
+ * :date last edited: 2023-10-09 07:50:50
  */
 import styles from './index.less';
 import dayjs from 'dayjs';
+import { CommonFilter } from '@ui/sales';
 import { FORMAT } from '@/utils/constants';
 import type { ColumnsType } from 'antd/es/table';
 import { Button, Table, Popconfirm, message, Divider, Badge } from 'antd';
 import { getManagerList, deleteManager } from './service';
 import { empty } from '@/utils/index';
-import { OPERATION_TYPE, STATUS_TYPE } from './constants';
+import { OPERATION_TYPE, STATUS_TYPE, FILTER_CONFIG } from './constants';
 import { GENDER_MAP } from './constants';
 import UserDrawer from './components/UserDrawer';
-import FilterTable from './components/FilterTable';
+
 import React, { useState, useEffect, useRef } from 'react';
 
 const Manager: React.FC = () => {
@@ -175,12 +176,19 @@ const Manager: React.FC = () => {
   }, []);
   return (
     <div className={styles.container}>
-      <FilterTable
-        onChange={handleChange}
-        onOk={() => fetchManagerList(filter)}
-        filter={filter}
-        onReset={hadleReset}
-      />
+      <div className={styles.filter}>
+        <CommonFilter
+          config={FILTER_CONFIG as any}
+          storageId={''}
+          style={styles.commonFilter}
+          focusSearch={false}
+          arrayItemMaxWidth={0}
+          cascaderColumnWidth={0}
+          cascaderColumnWidthMap={undefined}
+          checkResultSolt={undefined}
+        />
+      </div>
+
       <div className={styles.content}>
         <div className={styles.title}>
           <div>

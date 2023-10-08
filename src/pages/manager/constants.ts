@@ -5,8 +5,48 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-18 22:55:29
  * :last editor: 张德志
- * :date last edited: 2023-10-01 17:03:18
+ * :date last edited: 2023-10-09 07:46:40
  */
+
+export const FILTER_CONFIG = {
+  search_config: [
+    {
+      input_type: 2,
+      key: 'report_type',
+      label: '报告类型',
+      value: [
+        {
+          label: '行业研究',
+          value: `行业研究`,
+        },
+        {
+          label: '公司研究',
+          value: `公司研究`,
+        },
+        {
+          label: '宏观策略',
+          value: '宏观策略',
+        },
+        {
+          label: '招股书',
+          value: '招股书',
+        },
+        {
+          label: '其他',
+          value: '其他',
+        },
+      ],
+    },
+
+    {
+      input_type: 10,
+      key: 'institution_name',
+      maxKeywordLength: 20,
+      label: '机构名称',
+      value: [],
+    },
+  ],
+};
 
 export const STATUS_TYPE = [
   {
