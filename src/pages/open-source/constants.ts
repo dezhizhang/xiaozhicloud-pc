@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-10-11 09:21:19
+ * :date last edited: 2023-10-11 12:29:35
  */
 
 export const OPEN_SOURCE_TYPE = {
@@ -13,6 +13,8 @@ export const OPEN_SOURCE_TYPE = {
   AI_CHAT: 'ai-chat',
   //AI绘画
   AI_PAINTING: 'ai-painting',
+  // 社交系统
+  SOCIAL_SYSTEM: 'social-system',
   //视频直播
   LIVE_VIDEO: 'live-video',
   //电商新零售
@@ -23,6 +25,10 @@ export const OPEN_SOURCE_TYPE = {
   ACTIVITY_VOTING: 'activity-voting',
   //协同办公
   COLLABORATIVE_OFFICE: 'collaborative-office',
+  //客户管理
+  CUSTOMER_MANAGEMENT: 'customer-management',
+  //财务管理
+  FINANCIAL_MANAGEMENT: 'financial-management',
   //教育教学
   EDUCATION_TEACHING: 'education-teaching',
   //分类系统
@@ -55,12 +61,24 @@ export const OPEN_SOURCE = [
     value: OPEN_SOURCE_TYPE.LIVE_VIDEO,
   },
   {
+    label: '社交系统',
+    value: OPEN_SOURCE_TYPE.SOCIAL_SYSTEM,
+  },
+  {
     label: '电商新零售',
     value: OPEN_SOURCE_TYPE.COMMERCE_NEW_RETAIL,
   },
   {
     label: '协同办公',
     value: OPEN_SOURCE_TYPE.COLLABORATIVE_OFFICE,
+  },
+  {
+    label: '客户管理',
+    value: OPEN_SOURCE_TYPE.CUSTOMER_MANAGEMENT,
+  },
+  {
+    label: '财务管理',
+    value: OPEN_SOURCE_TYPE.FINANCIAL_MANAGEMENT,
   },
   {
     label: '云知识库',
