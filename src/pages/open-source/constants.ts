@@ -5,8 +5,10 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-05-25 12:44:12
  * :last editor: 张德志
- * :date last edited: 2023-10-11 12:29:35
+ * :date last edited: 2023-10-11 12:33:46
  */
+
+export const baseUrl = '/open-source';
 
 export const OPEN_SOURCE_TYPE = {
   //AI聊天
@@ -121,8 +123,6 @@ export const OPEN_SOURCE = [
     value: OPEN_SOURCE_TYPE.BUSINESS_INTELLIGENCE,
   },
 ];
-
-export const baseUrl = '/open-source';
 
 // 操作类型
 export const OPERATION_TYPE = {
