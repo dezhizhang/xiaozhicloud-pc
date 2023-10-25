@@ -5,10 +5,11 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-23 16:35:30
  * :last editor: 张德志
- * :date last edited: 2023-10-02 14:03:27
+ * :date last edited: 2023-10-25 20:54:43
  */
 // https://umijs.org/config/
 import path from 'path';
+import { OSS_CONFIG } from './oss';
 import { defineConfig } from 'umi';
 import proxy from './proxy';
 import routes from './routes';
@@ -17,12 +18,13 @@ const { REACT_APP_ENV } = process.env;
 const isProduction = process.env.NODE_ENV === 'production';
 //获取package.json中的version变量,需要根据项目目录结构确认
 const PKG = require(path.resolve(process.cwd(), 'package.json'));
+const WebpackAliyunOssPlugin = require('webpack-aliyun-oss-plugin');
 
 // 版本号
 const VERSION = `v${PKG.version}`;
 
 // 静态文件路径前缀
-const VER_PATH = REACT_APP_ENV === 'prod' ? `/` : `/`; // 获取编译环境配置
+const VER_PATH = REACT_APP_ENV === 'prod' ? `https://cdn.xiaozhi.shop/${PKG.name}/` : `/`; // 获取编译环境配置
 
 const publicPath = isProduction ? VER_PATH : '/';
 
@@ -78,6 +80,14 @@ export default defineConfig({
         filename: `${VERSION}/css/[name].[contenthash:8].css`,
         chunkFilename: `${VERSION}/css/[name].[contenthash:8].chunk.css`,
         ignoreOrder: true,
+      },
+    ]);
+    memo.plugin('WebpackAliyunOssPlugin').use(WebpackAliyunOssPlugin, [
+      {
+        ...OSS_CONFIG,
+        filter: function (build: any) {
+          return !/\.html$/.test(build);
+        },
       },
     ]);
 
