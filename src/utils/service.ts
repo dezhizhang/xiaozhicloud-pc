@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-04-26 01:37:22
  * :last editor: 张德志
- * :date last edited: 2023-08-15 00:02:51
+ * :date last edited: 2023-10-27 06:15:18
  */
 export const BASE_URL = '/api/v1';
 
@@ -72,6 +72,12 @@ const SERVICE_MAP = {
   FRIENDLY_LINK_ADD: `/friendly-link/add`,
   FRIENDLY_LINK_DELETE: `/friendly-link/delete`,
   FRIENDLY_LINK_UPDATE: `/friendly-link/edit`,
+
+  // 数字孪生
+  DIGIT_LIST: `/digit/list`,
+  DIGIT_ADD: `/digit/add`,
+  DIGIT_DELETE: `/digit/delete`,
+  DIGIT_UPDATE: `/digit/edit`,
 };
 
 Object.keys(SERVICE_MAP).map((item: string) => {

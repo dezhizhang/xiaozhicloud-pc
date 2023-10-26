@@ -1,0 +1,36 @@
+.container {
+  .filter {
+    margin-bottom: 16px;
+  }
+
+  .content {
+    padding: 16px;
+    background: #fff;
+    border-radius: 4px;
+
+    .operation {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 16px;
+
+      .left {
+        flex: 1;
+        font-size: 14px;
+        font-family: 'Source Han Sans CN';
+
+        & > span {
+          color: #fa5246;
+        }
+      }
+    }
+
+    .desc {
+      display: -webkit-box;
+      width: 100px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+    }
+  }
+}

@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-10-02 15:10:32
+ * :date last edited: 2023-10-27 06:12:49
  */
 export default [
   {
@@ -102,6 +102,12 @@ export default [
             component: './404',
           },
         ],
+      },
+      {
+        name: '数字孪生',
+        icon: 'icon-huiyuanguanli',
+        path: '/digit',
+        component: '@/pages/digit',
       },
       {
         name: '友情链接',
