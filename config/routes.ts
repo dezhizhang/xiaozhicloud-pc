@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-10-27 06:12:49
+ * :date last edited: 2023-11-11 17:20:24
  */
 export default [
   {
@@ -52,38 +52,76 @@ export default [
         component: '@/pages/metaverse',
       },
       {
-        name: 'AIGC管理',
+        name: '新闻资讯',
+        path: '/news-information',
+        key: 'news-information',
         icon: 'icon-guanggaoguanli',
-        path: '/aigc',
         routes: [
           {
-            name: '新闻资讯',
-            path: '/aigc/news-information',
+            path: '/news-information',
             key: 'aigc-news-information',
-            component: '@/pages/aigc/news-information',
+            component: '@/pages/news-information',
           },
           {
-            path: '/aigc/news-information/:detailId',
+            path: '/news-information/:detailId',
             name: '新闻资讯详情',
             hideInMenu: true,
-            component: '@/pages/aigc/news-information/[type]',
-          },
-          {
-            name: 'AIGC产品',
-            path: '/aigc/intelligent-products',
-            component: '@/pages/aigc/intelligent-products',
-          },
-          {
-            path: '/aigc/intelligent-products/:detailId',
-            name: 'AIGC产品详情',
-            hideInMenu: true,
-            component: '@/pages/aigc/intelligent-products/[type]',
-          },
-          {
-            component: './404',
+            component: '@/pages/news-information/[type]',
           },
         ],
       },
+      {
+        name: '绘画管理',
+        path: '/painting',
+        key: 'painting',
+        icon: 'icon-guanggaoguanli',
+        routes: [
+          {
+            path: '/painting',
+            key: 'aigc-news-information',
+            component: '@/pages/painting',
+          },
+          {
+            path: '/painting/:detailId',
+            name: '新闻资讯详情',
+            hideInMenu: true,
+            component: '@/pages/painting/[type]',
+          },
+        ],
+      },
+      // {
+      //   name: 'AIGC管理',
+      //   icon: 'icon-guanggaoguanli',
+      //   path: '/aigc',
+      //   routes: [
+      //     {
+      //       name: '新闻资讯',
+      //       path: '/aigc/news-information',
+      //       key: 'aigc-news-information',
+      //       component: '@/pages/aigc/news-information',
+      //     },
+      //     {
+      //       path: '/aigc/news-information/:detailId',
+      //       name: '新闻资讯详情',
+      //       hideInMenu: true,
+      //       component: '@/pages/aigc/news-information/[type]',
+      //     },
+      //     {
+      //       name: 'AIGC产品',
+      //       path: '/aigc/intelligent-products',
+      //       component: '@/pages/aigc/intelligent-products',
+      //     },
+      //     {
+      //       path: '/aigc/intelligent-products/:detailId',
+      //       name: 'AIGC产品详情',
+      //       hideInMenu: true,
+      //       component: '@/pages/aigc/intelligent-products/[type]',
+      //     },
+      //     {
+      //       component: './404',
+      //     },
+      //   ],
+      // },
       {
         name: '开源管理',
         icon: 'icon-huiyuanguanli',

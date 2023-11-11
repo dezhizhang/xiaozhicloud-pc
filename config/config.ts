@@ -5,7 +5,7 @@
  * :copyright: (c) 2023, Tungee
  * :date created: 2023-08-23 16:35:30
  * :last editor: 张德志
- * :date last edited: 2023-10-26 13:47:56
+ * :date last edited: 2023-11-11 17:48:52
  */
 // https://umijs.org/config/
 import path from 'path';
@@ -82,14 +82,14 @@ export default defineConfig({
         ignoreOrder: true,
       },
     ]);
-    // memo.plugin('WebpackAliyunOssPlugin').use(WebpackAliyunOssPlugin, [
-    //   {
-    //     ...OSS_CONFIG,
-    //     filter: function (build: any) {
-    //       return !/\.html$/.test(build);
-    //     },
-    //   },
-    // ]);
+    memo.plugin('WebpackAliyunOssPlugin').use(WebpackAliyunOssPlugin, [
+      {
+        ...OSS_CONFIG,
+        filter: function (build: any) {
+          return !/\.html$/.test(build);
+        },
+      },
+    ]);
 
     memo.module
       .rule('images')
