@@ -5,7 +5,7 @@
  * :copyright: (c) 2022, Tungee
  * :date created: 2022-11-03 09:05:54
  * :last editor: 张德志
- * :date last edited: 2023-11-11 17:20:24
+ * :date last edited: 2023-12-04 20:13:48
  */
 export default [
   {
@@ -89,39 +89,6 @@ export default [
           },
         ],
       },
-      // {
-      //   name: 'AIGC管理',
-      //   icon: 'icon-guanggaoguanli',
-      //   path: '/aigc',
-      //   routes: [
-      //     {
-      //       name: '新闻资讯',
-      //       path: '/aigc/news-information',
-      //       key: 'aigc-news-information',
-      //       component: '@/pages/aigc/news-information',
-      //     },
-      //     {
-      //       path: '/aigc/news-information/:detailId',
-      //       name: '新闻资讯详情',
-      //       hideInMenu: true,
-      //       component: '@/pages/aigc/news-information/[type]',
-      //     },
-      //     {
-      //       name: 'AIGC产品',
-      //       path: '/aigc/intelligent-products',
-      //       component: '@/pages/aigc/intelligent-products',
-      //     },
-      //     {
-      //       path: '/aigc/intelligent-products/:detailId',
-      //       name: 'AIGC产品详情',
-      //       hideInMenu: true,
-      //       component: '@/pages/aigc/intelligent-products/[type]',
-      //     },
-      //     {
-      //       component: './404',
-      //     },
-      //   ],
-      // },
       {
         name: '开源管理',
         icon: 'icon-huiyuanguanli',
